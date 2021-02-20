@@ -8,14 +8,13 @@
 
 #import "DataManger.h"
 
-#define kSecondOfOneDay 24*60*60
-
 @interface DataManger ()
 
 @property (nonatomic, retain) EKEventStore *store;
 
 @end
 
+//--------------------------------------------------------------------
 @implementation DataManger
 
 + (instancetype)shareInstance
@@ -28,44 +27,42 @@
     return sharedInstance;
 }
 
--(void)getEvent:(void (^)(NSArray *eventArray))completion {
+-(void)getScheduleEvent:(void (^)(NSArray *eventArray))completion {
     if(nil == self.store) {
         self.store = [[EKEventStore alloc] init];
     }
     
     __weak typeof(self) weakSelf = self;
     [_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-        if(nil == weakSelf || NO == granted) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        if(nil == strongSelf || NO == granted) {
             completion(nil);
             return;
         }
-        
-        __strong typeof(weakSelf) strongSelf = weakSelf;
     
         NSArray *calendarsArray = [strongSelf.store calendarsForEntityType:EKEntityTypeEvent];
-        EKCalendar *calendar = nil;
-        NSArray *events = nil;
         for (int i = 0; i < calendarsArray.count; i++) {
             EKCalendar *temp = calendarsArray[i];
-            if ([temp.title isEqual:@"Calendar"] || [temp.title isEqual:@"日历"]) {
-                calendar = temp;
-                break;
+            if (NO == [temp.title isEqual:@"Calendar"] && NO == [temp.title isEqual:@"日历"]) {
+                continue;
             }
-        }
-        if (calendar != nil) {
+            
             NSDate *endTime = [[NSDate alloc] init];
             NSDate *startTime = [strongSelf getPriousorLaterDateFromDate:endTime withMonth:-(12 * 4)];
             
-            NSPredicate *predicate = [strongSelf.store predicateForEventsWithStartDate:startTime endDate:endTime calendars:[NSArray arrayWithObject:calendar]];
+            NSPredicate *predicate = [strongSelf.store predicateForEventsWithStartDate:startTime endDate:endTime calendars:[NSArray arrayWithObject:temp]];
             
-            events = [strongSelf.store eventsMatchingPredicate:predicate];
+            NSArray *events = [strongSelf.store eventsMatchingPredicate:predicate];
             completion(events);
+            return;
         }
+        
+        completion(nil);
     }];
 }
 
 - (NSDate*)getPriousorLaterDateFromDate:(NSDate*)date withMonth:(int)month{
-
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     [comps setMonth:month];
     NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];// NSGregorianCalendar
@@ -75,13 +72,11 @@
 }
 
 -(BOOL)deleteEvent:(EKEvent *)event {
-    NSError *err;
     [event setCalendar:[self.store defaultCalendarForNewEvents]];
+    
+    NSError *err;
     [self.store removeEvent:event span:EKSpanThisEvent commit:YES error:&err];
-    if (err == nil) {
-        return YES;
-    }
-    return NO;
+    return err == nil;
 }
 
 

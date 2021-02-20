@@ -31,13 +31,12 @@
     //做旋转动画
 }
 
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     __weak typeof(self) weakSelf = self;
     if(e_CalendarSearch_Type == _searchType) {
-        [[DataManger shareInstance] getEvent:^(NSArray *eventArray){
+        [[DataManger shareInstance] getScheduleEvent:^(NSArray *eventArray){
             __strong typeof(weakSelf) strongSelf = weakSelf;
             [strongSelf handelCalendarEvent:eventArray];
         }];

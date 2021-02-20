@@ -14,7 +14,7 @@
 +(instancetype)shareInstance;
 
 //日历相关
--(void)getEvent:(void (^)(NSArray *eventArray))completion;
+-(void)getScheduleEvent:(void (^)(NSArray *eventArray))completion;
 -(BOOL)deleteEvent:(EKEvent *)event;
 
 @end

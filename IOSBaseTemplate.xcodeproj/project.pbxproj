@@ -201,8 +201,6 @@
 				2B80840A25B9622F0056938B /* AppDelegate.m */,
 				2BE7888525DF686900E187A3 /* UIRootViewController.h */,
 				2BE7888425DF686900E187A3 /* UIRootViewController.mm */,
-				2BE788DF25DF748A00E187A3 /* UISearchViewController.h */,
-				2BE788E025DF748A00E187A3 /* UISearchViewController.m */,
 				2BE7890B25DF817700E187A3 /* Resources */,
 				2B80846825B97A300056938B /* Supporting Files */,
 			);
@@ -317,6 +315,8 @@
 			isa = PBXGroup;
 			children = (
 				2BE7981125DFE55000E187A3 /* Calendar */,
+				2BE788DF25DF748A00E187A3 /* UISearchViewController.h */,
+				2BE788E025DF748A00E187A3 /* UISearchViewController.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
