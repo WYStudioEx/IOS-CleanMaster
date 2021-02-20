@@ -2,8 +2,8 @@
 //  UIRootViewController.h
 //  IOSBaseTemplate
 //
-//  Created by fengchiwei on 2018/6/21.
-//  Copyright © 2018年 fengchiwei. All rights reserved.
+//  Created by WYStudio on 2018/6/21.
+//  Copyright © 2018年 WYStudio. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

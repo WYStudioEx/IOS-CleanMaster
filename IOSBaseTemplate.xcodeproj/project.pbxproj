@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B07ED3D25BEB396006BFBE7 /* libSubProjectForLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B80845C25B962F70056938B /* libSubProjectForLogin.a */; };
 		2B07ED4725BEB494006BFBE7 /* GlobalConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B07ED4625BEB494006BFBE7 /* GlobalConst.m */; };
 		2B07ED5025BEB4D2006BFBE7 /* Public.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B07ED4F25BEB4D2006BFBE7 /* Public.m */; };
 		2B80840B25B9622F0056938B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B80840A25B9622F0056938B /* AppDelegate.m */; };
@@ -17,28 +16,24 @@
 		2BE7886625DF63CA00E187A3 /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7884F25DF632B00E187A3 /* QMUIKit.framework */; };
 		2BE7886725DF63CA00E187A3 /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7884F25DF632B00E187A3 /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2BE7888625DF686900E187A3 /* UIRootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7888425DF686900E187A3 /* UIRootViewController.mm */; };
-		2BE788E125DF748A00E187A3 /* UINextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE788E025DF748A00E187A3 /* UINextViewController.m */; };
+		2BE788E125DF748A00E187A3 /* UISearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE788E025DF748A00E187A3 /* UISearchViewController.m */; };
 		2BE7890D25DF817700E187A3 /* rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BE7890C25DF817700E187A3 /* rect.png */; };
 		2BE7893525DF972F00E187A3 /* UIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7893425DF972F00E187A3 /* UIBaseViewController.m */; };
 		2BE7894A25DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7894925DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m */; };
+		2BE7981425DFE57900E187A3 /* DataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7981325DFE57900E187A3 /* DataManger.m */; };
+		2BE7981725DFE59300E187A3 /* UICalendarSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7981625DFE59300E187A3 /* UICalendarSearchResultViewController.m */; };
+		2BE7B59F25E0E99700E187A3 /* WYComponentTableSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7B58925E0E99700E187A3 /* WYComponentTableSectionItem.m */; };
+		2BE7B5A025E0E99700E187A3 /* KSTemplateViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7B58F25E0E99700E187A3 /* KSTemplateViewModel.m */; };
+		2BE7B5A125E0E99700E187A3 /* KSTemplateListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7B59225E0E99700E187A3 /* KSTemplateListItem.m */; };
+		2BE7B5A225E0E99700E187A3 /* KSTemplateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7B59425E0E99700E187A3 /* KSTemplateTableViewCell.m */; };
+		2BE7B5A325E0E99700E187A3 /* KSTemplateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7B59725E0E99700E187A3 /* KSTemplateListViewController.m */; };
+		2BE7B5A425E0E99700E187A3 /* WYComponentTableCategory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7B59825E0E99700E187A3 /* WYComponentTableCategory.mm */; };
+		2BE7B5A525E0E99700E187A3 /* WYComponentTableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7B59A25E0E99700E187A3 /* WYComponentTableItem.m */; };
+		2BE7B5A625E0E99700E187A3 /* WYComponentTableViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7B59C25E0E99700E187A3 /* WYComponentTableViewController.mm */; };
 		3FF478ED5A0FDF50CDB02108 /* libPods-IOSBaseTemplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74DB79F1379E8A206D3B70EB /* libPods-IOSBaseTemplate.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2B80845B25B962F70056938B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2B80845725B962F70056938B /* SubProjectForLogin.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2B80844A25B962B10056938B;
-			remoteInfo = SubProjectForLogin;
-		};
-		2B80846325B96C260056938B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2B80845725B962F70056938B /* SubProjectForLogin.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 2B80844925B962B10056938B;
-			remoteInfo = SubProjectForLogin;
-		};
 		2BE7884E25DF632B00E187A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2BE7884925DF632B00E187A3 /* qmui.xcodeproj */;
@@ -82,17 +77,36 @@
 		2B80841825B962300056938B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B80841A25B962300056938B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B80841B25B962300056938B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2B80845725B962F70056938B /* SubProjectForLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SubProjectForLogin.xcodeproj; path = SubProjectForLogin/SubProjectForLogin.xcodeproj; sourceTree = "<group>"; };
 		2BE7884925DF632B00E187A3 /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = QMUI/qmui.xcodeproj; sourceTree = "<group>"; };
 		2BE7888425DF686900E187A3 /* UIRootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIRootViewController.mm; sourceTree = "<group>"; };
 		2BE7888525DF686900E187A3 /* UIRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRootViewController.h; sourceTree = "<group>"; };
-		2BE788DF25DF748A00E187A3 /* UINextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINextViewController.h; sourceTree = "<group>"; };
-		2BE788E025DF748A00E187A3 /* UINextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UINextViewController.m; sourceTree = "<group>"; };
+		2BE788DF25DF748A00E187A3 /* UISearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchViewController.h; sourceTree = "<group>"; };
+		2BE788E025DF748A00E187A3 /* UISearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISearchViewController.m; sourceTree = "<group>"; };
 		2BE7890C25DF817700E187A3 /* rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect.png; sourceTree = "<group>"; };
 		2BE7892225DF962400E187A3 /* UIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBaseViewController.h; sourceTree = "<group>"; };
 		2BE7893425DF972F00E187A3 /* UIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBaseViewController.m; sourceTree = "<group>"; };
 		2BE7894625DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplateGrass.h; sourceTree = "<group>"; };
 		2BE7894925DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplateGrass.m; sourceTree = "<group>"; };
+		2BE7981225DFE57900E187A3 /* DataManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManger.h; sourceTree = "<group>"; };
+		2BE7981325DFE57900E187A3 /* DataManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManger.m; sourceTree = "<group>"; };
+		2BE7981525DFE59300E187A3 /* UICalendarSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICalendarSearchResultViewController.h; sourceTree = "<group>"; };
+		2BE7981625DFE59300E187A3 /* UICalendarSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICalendarSearchResultViewController.m; sourceTree = "<group>"; };
+		2BE7B58925E0E99700E187A3 /* WYComponentTableSectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYComponentTableSectionItem.m; sourceTree = "<group>"; };
+		2BE7B58A25E0E99700E187A3 /* WYComponentTableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYComponentTableItem.h; sourceTree = "<group>"; };
+		2BE7B58B25E0E99700E187A3 /* WYComponentTableCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYComponentTableCategory.h; sourceTree = "<group>"; };
+		2BE7B58E25E0E99700E187A3 /* KSTemplateViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTemplateViewModel.h; sourceTree = "<group>"; };
+		2BE7B58F25E0E99700E187A3 /* KSTemplateViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSTemplateViewModel.m; sourceTree = "<group>"; };
+		2BE7B59125E0E99700E187A3 /* KSTemplateListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTemplateListItem.h; sourceTree = "<group>"; };
+		2BE7B59225E0E99700E187A3 /* KSTemplateListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSTemplateListItem.m; sourceTree = "<group>"; };
+		2BE7B59425E0E99700E187A3 /* KSTemplateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSTemplateTableViewCell.m; sourceTree = "<group>"; };
+		2BE7B59525E0E99700E187A3 /* KSTemplateListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTemplateListViewController.h; sourceTree = "<group>"; };
+		2BE7B59625E0E99700E187A3 /* KSTemplateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTemplateTableViewCell.h; sourceTree = "<group>"; };
+		2BE7B59725E0E99700E187A3 /* KSTemplateListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSTemplateListViewController.m; sourceTree = "<group>"; };
+		2BE7B59825E0E99700E187A3 /* WYComponentTableCategory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WYComponentTableCategory.mm; sourceTree = "<group>"; };
+		2BE7B59925E0E99700E187A3 /* WYComponentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYComponentTableViewController.h; sourceTree = "<group>"; };
+		2BE7B59A25E0E99700E187A3 /* WYComponentTableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYComponentTableItem.m; sourceTree = "<group>"; };
+		2BE7B59B25E0E99700E187A3 /* WYComponentTableSectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYComponentTableSectionItem.h; sourceTree = "<group>"; };
+		2BE7B59C25E0E99700E187A3 /* WYComponentTableViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WYComponentTableViewController.mm; sourceTree = "<group>"; };
 		34C8DBEE0E30BC288B3EF482 /* Pods-IOSBaseTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSBaseTemplate.release.xcconfig"; path = "Target Support Files/Pods-IOSBaseTemplate/Pods-IOSBaseTemplate.release.xcconfig"; sourceTree = "<group>"; };
 		74DB79F1379E8A206D3B70EB /* libPods-IOSBaseTemplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IOSBaseTemplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC60344916A49D1629F613B6 /* Pods-IOSBaseTemplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSBaseTemplate.debug.xcconfig"; path = "Target Support Files/Pods-IOSBaseTemplate/Pods-IOSBaseTemplate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -104,7 +118,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE7886625DF63CA00E187A3 /* QMUIKit.framework in Frameworks */,
-				2B07ED3D25BEB396006BFBE7 /* libSubProjectForLogin.a in Frameworks */,
 				3FF478ED5A0FDF50CDB02108 /* libPods-IOSBaseTemplate.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,7 +145,10 @@
 		2B07ED4125BEB3E0006BFBE7 /* Macro */ = {
 			isa = PBXGroup;
 			children = (
-				2B07ED4425BEB477006BFBE7 /* Public */,
+				2B07ED4525BEB494006BFBE7 /* GlobalConst.h */,
+				2B07ED4625BEB494006BFBE7 /* GlobalConst.m */,
+				2B07ED4E25BEB4D2006BFBE7 /* Public.h */,
+				2B07ED4F25BEB4D2006BFBE7 /* Public.m */,
 			);
 			path = Macro;
 			sourceTree = "<group>";
@@ -140,8 +156,10 @@
 		2B07ED4225BEB3EE006BFBE7 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				2BE7894625DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.h */,
-				2BE7894925DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m */,
+				2B07ED4125BEB3E0006BFBE7 /* Macro */,
+				2BE7B58825E0E99700E187A3 /* WWKEasyTableViewController */,
+				2BE7892225DF962400E187A3 /* UIBaseViewController.h */,
+				2BE7893425DF972F00E187A3 /* UIBaseViewController.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -153,23 +171,10 @@
 			path = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		2B07ED4425BEB477006BFBE7 /* Public */ = {
-			isa = PBXGroup;
-			children = (
-				2B07ED4525BEB494006BFBE7 /* GlobalConst.h */,
-				2B07ED4625BEB494006BFBE7 /* GlobalConst.m */,
-				2B07ED4E25BEB4D2006BFBE7 /* Public.h */,
-				2B07ED4F25BEB4D2006BFBE7 /* Public.m */,
-				2B07ED5425BEB51C006BFBE7 /* PrefixHeader.pch */,
-			);
-			path = Public;
-			sourceTree = "<group>";
-		};
 		2B8083FD25B9622F0056938B = {
 			isa = PBXGroup;
 			children = (
 				2BE7884925DF632B00E187A3 /* qmui.xcodeproj */,
-				2B80845725B962F70056938B /* SubProjectForLogin.xcodeproj */,
 				2B80840825B9622F0056938B /* IOSBaseTemplate */,
 				2B80840725B9622F0056938B /* Products */,
 				2B07ED3C25BEB396006BFBE7 /* Frameworks */,
@@ -188,36 +193,29 @@
 		2B80840825B9622F0056938B /* IOSBaseTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				2BE7896D25DFBA6700E187A3 /* Base */,
 				2B07ED4325BEB43C006BFBE7 /* Podspec Metadata */,
 				2B07ED4225BEB3EE006BFBE7 /* General */,
-				2B07ED4125BEB3E0006BFBE7 /* Macro */,
+				2BE7B63025E0EBDA00E187A3 /* Engine */,
+				2BE7B63125E0EBEE00E187A3 /* UI */,
 				2B80840925B9622F0056938B /* AppDelegate.h */,
 				2B80840A25B9622F0056938B /* AppDelegate.m */,
 				2BE7888525DF686900E187A3 /* UIRootViewController.h */,
 				2BE7888425DF686900E187A3 /* UIRootViewController.mm */,
-				2BE788DF25DF748A00E187A3 /* UINextViewController.h */,
-				2BE788E025DF748A00E187A3 /* UINextViewController.m */,
+				2BE788DF25DF748A00E187A3 /* UISearchViewController.h */,
+				2BE788E025DF748A00E187A3 /* UISearchViewController.m */,
+				2BE7890B25DF817700E187A3 /* Resources */,
 				2B80846825B97A300056938B /* Supporting Files */,
 			);
 			path = IOSBaseTemplate;
 			sourceTree = "<group>";
 		};
-		2B80845825B962F70056938B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2B80845C25B962F70056938B /* libSubProjectForLogin.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		2B80846825B97A300056938B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2BE7890B25DF817700E187A3 /* res */,
 				2B80841525B962300056938B /* Assets.xcassets */,
 				2B80841725B962300056938B /* LaunchScreen.storyboard */,
 				2B80841A25B962300056938B /* Info.plist */,
+				2B07ED5425BEB51C006BFBE7 /* PrefixHeader.pch */,
 				2B80841B25B962300056938B /* main.m */,
 			);
 			path = "Supporting Files";
@@ -232,21 +230,95 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2BE7890B25DF817700E187A3 /* res */ = {
+		2BE7890B25DF817700E187A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2BE7894625DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.h */,
+				2BE7894925DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m */,
 				2BE7890C25DF817700E187A3 /* rect.png */,
 			);
-			path = res;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		2BE7896D25DFBA6700E187A3 /* Base */ = {
+		2BE7981125DFE55000E187A3 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				2BE7892225DF962400E187A3 /* UIBaseViewController.h */,
-				2BE7893425DF972F00E187A3 /* UIBaseViewController.m */,
+				2BE7981525DFE59300E187A3 /* UICalendarSearchResultViewController.h */,
+				2BE7981625DFE59300E187A3 /* UICalendarSearchResultViewController.m */,
 			);
-			path = Base;
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		2BE7B58825E0E99700E187A3 /* WWKEasyTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2BE7B58925E0E99700E187A3 /* WYComponentTableSectionItem.m */,
+				2BE7B58A25E0E99700E187A3 /* WYComponentTableItem.h */,
+				2BE7B58B25E0E99700E187A3 /* WYComponentTableCategory.h */,
+				2BE7B59825E0E99700E187A3 /* WYComponentTableCategory.mm */,
+				2BE7B59925E0E99700E187A3 /* WYComponentTableViewController.h */,
+				2BE7B59A25E0E99700E187A3 /* WYComponentTableItem.m */,
+				2BE7B59B25E0E99700E187A3 /* WYComponentTableSectionItem.h */,
+				2BE7B59C25E0E99700E187A3 /* WYComponentTableViewController.mm */,
+				2BE7B58C25E0E99700E187A3 /* TestEasyTableViewController */,
+			);
+			path = WWKEasyTableViewController;
+			sourceTree = "<group>";
+		};
+		2BE7B58C25E0E99700E187A3 /* TestEasyTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2BE7B58D25E0E99700E187A3 /* ViewModel */,
+				2BE7B59025E0E99700E187A3 /* Model */,
+				2BE7B59325E0E99700E187A3 /* View */,
+			);
+			path = TestEasyTableViewController;
+			sourceTree = "<group>";
+		};
+		2BE7B58D25E0E99700E187A3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2BE7B58E25E0E99700E187A3 /* KSTemplateViewModel.h */,
+				2BE7B58F25E0E99700E187A3 /* KSTemplateViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2BE7B59025E0E99700E187A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2BE7B59125E0E99700E187A3 /* KSTemplateListItem.h */,
+				2BE7B59225E0E99700E187A3 /* KSTemplateListItem.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2BE7B59325E0E99700E187A3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2BE7B59625E0E99700E187A3 /* KSTemplateTableViewCell.h */,
+				2BE7B59425E0E99700E187A3 /* KSTemplateTableViewCell.m */,
+				2BE7B59525E0E99700E187A3 /* KSTemplateListViewController.h */,
+				2BE7B59725E0E99700E187A3 /* KSTemplateListViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2BE7B63025E0EBDA00E187A3 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				2BE7981225DFE57900E187A3 /* DataManger.h */,
+				2BE7981325DFE57900E187A3 /* DataManger.m */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		2BE7B63125E0EBEE00E187A3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2BE7981125DFE55000E187A3 /* Calendar */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +338,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2B80846425B96C260056938B /* PBXTargetDependency */,
 			);
 			name = IOSBaseTemplate;
 			productName = IOSBaseTemplate;
@@ -302,10 +373,6 @@
 					ProductGroup = 2BE7884A25DF632B00E187A3 /* Products */;
 					ProjectRef = 2BE7884925DF632B00E187A3 /* qmui.xcodeproj */;
 				},
-				{
-					ProductGroup = 2B80845825B962F70056938B /* Products */;
-					ProjectRef = 2B80845725B962F70056938B /* SubProjectForLogin.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -315,13 +382,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		2B80845C25B962F70056938B /* libSubProjectForLogin.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSubProjectForLogin.a;
-			remoteRef = 2B80845B25B962F70056938B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		2BE7884F25DF632B00E187A3 /* QMUIKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -398,26 +458,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BE7B5A425E0E99700E187A3 /* WYComponentTableCategory.mm in Sources */,
 				2BE7894A25DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m in Sources */,
 				2B80840B25B9622F0056938B /* AppDelegate.m in Sources */,
+				2BE7981425DFE57900E187A3 /* DataManger.m in Sources */,
+				2BE7B5A325E0E99700E187A3 /* KSTemplateListViewController.m in Sources */,
 				2BE7893525DF972F00E187A3 /* UIBaseViewController.m in Sources */,
 				2B07ED5025BEB4D2006BFBE7 /* Public.m in Sources */,
+				2BE7B5A125E0E99700E187A3 /* KSTemplateListItem.m in Sources */,
+				2BE7981725DFE59300E187A3 /* UICalendarSearchResultViewController.m in Sources */,
+				2BE7B5A025E0E99700E187A3 /* KSTemplateViewModel.m in Sources */,
 				2B80841C25B962300056938B /* main.m in Sources */,
-				2BE788E125DF748A00E187A3 /* UINextViewController.m in Sources */,
+				2BE7B5A225E0E99700E187A3 /* KSTemplateTableViewCell.m in Sources */,
+				2BE7B59F25E0E99700E187A3 /* WYComponentTableSectionItem.m in Sources */,
+				2BE788E125DF748A00E187A3 /* UISearchViewController.m in Sources */,
 				2B07ED4725BEB494006BFBE7 /* GlobalConst.m in Sources */,
 				2BE7888625DF686900E187A3 /* UIRootViewController.mm in Sources */,
+				2BE7B5A525E0E99700E187A3 /* WYComponentTableItem.m in Sources */,
+				2BE7B5A625E0E99700E187A3 /* WYComponentTableViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2B80846425B96C260056938B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SubProjectForLogin;
-			targetProxy = 2B80846325B96C260056938B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2B80841725B962300056938B /* LaunchScreen.storyboard */ = {
@@ -552,7 +614,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WG256MA2SR;
 				ENABLE_BITCODE = NO;
-				GCC_PREFIX_HEADER = ./IOSBaseTemplate/Macro/Public/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "./IOSBaseTemplate/Supporting Files/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/SubProjectForLogin\"";
 				INFOPLIST_FILE = "IOSBaseTemplate/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -575,7 +637,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WG256MA2SR;
 				ENABLE_BITCODE = NO;
-				GCC_PREFIX_HEADER = ./IOSBaseTemplate/Macro/Public/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "./IOSBaseTemplate/Supporting Files/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/SubProjectForLogin\"";
 				INFOPLIST_FILE = "IOSBaseTemplate/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

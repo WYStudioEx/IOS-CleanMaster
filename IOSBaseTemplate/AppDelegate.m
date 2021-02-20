@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  IOSBaseTemplate
 //
-//  Created by fengchiwei on 2018/6/21.
+//  Created by WYStudio on 2018/6/21.
 //
 
 #import "AppDelegate.h"

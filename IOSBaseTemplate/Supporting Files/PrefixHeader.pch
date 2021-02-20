@@ -1,0 +1,16 @@
+//
+//  PrefixHeader.pch
+//  IOSBaseTemplate
+//
+//  Created by WYStudio on 2021/1/25.
+//
+
+#ifndef PrefixHeaser_h
+#define PrefixHeaser_h
+
+#import "Public.h"
+#import <QMUIKit/QMUIKit.h>
+
+
+#endif /* PrefixHeaser_h */
+
