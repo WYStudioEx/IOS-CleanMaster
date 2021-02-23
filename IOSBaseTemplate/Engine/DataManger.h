@@ -17,4 +17,7 @@
 -(void)getScheduleEvent:(void (^)(NSArray *eventArray))completion;
 -(BOOL)deleteEvent:(EKEvent *)event;
 
+//通讯录相关
+-(void)getContactData:(void (^)(NSArray *contactList))completion;
+
 @end

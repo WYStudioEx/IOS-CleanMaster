@@ -11,7 +11,7 @@
 
 @interface UIRootViewController ()
 
-@property(nonatomic, strong) QMUIButton *addressBookBtn;
+@property(nonatomic, strong) QMUIButton *ContactBtn;
 @property(nonatomic, strong) QMUIButton *calendarBtn;
 @property(nonatomic, strong) QMUIButton *privacyBtn;
 
@@ -26,12 +26,12 @@
     self.title = @"RootVC";
     self.view.backgroundColor = UIColorMake(159, 214, 97);;
     
-    self.addressBookBtn = [[QMUIButton alloc] init];
-    _addressBookBtn.backgroundColor = [UIColor blueColor];
-    [_addressBookBtn setTitle:@"通讯录" forState:UIControlStateNormal];
-    [_addressBookBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [_addressBookBtn addTarget:self action:@selector(addressBookBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_addressBookBtn];
+    self.ContactBtn = [[QMUIButton alloc] init];
+    _ContactBtn.backgroundColor = [UIColor blueColor];
+    [_ContactBtn setTitle:@"通讯录" forState:UIControlStateNormal];
+    [_ContactBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [_ContactBtn addTarget:self action:@selector(ContactBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_ContactBtn];
     
     self.calendarBtn = [[QMUIButton alloc] init];
     _calendarBtn.backgroundColor = [UIColor blueColor];
@@ -56,13 +56,14 @@
     CGFloat btnHeight = 50;
     CGFloat CMargin = (self.view.qmui_width - 2 * HMargin - 3 * btnWidth) / 2.0;
     
-    _addressBookBtn.frame = CGRectMake(HMargin, self.view.qmui_height - btnHeight - 40, btnWidth, btnHeight);
-    _calendarBtn.frame = CGRectMake(_addressBookBtn.qmui_right + CMargin, self.view.qmui_height - btnHeight - 40, btnWidth, btnHeight);
+    _ContactBtn.frame = CGRectMake(HMargin, self.view.qmui_height - btnHeight - 40, btnWidth, btnHeight);
+    _calendarBtn.frame = CGRectMake(_ContactBtn.qmui_right + CMargin, self.view.qmui_height - btnHeight - 40, btnWidth, btnHeight);
     _privacyBtn.frame = CGRectMake(_calendarBtn.qmui_right + CMargin, self.view.qmui_height - btnHeight - 40, btnWidth, btnHeight);
 }
 
-- (void)addressBookBtnClick:(id)btn {
+- (void)ContactBtnClick:(id)btn {
     UISearchViewController *nextVC = [[UISearchViewController alloc] init];
+    nextVC.searchType = e_Contact_Type;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 

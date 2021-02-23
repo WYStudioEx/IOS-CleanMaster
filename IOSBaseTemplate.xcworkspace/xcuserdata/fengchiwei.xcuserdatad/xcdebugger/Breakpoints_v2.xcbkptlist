@@ -3,4 +3,29 @@
    uuid = "CA57ED7E-48D1-4CDB-82F5-3297B0092528"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "CCA685BD-E3FD-4894-8D00-0FEC5EA3FE21"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "-[UINavigationController pushViewController:animated:]"
+            moduleName = "">
+            <Locations>
+               <Location
+                  uuid = "CCA685BD-E3FD-4894-8D00-0FEC5EA3FE21 - a0337e797ed6a91b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UINavigationController pushViewController:animated:]"
+                  moduleName = "UIKitCore"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

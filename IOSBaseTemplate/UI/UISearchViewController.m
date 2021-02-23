@@ -7,6 +7,7 @@
 
 #import "UISearchViewController.h"
 #import "UICalendarSearchResultViewController.h"
+#import "UIContactSearchResultViewController.h"
 #import "DataManger.h"
 
 @interface UISearchViewController ()
@@ -43,6 +44,15 @@
         
         return;
     }
+    
+    if(e_Contact_Type == _searchType) {
+        [[DataManger shareInstance] getContactData:^(NSArray *contactArray){
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf handelContactData:contactArray];
+        }];
+        
+        return;
+    }
 }
 
 - (void)handelCalendarEvent:(NSArray *)eventArray {
@@ -53,6 +63,18 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         UICalendarSearchResultViewController *vc = [[UICalendarSearchResultViewController alloc] init];
         vc.eventArray = eventArray;
+        [self.navigationController pushViewController:vc animated:YES];
+    });
+}
+
+- (void)handelContactData:(NSArray *)contactArray {
+    if(0 == contactArray.count) {
+        return;
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIContactSearchResultViewController *vc = [[UIContactSearchResultViewController alloc] init];
+        vc.contactArray = contactArray;
         [self.navigationController pushViewController:vc animated:YES];
     });
 }
