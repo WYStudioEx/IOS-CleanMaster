@@ -11,13 +11,17 @@
 
 @interface DataManger : NSObject
 
-+(instancetype)shareInstance;
++ (instancetype)shareInstance;
 
-//日历相关
--(void)getScheduleEvent:(void (^)(NSArray *eventArray))completion;
--(BOOL)deleteEvent:(EKEvent *)event;
+//数据读取
+- (void)getScheduleEvent:(void (^)(NSArray *eventArray))completion;
+- (BOOL)deleteEvent:(EKEvent *)event;
 
-//通讯录相关
--(void)getContactData:(void (^)(NSArray *contactList))completion;
+//通讯录数据读取
+- (void)getContactData:(void (^)(NSArray *contactList))completion;
+
+//照片数据读取
+- (void)getPhotoData:(void (^)(NSArray *photoList))completion;
+
 
 @end

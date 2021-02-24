@@ -11,7 +11,8 @@
 
 @interface UIRootViewController ()
 
-@property(nonatomic, strong) QMUIButton *ContactBtn;
+@property(nonatomic, strong) QMUIButton *phoneBtn;
+@property(nonatomic, strong) QMUIButton *contactBtn;
 @property(nonatomic, strong) QMUIButton *calendarBtn;
 @property(nonatomic, strong) QMUIButton *privacyBtn;
 
@@ -24,14 +25,22 @@
     [super viewDidLoad];
     
     self.title = @"RootVC";
-    self.view.backgroundColor = UIColorMake(159, 214, 97);;
+    self.view.backgroundColor = UIColorMake(159, 214, 97);
     
-    self.ContactBtn = [[QMUIButton alloc] init];
-    _ContactBtn.backgroundColor = [UIColor blueColor];
-    [_ContactBtn setTitle:@"通讯录" forState:UIControlStateNormal];
-    [_ContactBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [_ContactBtn addTarget:self action:@selector(ContactBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_ContactBtn];
+    
+    self.phoneBtn = [[QMUIButton alloc] init];
+    _phoneBtn.backgroundColor = [UIColor blueColor];
+    [_phoneBtn setTitle:@"图库" forState:UIControlStateNormal];
+    [_phoneBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [_phoneBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_phoneBtn];
+    
+    self.contactBtn = [[QMUIButton alloc] init];
+    _contactBtn.backgroundColor = [UIColor blueColor];
+    [_contactBtn setTitle:@"通讯录" forState:UIControlStateNormal];
+    [_contactBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [_contactBtn addTarget:self action:@selector(contactBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_contactBtn];
     
     self.calendarBtn = [[QMUIButton alloc] init];
     _calendarBtn.backgroundColor = [UIColor blueColor];
@@ -56,12 +65,19 @@
     CGFloat btnHeight = 50;
     CGFloat CMargin = (self.view.qmui_width - 2 * HMargin - 3 * btnWidth) / 2.0;
     
-    _ContactBtn.frame = CGRectMake(HMargin, self.view.qmui_height - btnHeight - 40, btnWidth, btnHeight);
-    _calendarBtn.frame = CGRectMake(_ContactBtn.qmui_right + CMargin, self.view.qmui_height - btnHeight - 40, btnWidth, btnHeight);
+    _phoneBtn.frame = CGRectMake((self.view.qmui_width - btnWidth) / 2.0, (self.view.qmui_height - btnHeight) / 2.0, btnWidth, btnHeight);
+    _contactBtn.frame = CGRectMake(HMargin, self.view.qmui_height - btnHeight - 40, btnWidth, btnHeight);
+    _calendarBtn.frame = CGRectMake(_contactBtn.qmui_right + CMargin, self.view.qmui_height - btnHeight - 40, btnWidth, btnHeight);
     _privacyBtn.frame = CGRectMake(_calendarBtn.qmui_right + CMargin, self.view.qmui_height - btnHeight - 40, btnWidth, btnHeight);
 }
 
-- (void)ContactBtnClick:(id)btn {
+- (void)photoBtnClick:(id)btn {
+    UISearchViewController *nextVC = [[UISearchViewController alloc] init];
+    nextVC.searchType = e_PhoneSearch_Type;
+    [self.navigationController pushViewController:nextVC animated:YES];
+}
+
+- (void)contactBtnClick:(id)btn {
     UISearchViewController *nextVC = [[UISearchViewController alloc] init];
     nextVC.searchType = e_Contact_Type;
     [self.navigationController pushViewController:nextVC animated:YES];

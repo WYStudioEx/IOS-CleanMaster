@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B041A4E25E6838000E69F41 /* PhotoAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B041A4C25E6837F00E69F41 /* PhotoAnalysis.m */; };
 		2B04BF2C25E5323000E69F41 /* UIContactSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BF2925E5323000E69F41 /* UIContactSearchResultViewController.m */; };
+		2B04BF3025E535CC00E69F41 /* UIPhotoSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BF2F25E535CC00E69F41 /* UIPhotoSearchResultViewController.m */; };
 		2B07ED4725BEB494006BFBE7 /* GlobalConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B07ED4625BEB494006BFBE7 /* GlobalConst.m */; };
 		2B07ED5025BEB4D2006BFBE7 /* Public.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B07ED4F25BEB4D2006BFBE7 /* Public.m */; };
 		2B80840B25B9622F0056938B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B80840A25B9622F0056938B /* AppDelegate.m */; };
@@ -67,8 +69,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B041A4C25E6837F00E69F41 /* PhotoAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAnalysis.m; sourceTree = "<group>"; };
+		2B041A4D25E6838000E69F41 /* PhotoAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAnalysis.h; sourceTree = "<group>"; };
 		2B04BF2825E5323000E69F41 /* UIContactSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIContactSearchResultViewController.h; sourceTree = "<group>"; };
 		2B04BF2925E5323000E69F41 /* UIContactSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIContactSearchResultViewController.m; sourceTree = "<group>"; };
+		2B04BF2E25E535CC00E69F41 /* UIPhotoSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPhotoSearchResultViewController.h; sourceTree = "<group>"; };
+		2B04BF2F25E535CC00E69F41 /* UIPhotoSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPhotoSearchResultViewController.m; sourceTree = "<group>"; };
 		2B07ED4525BEB494006BFBE7 /* GlobalConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalConst.h; sourceTree = "<group>"; };
 		2B07ED4625BEB494006BFBE7 /* GlobalConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalConst.m; sourceTree = "<group>"; };
 		2B07ED4E25BEB4D2006BFBE7 /* Public.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Public.h; sourceTree = "<group>"; };
@@ -148,6 +154,15 @@
 				2B04BF2925E5323000E69F41 /* UIContactSearchResultViewController.m */,
 			);
 			path = Contact;
+			sourceTree = "<group>";
+		};
+		2B04BF2D25E5359300E69F41 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				2B04BF2E25E535CC00E69F41 /* UIPhotoSearchResultViewController.h */,
+				2B04BF2F25E535CC00E69F41 /* UIPhotoSearchResultViewController.m */,
+			);
+			path = Photo;
 			sourceTree = "<group>";
 		};
 		2B07ED3C25BEB396006BFBE7 /* Frameworks */ = {
@@ -325,6 +340,8 @@
 			children = (
 				2BE7981225DFE57900E187A3 /* DataManger.h */,
 				2BE7981325DFE57900E187A3 /* DataManger.m */,
+				2B041A4D25E6838000E69F41 /* PhotoAnalysis.h */,
+				2B041A4C25E6837F00E69F41 /* PhotoAnalysis.m */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -332,6 +349,7 @@
 		2BE7B63125E0EBEE00E187A3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2B04BF2D25E5359300E69F41 /* Photo */,
 				2B04BF2725E5323000E69F41 /* Contact */,
 				2BE7981125DFE55000E187A3 /* Calendar */,
 				2BE788DF25DF748A00E187A3 /* UISearchViewController.h */,
@@ -479,6 +497,7 @@
 			files = (
 				2BE7B5A425E0E99700E187A3 /* WYComponentTableCategory.mm in Sources */,
 				2BE7894A25DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m in Sources */,
+				2B041A4E25E6838000E69F41 /* PhotoAnalysis.m in Sources */,
 				2B80840B25B9622F0056938B /* AppDelegate.m in Sources */,
 				2BE7981425DFE57900E187A3 /* DataManger.m in Sources */,
 				2BE7B5A325E0E99700E187A3 /* KSTemplateListViewController.m in Sources */,
@@ -491,6 +510,7 @@
 				2B80841C25B962300056938B /* main.m in Sources */,
 				2BE7B5A225E0E99700E187A3 /* KSTemplateTableViewCell.m in Sources */,
 				2BE7B59F25E0E99700E187A3 /* WYComponentTableSectionItem.m in Sources */,
+				2B04BF3025E535CC00E69F41 /* UIPhotoSearchResultViewController.m in Sources */,
 				2BE788E125DF748A00E187A3 /* UISearchViewController.m in Sources */,
 				2B07ED4725BEB494006BFBE7 /* GlobalConst.m in Sources */,
 				2BE7888625DF686900E187A3 /* UIRootViewController.mm in Sources */,

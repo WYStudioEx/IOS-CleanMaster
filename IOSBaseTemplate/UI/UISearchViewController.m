@@ -8,6 +8,7 @@
 #import "UISearchViewController.h"
 #import "UICalendarSearchResultViewController.h"
 #import "UIContactSearchResultViewController.h"
+#import "UIPhotoSearchResultViewController.h"
 #import "DataManger.h"
 
 @interface UISearchViewController ()
@@ -53,6 +54,15 @@
         
         return;
     }
+    
+    if(e_PhoneSearch_Type == _searchType) {
+        [[DataManger shareInstance] getPhotoData:^(NSArray *photoArray){
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf handelPhotoData:photoArray];
+        }];
+        
+        return;
+    }
 }
 
 - (void)handelCalendarEvent:(NSArray *)eventArray {
@@ -75,6 +85,18 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         UIContactSearchResultViewController *vc = [[UIContactSearchResultViewController alloc] init];
         vc.contactArray = contactArray;
+        [self.navigationController pushViewController:vc animated:YES];
+    });
+}
+
+- (void)handelPhotoData:(NSArray *)phoneArray {
+    if(0 == phoneArray.count) {
+        return;
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIPhotoSearchResultViewController *vc = [[UIPhotoSearchResultViewController alloc] init];
+        vc.photoArray = phoneArray;
         [self.navigationController pushViewController:vc animated:YES];
     });
 }

@@ -7,6 +7,8 @@
 //
 
 #import "DataManger.h"
+#import "PhotoAnalysis.h"
+
 #import <Contacts/CNContact.h>
 #import <Contacts/CNContactStore.h>
 #import <Contacts/CNContact+Predicates.h>
@@ -35,7 +37,7 @@
 }
 
 #pragma 日程
--(void)getScheduleEvent:(void (^)(NSArray *eventArray))completion {
+- (void)getScheduleEvent:(void (^)(NSArray *eventArray))completion {
     if(nil == self.scheduleStore) {
         self.scheduleStore = [[EKEventStore alloc] init];
     }
@@ -77,7 +79,7 @@
 
 }
 
--(BOOL)deleteEvent:(EKEvent *)event {
+- (BOOL)deleteEvent:(EKEvent *)event {
     [event setCalendar:[self.scheduleStore defaultCalendarForNewEvents]];
     
     NSError *err;
@@ -87,7 +89,7 @@
 
 #pragma 通讯录
 
--(void)getContactData:(void (^)(NSArray *contactList))completion {
+- (void)getContactData:(void (^)(NSArray *contactList))completion {
     if(nil == self.contactStore) {
         self.contactStore = [CNContactStore new];
     }
@@ -169,5 +171,58 @@
 //        }
 //}
 
+
+- (void)getPhotoData:(void (^)(NSArray *photoList))completion {
+    NSMutableArray *photoArray = [NSMutableArray array];
+    
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        if (@available(iOS 14.0, *)) {
+            if(status != PHAuthorizationStatusAuthorized &&  status != PHAuthorizationStatusLimited) {
+                return;
+            }
+        } else {
+            if(status != PHAuthorizationStatusAuthorized) {
+                return;
+            }
+        }
+        
+        PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+        
+        for(PHCollection *collection in smartAlbums) {
+            if (NO == [collection isKindOfClass:[PHAssetCollection class]] || NO == [collection.localizedTitle isEqualToString:@"Recents"]) {
+                continue;
+            }
+            
+            
+            [photoArray addObjectsFromArray:[self getAllPhotosAssetInAblumCollection:(PHAssetCollection *)collection ascending:YES]];
+        }
+        
+        completion(photoArray);
+        
+        [PhotoAnalysis checkBlurryWihtImage:photoArray.lastObject];
+    }];
+}
+
+- (NSArray *)getAllPhotosAssetInAblumCollection:(PHAssetCollection *)assetCollection ascending:(BOOL)ascending {
+    PHFetchOptions *fetchOption = [[PHFetchOptions alloc] init];
+    fetchOption.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:ascending]];
+    fetchOption.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
+    PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:assetCollection options:fetchOption];
+    if(result.count <= 0) {
+        return nil;
+    }
+    
+    NSMutableArray<UIImage *> *imageArray = [[NSMutableArray alloc] initWithCapacity:result.count];
+    PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
+    imageRequestOptions.synchronous = YES;
+    imageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
+    [result enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
+            [imageArray addObject:image];
+        }];
+    }];
+    
+    return imageArray;
+}
 
 @end
