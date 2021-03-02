@@ -23,7 +23,6 @@
     [super viewDidLoad];
     
     self.title = @"photoVC";
-    self.view.backgroundColor = [UIColor blueColor];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

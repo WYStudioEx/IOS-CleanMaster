@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIBaseViewController.h"
 #import "WYComponentTableSectionItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,7 +20,7 @@ typedef NS_ENUM(NSUInteger, WYComponentInputHandleOption) {
     WYComponentKeyboardHandleOptionDisable=100  // 完全屏蔽掉所有的键盘逻辑，包括endEditingWhenBeginDragging和endEditingWhenTouch
 };
 
-@interface WYComponentTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface WYComponentTableViewController : UIBaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 

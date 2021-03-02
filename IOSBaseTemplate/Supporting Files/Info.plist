@@ -20,6 +20,16 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>打开日历，需要你的允许</string>
+	<key>NSContactsUsageDescription</key>
+	<string>打开通讯录，需要你的允许</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>打开相册，需要你的允许</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>打开相册，需要你的允许</string>
+	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
+	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -39,15 +49,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>打开相册，需要你的允许</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>打开相册，需要你的允许</string>
-	<key>NSContactsUsageDescription</key>
-	<string>打开通讯录，需要你的允许</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>打开日历，需要你的允许</string>
-	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
-	<true/>
 </dict>
 </plist>

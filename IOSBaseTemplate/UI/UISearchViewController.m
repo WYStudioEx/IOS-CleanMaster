@@ -23,7 +23,6 @@
     // Do any additional setup after loading the view.
     
     self.title = @"SearchVC";
-    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,10 +69,10 @@
         return;
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        UICalendarSearchResultViewController *vc = [[UICalendarSearchResultViewController alloc] init];
-        vc.eventArray = eventArray;
-        [self.navigationController pushViewController:vc animated:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         UICalendarSearchResultViewController *vc = [[UICalendarSearchResultViewController alloc] init];
+         vc.eventArray = eventArray;
+         [self.navigationController pushViewController:vc animated:YES];
     });
 }
 
@@ -82,7 +81,7 @@
         return;
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIContactSearchResultViewController *vc = [[UIContactSearchResultViewController alloc] init];
         vc.contactArray = contactArray;
         [self.navigationController pushViewController:vc animated:YES];
@@ -94,7 +93,7 @@
         return;
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIPhotoSearchResultViewController *vc = [[UIPhotoSearchResultViewController alloc] init];
         vc.photoArray = phoneArray;
         [self.navigationController pushViewController:vc animated:YES];

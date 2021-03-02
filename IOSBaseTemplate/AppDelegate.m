@@ -25,11 +25,10 @@
     [NSThread sleepForTimeInterval:0.3];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
     
-    UIRootViewController *rootVC = [[UIRootViewController alloc]init];
+    UIRootViewController *rootVC = [[UIRootViewController alloc] init];
     QMUINavigationController *nav = [[QMUINavigationController alloc] initWithRootViewController:rootVC];
-    nav.navigationBar.translucent = NO;
+    nav.navigationBar.translucent = YES;
     
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
