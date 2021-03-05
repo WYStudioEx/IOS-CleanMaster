@@ -9,6 +9,8 @@
 #import "UIRootViewController.h"
 #import "UISearchViewController.h"
 #import "UICircularDiagramView.h"
+#import "UIPrivacySearchResultViewController.h"
+#import "DataManger.h"
 
 @interface UIRootViewController ()
 
@@ -26,6 +28,11 @@
 @property(nonatomic, strong) QMUILabel *privacyLabel;
 
 @property(nonatomic, strong) UICircularDiagramView *circularDiagramView;
+@property(nonatomic, strong) UILabel *diskLabel;
+@property(nonatomic, strong) UILabel *proportionLabel;
+@property(nonatomic, strong) UILabel *percentLabel;
+
+@property(nonatomic, strong) UILabel *checkingLabel;
 
 @end
 
@@ -51,6 +58,31 @@
     
     self.circularDiagramView = [[UICircularDiagramView alloc] initWithFrame:CGRectMake(0, 0, _size_W_S_X(252), _size_W_S_X(252))];
     [self.view addSubview:_circularDiagramView];
+    
+    self.checkingLabel = [[UILabel alloc] init];
+    _checkingLabel.backgroundColor = [UIColor clearColor];
+    _checkingLabel.textAlignment = NSTextAlignmentCenter;
+    _checkingLabel.font = UIDynamicFontBoldMake(16);
+    _checkingLabel.text = @"检测中...";
+    [self.view addSubview:_checkingLabel];
+    
+    self.diskLabel = [[UILabel alloc] init];
+    _diskLabel.backgroundColor = [UIColor clearColor];
+    _diskLabel.textAlignment = NSTextAlignmentCenter;
+    _diskLabel.font = UIDynamicFontBoldMake(16);
+    [self.view addSubview:_diskLabel];
+    
+    self.proportionLabel = [[UILabel alloc] init];
+    _proportionLabel.backgroundColor = [UIColor clearColor];
+    _proportionLabel.textAlignment = NSTextAlignmentCenter;
+    _proportionLabel.font = UIDynamicFontBoldMake(72);
+    [self.view addSubview:_proportionLabel];
+    
+    self.percentLabel = [[UILabel alloc] init];
+    _percentLabel.backgroundColor = [UIColor clearColor];
+    _percentLabel.textAlignment = NSTextAlignmentCenter;
+    _percentLabel.font = UIDynamicFontBoldMake(36);
+    [self.view addSubview:_percentLabel];
     
     //----------------------------------------------------------
     self.actionBackView = [[UIView alloc] init];
@@ -109,9 +141,57 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+
+    NSTimeInterval begin = [self getDateTimeTOMilliSeconds:[NSDate date]];
+    
+    __weak typeof(self) weakSelf = self;
+    [[DataManger shareInstance] getDiskOf:^(CGFloat totalsize, CGFloat freesize){
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if(nil == strongSelf) {
+            return;
+        }
+        
+        NSTimeInterval end = [self getDateTimeTOMilliSeconds:[NSDate date]];
+        if(end - begin >= 2000) {
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                strongSelf.diskLabel.text = [NSString stringWithFormat:@"%.1f/%.1fG", totalsize - freesize, totalsize];
+                strongSelf.proportionLabel.text = [NSString stringWithFormat:@"%d",(int)((totalsize - freesize) / totalsize * 100)];
+                strongSelf.circularDiagramView.progressValue = (totalsize - freesize) / totalsize;
+                strongSelf.percentLabel.text = @"%";
+                strongSelf.checkingLabel.hidden = YES;
+                [self.view setNeedsLayout];
+                [self.view layoutIfNeeded];
+            });
+            return;
+        }
+        
+        __weak typeof(self) weakSelfEx = strongSelf;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((2000 - (end - begin)) / 1000  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            __strong typeof(weakSelf) strongSelfEx = weakSelfEx;
+            if(nil == strongSelfEx) {
+                return;
+            }
+            
+            strongSelfEx.checkingLabel.hidden = YES;
+            strongSelfEx.diskLabel.text = [NSString stringWithFormat:@"%.1f/%.1fG", totalsize - freesize, totalsize];
+            strongSelfEx.proportionLabel.text = [NSString stringWithFormat:@"%d",(int)((totalsize - freesize) / totalsize * 100)];
+            strongSelfEx.circularDiagramView.progressValue = (totalsize - freesize) / totalsize;
+            strongSelfEx.percentLabel.text = @"%";
+            [self.view setNeedsLayout];
+            [self.view layoutIfNeeded];
+        });
+    }];
     
 //    NSTimer * timer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
 //    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+}
+
+-(long long)getDateTimeTOMilliSeconds:(NSDate *)datetime {
+    NSTimeInterval interval = [datetime timeIntervalSince1970];
+    NSLog(@"转换的时间戳=%f",interval);
+    long long totalMilliseconds = interval*1000 ;
+    NSLog(@"totalMilliseconds=%llu",totalMilliseconds);
+    return totalMilliseconds;
 }
 #pragma mark - 定时器
 
@@ -132,10 +212,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:img style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonClick)];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
@@ -145,6 +221,21 @@
     _circularDiagramView.qmui_left = (self.view.qmui_width - _circularDiagramView.qmui_width) / 2.0;
     _circularDiagramView.qmui_top = _size_H_S_X(100);
     [_circularDiagramView reDraw];
+    
+    [_checkingLabel sizeToFit];
+    _checkingLabel.center = _circularDiagramView.center;
+    
+    [_diskLabel sizeToFit];
+    _diskLabel.center = _circularDiagramView.center;
+    _diskLabel.qmui_top = _circularDiagramView.qmui_top + _size_H_S_X(84);
+    
+    [_proportionLabel sizeToFit];
+    [_percentLabel sizeToFit];
+    
+    _proportionLabel.qmui_left = _circularDiagramView.qmui_left + (_circularDiagramView.qmui_width - (_proportionLabel.qmui_width + _percentLabel.qmui_width)) / 2.0;
+    _proportionLabel.qmui_top = _diskLabel.qmui_bottom;
+    _percentLabel.qmui_left = _proportionLabel.qmui_right;
+    _percentLabel.qmui_bottom = _proportionLabel.qmui_bottom - _size_H_S_X(11);
     
     self.actionBackView.frame = CGRectMake(0, self.view.qmui_height - _size_H_S_X(342), self.view.qmui_width, _size_H_S_X(342));
     
@@ -170,12 +261,6 @@
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
-- (void)contactBtnClick:(id)btn {
-    UISearchViewController *nextVC = [[UISearchViewController alloc] init];
-    nextVC.searchType = e_Contact_Type;
-    [self.navigationController pushViewController:nextVC animated:YES];
-}
-
 - (void)calendarBtnClick:(id)btn {
     UISearchViewController *nextVC = [[UISearchViewController alloc] init];
     nextVC.searchType = e_CalendarSearch_Type;
@@ -183,13 +268,13 @@
 }
 
 - (void)privacyBtnClick:(id)btn {
-    UISearchViewController *nextVC = [[UISearchViewController alloc] init];
+    UIPrivacySearchResultViewController *nextVC = [[UIPrivacySearchResultViewController alloc] init];
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)aiCleareBtnClick:(id)btn {
-//    UISearchViewController *nextVC = [[UISearchViewController alloc] init];
-//    [self.navigationController pushViewController:nextVC animated:YES];
+    UISearchViewController *nextVC = [[UISearchViewController alloc] init];
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)rightBarButtonClick {

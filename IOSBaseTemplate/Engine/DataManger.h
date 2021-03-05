@@ -23,5 +23,8 @@
 //照片数据读取
 - (void)getPhotoData:(void (^)(NSArray *photoList))completion;
 
+//照片数据读取
+- (void)getDiskOf:(void (^)(CGFloat totalsize, CGFloat freesize))completion;
+
 
 @end

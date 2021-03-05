@@ -9,8 +9,6 @@
 #import "UIBaseViewController.h"
 #import <UIKit/UIKit.h>
 
-@interface UIContactSearchResultViewController : UIBaseViewController
-
-@property (strong,nonatomic) NSArray *contactArray;
+@interface UIPrivacySearchResultViewController : UIBaseViewController
 
 @end

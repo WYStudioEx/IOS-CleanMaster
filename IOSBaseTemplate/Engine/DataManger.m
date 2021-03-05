@@ -225,4 +225,30 @@
     return imageArray;
 }
 
+- (void)getDiskOf:(void (^)(CGFloat totalsize, CGFloat freesize))completion {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        /// 总大小
+         float totalsize = 0.0;
+         /// 剩余大小
+         float freesize = 0.0;
+         /// 是否登录
+         NSError *error = nil;
+         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+         NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
+         if (dictionary)
+         {
+             NSNumber *_free = [dictionary objectForKey:NSFileSystemFreeSize];
+             freesize = [_free unsignedLongLongValue]*1.0/(1024);
+             
+             NSNumber *_total = [dictionary objectForKey:NSFileSystemSize];
+             totalsize = [_total unsignedLongLongValue]*1.0/(1024);
+             
+             completion(totalsize/1024.0/1024.0, freesize/1024.0/1024.0);
+         } else
+         {
+             NSLog(@"Error Obtaining System Memory Info: Domain = %@, Code = %ld", [error domain], (long)[error code]);
+         }
+    });
+}
+
 @end

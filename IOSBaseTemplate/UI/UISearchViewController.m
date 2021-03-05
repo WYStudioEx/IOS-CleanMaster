@@ -7,7 +7,7 @@
 
 #import "UISearchViewController.h"
 #import "UICalendarSearchResultViewController.h"
-#import "UIContactSearchResultViewController.h"
+#import "UIPrivacySearchResultViewController.h"
 #import "UIPhotoSearchResultViewController.h"
 #import "DataManger.h"
 
@@ -17,6 +17,10 @@
 
 //------------------------------------------------
 @implementation UISearchViewController
+
+- (void)loadView {
+    [super loadView];  
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,15 +49,6 @@
         return;
     }
     
-    if(e_Contact_Type == _searchType) {
-        [[DataManger shareInstance] getContactData:^(NSArray *contactArray){
-            __strong typeof(weakSelf) strongSelf = weakSelf;
-            [strongSelf handelContactData:contactArray];
-        }];
-        
-        return;
-    }
-    
     if(e_PhoneSearch_Type == _searchType) {
         [[DataManger shareInstance] getPhotoData:^(NSArray *photoArray){
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -73,18 +68,6 @@
          UICalendarSearchResultViewController *vc = [[UICalendarSearchResultViewController alloc] init];
          vc.eventArray = eventArray;
          [self.navigationController pushViewController:vc animated:YES];
-    });
-}
-
-- (void)handelContactData:(NSArray *)contactArray {
-    if(0 == contactArray.count) {
-        return;
-    }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        UIContactSearchResultViewController *vc = [[UIContactSearchResultViewController alloc] init];
-        vc.contactArray = contactArray;
-        [self.navigationController pushViewController:vc animated:YES];
     });
 }
 

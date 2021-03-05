@@ -23,10 +23,13 @@
 		2B04672A25ECE0C600E69F41 /* photo_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B04670025ECE0C600E69F41 /* photo_btn@2x.png */; };
 		2B04672B25ECE0C600E69F41 /* action_button_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B04670125ECE0C600E69F41 /* action_button_normal@3x.png */; };
 		2B0475CE25EDF66300E69F41 /* UICircularDiagramView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0475CD25EDF66300E69F41 /* UICircularDiagramView.m */; };
-		2B04BF2C25E5323000E69F41 /* UIContactSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BF2925E5323000E69F41 /* UIContactSearchResultViewController.m */; };
+		2B04BF2C25E5323000E69F41 /* UIPrivacySearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BF2925E5323000E69F41 /* UIPrivacySearchResultViewController.m */; };
 		2B04BF3025E535CC00E69F41 /* UIPhotoSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BF2F25E535CC00E69F41 /* UIPhotoSearchResultViewController.m */; };
 		2B07ED4725BEB494006BFBE7 /* GlobalConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B07ED4625BEB494006BFBE7 /* GlobalConst.m */; };
 		2B07ED5025BEB4D2006BFBE7 /* Public.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B07ED4F25BEB4D2006BFBE7 /* Public.m */; };
+		2B40710425F26DB7005C9088 /* XLGesturePasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4070FC25F26DB7005C9088 /* XLGesturePasswordCell.m */; };
+		2B40710525F26DB7005C9088 /* XLGestureInfoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B40710025F26DB7005C9088 /* XLGestureInfoViewCell.m */; };
+		2B40710625F26DB7005C9088 /* XLGesturePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B40710125F26DB7005C9088 /* XLGesturePassword.m */; };
 		2B80840B25B9622F0056938B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B80840A25B9622F0056938B /* AppDelegate.m */; };
 		2B80841625B962300056938B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B80841525B962300056938B /* Assets.xcassets */; };
 		2B80841925B962300056938B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B80841725B962300056938B /* LaunchScreen.storyboard */; };
@@ -101,8 +104,8 @@
 		2B04670125ECE0C600E69F41 /* action_button_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action_button_normal@3x.png"; sourceTree = "<group>"; };
 		2B0475CA25EDF66300E69F41 /* UICircularDiagramView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICircularDiagramView.h; sourceTree = "<group>"; };
 		2B0475CD25EDF66300E69F41 /* UICircularDiagramView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICircularDiagramView.m; sourceTree = "<group>"; };
-		2B04BF2825E5323000E69F41 /* UIContactSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIContactSearchResultViewController.h; sourceTree = "<group>"; };
-		2B04BF2925E5323000E69F41 /* UIContactSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIContactSearchResultViewController.m; sourceTree = "<group>"; };
+		2B04BF2825E5323000E69F41 /* UIPrivacySearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPrivacySearchResultViewController.h; sourceTree = "<group>"; };
+		2B04BF2925E5323000E69F41 /* UIPrivacySearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPrivacySearchResultViewController.m; sourceTree = "<group>"; };
 		2B04BF2E25E535CC00E69F41 /* UIPhotoSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPhotoSearchResultViewController.h; sourceTree = "<group>"; };
 		2B04BF2F25E535CC00E69F41 /* UIPhotoSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPhotoSearchResultViewController.m; sourceTree = "<group>"; };
 		2B07ED4525BEB494006BFBE7 /* GlobalConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalConst.h; sourceTree = "<group>"; };
@@ -110,6 +113,12 @@
 		2B07ED4E25BEB4D2006BFBE7 /* Public.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Public.h; sourceTree = "<group>"; };
 		2B07ED4F25BEB4D2006BFBE7 /* Public.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Public.m; sourceTree = "<group>"; };
 		2B07ED5425BEB51C006BFBE7 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		2B4070FC25F26DB7005C9088 /* XLGesturePasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGesturePasswordCell.m; sourceTree = "<group>"; };
+		2B4070FD25F26DB7005C9088 /* XLGestureInfoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLGestureInfoViewCell.h; sourceTree = "<group>"; };
+		2B4070FE25F26DB7005C9088 /* XLGesturePassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLGesturePassword.h; sourceTree = "<group>"; };
+		2B4070FF25F26DB7005C9088 /* XLGesturePasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLGesturePasswordCell.h; sourceTree = "<group>"; };
+		2B40710025F26DB7005C9088 /* XLGestureInfoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGestureInfoViewCell.m; sourceTree = "<group>"; };
+		2B40710125F26DB7005C9088 /* XLGesturePassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGesturePassword.m; sourceTree = "<group>"; };
 		2B80840625B9622F0056938B /* IOSBaseTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSBaseTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B80840925B9622F0056938B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B80840A25B9622F0056938B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -176,13 +185,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		2B04BF2725E5323000E69F41 /* Contact */ = {
+		2B04BF2725E5323000E69F41 /* Privacy */ = {
 			isa = PBXGroup;
 			children = (
-				2B04BF2825E5323000E69F41 /* UIContactSearchResultViewController.h */,
-				2B04BF2925E5323000E69F41 /* UIContactSearchResultViewController.m */,
+				2B04BF2825E5323000E69F41 /* UIPrivacySearchResultViewController.h */,
+				2B04BF2925E5323000E69F41 /* UIPrivacySearchResultViewController.m */,
 			);
-			path = Contact;
+			path = Privacy;
 			sourceTree = "<group>";
 		};
 		2B04BF2D25E5359300E69F41 /* Photo */ = {
@@ -218,6 +227,7 @@
 		2B07ED4225BEB3EE006BFBE7 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				2B4070FB25F26DB7005C9088 /* XLGesturePassword */,
 				2B07ED4125BEB3E0006BFBE7 /* Macro */,
 				2BE7B58825E0E99700E187A3 /* WWKEasyTableViewController */,
 				2BE7892225DF962400E187A3 /* UIBaseViewController.h */,
@@ -231,6 +241,19 @@
 			children = (
 			);
 			path = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		2B4070FB25F26DB7005C9088 /* XLGesturePassword */ = {
+			isa = PBXGroup;
+			children = (
+				2B4070FC25F26DB7005C9088 /* XLGesturePasswordCell.m */,
+				2B4070FD25F26DB7005C9088 /* XLGestureInfoViewCell.h */,
+				2B4070FE25F26DB7005C9088 /* XLGesturePassword.h */,
+				2B4070FF25F26DB7005C9088 /* XLGesturePasswordCell.h */,
+				2B40710025F26DB7005C9088 /* XLGestureInfoViewCell.m */,
+				2B40710125F26DB7005C9088 /* XLGesturePassword.m */,
+			);
+			path = XLGesturePassword;
 			sourceTree = "<group>";
 		};
 		2B8083FD25B9622F0056938B = {
@@ -392,7 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				2B04BF2D25E5359300E69F41 /* Photo */,
-				2B04BF2725E5323000E69F41 /* Contact */,
+				2B04BF2725E5323000E69F41 /* Privacy */,
 				2BE7981125DFE55000E187A3 /* Calendar */,
 				2BE788DF25DF748A00E187A3 /* UISearchViewController.h */,
 				2BE788E025DF748A00E187A3 /* UISearchViewController.m */,
@@ -560,10 +583,12 @@
 				2BE7981425DFE57900E187A3 /* DataManger.m in Sources */,
 				2BE7B5A325E0E99700E187A3 /* KSTemplateListViewController.m in Sources */,
 				2BE7893525DF972F00E187A3 /* UIBaseViewController.m in Sources */,
+				2B40710425F26DB7005C9088 /* XLGesturePasswordCell.m in Sources */,
 				2B07ED5025BEB4D2006BFBE7 /* Public.m in Sources */,
+				2B40710625F26DB7005C9088 /* XLGesturePassword.m in Sources */,
 				2BE7B5A125E0E99700E187A3 /* KSTemplateListItem.m in Sources */,
 				2BE7981725DFE59300E187A3 /* UICalendarSearchResultViewController.m in Sources */,
-				2B04BF2C25E5323000E69F41 /* UIContactSearchResultViewController.m in Sources */,
+				2B04BF2C25E5323000E69F41 /* UIPrivacySearchResultViewController.m in Sources */,
 				2BE7B5A025E0E99700E187A3 /* KSTemplateViewModel.m in Sources */,
 				2B80841C25B962300056938B /* main.m in Sources */,
 				2BE7B5A225E0E99700E187A3 /* KSTemplateTableViewCell.m in Sources */,
@@ -571,6 +596,7 @@
 				2B04BF3025E535CC00E69F41 /* UIPhotoSearchResultViewController.m in Sources */,
 				2BE788E125DF748A00E187A3 /* UISearchViewController.m in Sources */,
 				2B07ED4725BEB494006BFBE7 /* GlobalConst.m in Sources */,
+				2B40710525F26DB7005C9088 /* XLGestureInfoViewCell.m in Sources */,
 				2BE7888625DF686900E187A3 /* UIRootViewController.mm in Sources */,
 				2BE7B5A525E0E99700E187A3 /* WYComponentTableItem.m in Sources */,
 				2BE7B5A625E0E99700E187A3 /* WYComponentTableViewController.mm in Sources */,
@@ -709,6 +735,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WG256MA2SR;
 				ENABLE_BITCODE = NO;
@@ -723,6 +750,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengchiwei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -733,6 +761,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WG256MA2SR;
 				ENABLE_BITCODE = NO;
@@ -747,6 +776,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengchiwei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
