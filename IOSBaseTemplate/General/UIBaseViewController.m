@@ -1,9 +1,9 @@
 //
 //  UIBaseViewController.m
-//  qmuidemo
+//  IOSBaseTemplate
 //
-//  Created by QMUI Team on 15/4/13.
-//  Copyright (c) 2021年 QMUI Team. All rights reserved.
+//  Created by WYStudio on 2018/6/21.
+//  Copyright © 2021年 WYStudio. All rights reserved.
 //
 
 #import "UIBaseViewController.h"

@@ -16,8 +16,6 @@
 @class AJPhotoPickerViewController;
 
 
-
-
 @protocol AJPhotoPickerProtocol <NSObject>
 @optional
 //选择完成
@@ -28,21 +26,6 @@
 
 //取消选中
 - (void)photoPicker:(AJPhotoPickerViewController *)picker didDeselectAsset:(UIImage*)asset;
-
-//点击相机按钮相关操作
-- (void)photoPickerTapCameraAction:(AJPhotoPickerViewController *)picker;
-
-//取消
-- (void)photoPickerDidCancel:(AJPhotoPickerViewController *)picker;
-
-//超过最大选择项时
-- (void)photoPickerDidMaximum:(AJPhotoPickerViewController *)picker;
-
-//低于最低选择项时
-- (void)photoPickerDidMinimum:(AJPhotoPickerViewController *)picker;
-
-//选择过滤
-- (void)photoPickerDidSelectionFilter:(AJPhotoPickerViewController *)picker;
 
 @end
 

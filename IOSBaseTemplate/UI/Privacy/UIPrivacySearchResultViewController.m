@@ -12,11 +12,13 @@
 #import "AJPhotoPickerViewController.h"
 #import "AJPhotoListView.h"
 #import "AJPhotoListCell.h"
+#import "UIImgPreviewViewController.h"
 
 #import <EventKit/EventKit.h>
 
 @interface UIPrivacySearchResultViewController ()
 <AJPhotoPickerProtocol,
+UIImgPreviewViewControllerProtocol,
 UICollectionViewDataSource,
 UICollectionViewDelegate,
 UICollectionViewDelegateFlowLayout>
@@ -34,6 +36,7 @@ UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic) AJPhotoListView *photoListView;
 @property (strong, nonatomic) NSMutableArray *assets;
+@property (strong, nonatomic) NSMutableArray *assetsIndex;
 
 @end
 
@@ -147,6 +150,7 @@ UICollectionViewDelegateFlowLayout>
         UIImage* image = [[UIImage alloc]initWithContentsOfFile:PATH];
         if(image) {
             [self.assets addObject:image];
+            [self.assetsIndex addObject:@(i)];
         }
     }
     
@@ -201,16 +205,28 @@ UICollectionViewDelegateFlowLayout>
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger index = indexPath.row;
-    //fengchiwei 图片预览
+    UIImgPreviewViewController *vc = [[UIImgPreviewViewController alloc] init];
+    vc.imageModels = self.assets;
+    vc.selIndex = indexPath.row;
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma set/get
 - (NSMutableArray *)assets {
     if(nil == _assets) {
         _assets = [NSMutableArray array];
     }
     
     return _assets;
+}
+
+- (NSMutableArray *)assetsIndex {
+    if(nil == _assetsIndex) {
+        _assetsIndex = [NSMutableArray array];
+    }
+    
+    return _assetsIndex;
 }
 
 #pragma AJPhotoPickerProtocol
@@ -223,6 +239,7 @@ UICollectionViewDelegateFlowLayout>
     [[NSUserDefaults standardUserDefaults] setObject:@(oldIndex + assets.count) forKey:@"photo_index"];
     
     for(UIImage* image in assets) {
+        [self.assetsIndex addObject:@(oldIndex)];
         NSString * path = [NSString stringWithFormat:@"%@/Documents/photo_%lu.png", NSHomeDirectory(), oldIndex++];
         [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
     }
@@ -231,10 +248,18 @@ UICollectionViewDelegateFlowLayout>
     [self.photoListView reloadData];
 }
 
+#pragma AJPhotoPickerProtocol
+- (void)previewView:(UIImgPreviewViewController *)picker delIndex:(NSUInteger) index {
+    [self.assets removeObjectAtIndex:index];
+    [self.photoListView reloadData];
+    
+    NSString *path = [NSString stringWithFormat:@"%@/Documents/photo_%lu.png", NSHomeDirectory(), [(NSNumber *)(self.assetsIndex[index]) integerValue]];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtPath:path error:nil];
+}
 
-//- (void)photoBrowser:(AJPhotoBrowserViewController *)vc deleteWithIndex:(NSInteger)index {
-//    //fengchiwei 删除一个图片
-//}
-
+- (void)previewView:(UIImgPreviewViewController *)picker addIndex:(NSUInteger) index {
+    UIImageWriteToSavedPhotosAlbum(self.assets[index], self, nil, nil);
+}
 
 @end

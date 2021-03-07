@@ -65,10 +65,6 @@ UICollectionViewDelegateFlowLayout>
 
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
@@ -271,21 +267,6 @@ UICollectionViewDelegateFlowLayout>
     return UIStatusBarStyleLightContent;
 }
 
-#pragma mark - getter/setter
-- (NSMutableArray *)assets {
-    if (!_assets) {
-        _assets = [[NSMutableArray alloc] init];
-    }
-    return _assets;
-}
-
-- (NSMutableArray *)indexPathsForSelectedItems {
-    if (!_indexPathsForSelectedItems) {
-        _indexPathsForSelectedItems = [[NSMutableArray alloc] init];
-    }
-    return _indexPathsForSelectedItems;
-}
-
 - (nullable UIColor *)navigationBarTintColor {
     return [UIColor whiteColor];
 }
@@ -303,6 +284,32 @@ UICollectionViewDelegateFlowLayout>
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(okBtnAction:)];
     self.navigationItem.titleView = self.customTitleView;
+}
+
+#pragma mark - getter/setter
+
+- (NSMutableArray *)indexPathsForSelectedItems {
+    if (!_indexPathsForSelectedItems) {
+        _indexPathsForSelectedItems = [[NSMutableArray alloc] init];
+    }
+    return _indexPathsForSelectedItems;
+}
+
+- (NSMutableArray *)assets {
+    if (!_assets) {
+        _assets = [[NSMutableArray alloc] init];
+    }
+    return _assets;
+}
+
+#pragma QMUICustomNavigationBarTransitionDelegate
+
+- (nullable UIImage *)navigationBarBackgroundImage {
+    return [[UIImage alloc] init];
+}
+
+- (nullable UIImage *)navigationBarShadowImage {
+    return [[UIImage alloc] init];
 }
 
 @end

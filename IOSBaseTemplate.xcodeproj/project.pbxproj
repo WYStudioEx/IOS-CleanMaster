@@ -30,6 +30,8 @@
 		2B40710425F26DB7005C9088 /* XLGesturePasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4070FC25F26DB7005C9088 /* XLGesturePasswordCell.m */; };
 		2B40710525F26DB7005C9088 /* XLGestureInfoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B40710025F26DB7005C9088 /* XLGestureInfoViewCell.m */; };
 		2B40710625F26DB7005C9088 /* XLGesturePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B40710125F26DB7005C9088 /* XLGesturePassword.m */; };
+		2B43743225F516C50016A39F /* UIImgPreviewCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B43743025F516C40016A39F /* UIImgPreviewCollectionView.m */; };
+		2B43743525F518220016A39F /* UIImgPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B43743425F518220016A39F /* UIImgPreviewViewController.m */; };
 		2B80840B25B9622F0056938B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B80840A25B9622F0056938B /* AppDelegate.m */; };
 		2B80841625B962300056938B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B80841525B962300056938B /* Assets.xcassets */; };
 		2B80841925B962300056938B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B80841725B962300056938B /* LaunchScreen.storyboard */; };
@@ -130,6 +132,10 @@
 		2B4070FF25F26DB7005C9088 /* XLGesturePasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLGesturePasswordCell.h; sourceTree = "<group>"; };
 		2B40710025F26DB7005C9088 /* XLGestureInfoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGestureInfoViewCell.m; sourceTree = "<group>"; };
 		2B40710125F26DB7005C9088 /* XLGesturePassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGesturePassword.m; sourceTree = "<group>"; };
+		2B43743025F516C40016A39F /* UIImgPreviewCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImgPreviewCollectionView.m; sourceTree = "<group>"; };
+		2B43743125F516C50016A39F /* UIImgPreviewCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImgPreviewCollectionView.h; sourceTree = "<group>"; };
+		2B43743325F518220016A39F /* UIImgPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImgPreviewViewController.h; sourceTree = "<group>"; };
+		2B43743425F518220016A39F /* UIImgPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImgPreviewViewController.m; sourceTree = "<group>"; };
 		2B80840625B9622F0056938B /* IOSBaseTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSBaseTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B80840925B9622F0056938B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B80840A25B9622F0056938B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -256,6 +262,7 @@
 		2B07ED4225BEB3EE006BFBE7 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				2B43742F25F5169D0016A39F /* PhotoPreview */,
 				2BA1899025F4A549006E66DD /* AJPhotoPicker */,
 				2B4070FB25F26DB7005C9088 /* XLGesturePassword */,
 				2B07ED4125BEB3E0006BFBE7 /* Macro */,
@@ -284,6 +291,17 @@
 				2B40710125F26DB7005C9088 /* XLGesturePassword.m */,
 			);
 			path = XLGesturePassword;
+			sourceTree = "<group>";
+		};
+		2B43742F25F5169D0016A39F /* PhotoPreview */ = {
+			isa = PBXGroup;
+			children = (
+				2B43743125F516C50016A39F /* UIImgPreviewCollectionView.h */,
+				2B43743025F516C40016A39F /* UIImgPreviewCollectionView.m */,
+				2B43743325F518220016A39F /* UIImgPreviewViewController.h */,
+				2B43743425F518220016A39F /* UIImgPreviewViewController.m */,
+			);
+			path = PhotoPreview;
 			sourceTree = "<group>";
 		};
 		2B8083FD25B9622F0056938B = {
@@ -648,6 +666,7 @@
 				2B40710425F26DB7005C9088 /* XLGesturePasswordCell.m in Sources */,
 				2B07ED5025BEB4D2006BFBE7 /* Public.m in Sources */,
 				2B40710625F26DB7005C9088 /* XLGesturePassword.m in Sources */,
+				2B43743525F518220016A39F /* UIImgPreviewViewController.m in Sources */,
 				2BE7B5A125E0E99700E187A3 /* KSTemplateListItem.m in Sources */,
 				2BA189C425F4A54A006E66DD /* AJPhotoListView.m in Sources */,
 				2BE7981725DFE59300E187A3 /* UICalendarSearchResultViewController.m in Sources */,
@@ -661,6 +680,7 @@
 				2B04BF3025E535CC00E69F41 /* UIPhotoSearchResultViewController.m in Sources */,
 				2BE788E125DF748A00E187A3 /* UISearchViewController.m in Sources */,
 				2B07ED4725BEB494006BFBE7 /* GlobalConst.m in Sources */,
+				2B43743225F516C50016A39F /* UIImgPreviewCollectionView.m in Sources */,
 				2B40710525F26DB7005C9088 /* XLGestureInfoViewCell.m in Sources */,
 				2BE7888625DF686900E187A3 /* UIRootViewController.mm in Sources */,
 				2BE7B5A525E0E99700E187A3 /* WYComponentTableItem.m in Sources */,
