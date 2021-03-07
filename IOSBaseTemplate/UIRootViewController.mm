@@ -46,7 +46,7 @@
     titleLabel.text = @"清理管家";
     [titleLabel sizeToFit];
     titleLabel.qmui_left = _size_W_S_X(16);
-    titleLabel.qmui_top = _size_W_S_X(56);
+    titleLabel.qmui_top = _size_H_S_X(56);
     titleLabel.font = UIDynamicFontBoldMake(17);
     titleLabel.textColor = [UIColor qmui_colorWithHexString:@"#272E46"];
     [self.view addSubview:titleLabel];
@@ -279,6 +279,16 @@
 
 - (void)rightBarButtonClick {
     
+}
+
+#pragma QMUICustomNavigationBarTransitionDelegate
+
+- (nullable UIImage *)navigationBarBackgroundImage {
+    return [[UIImage alloc] init];
+}
+
+- (nullable UIImage *)navigationBarShadowImage {
+    return [[UIImage alloc] init];
 }
 
 @end

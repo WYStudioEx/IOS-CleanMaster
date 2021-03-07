@@ -37,4 +37,14 @@
     self.navigationController.viewControllers = viewControllers;
 }
 
+#pragma QMUICustomNavigationBarTransitionDelegate
+
+- (nullable UIImage *)navigationBarBackgroundImage {
+    return [[UIImage alloc] init];
+}
+
+- (nullable UIImage *)navigationBarShadowImage {
+    return [[UIImage alloc] init];
+}
+
 @end

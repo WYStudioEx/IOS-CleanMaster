@@ -7,41 +7,234 @@
 //
 
 #import "UIPrivacySearchResultViewController.h"
-#import "XLGesturePassword.h"
+#import "XLGesturepassword.h"
 #import "DataManger.h"
+#import "AJPhotoPickerViewController.h"
+#import "AJPhotoListView.h"
+#import "AJPhotoListCell.h"
 
 #import <EventKit/EventKit.h>
 
 @interface UIPrivacySearchResultViewController ()
+<AJPhotoPickerProtocol,
+UICollectionViewDataSource,
+UICollectionViewDelegate,
+UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic, strong) XLGesturePassword *passWordView;
-@property(nonatomic, strong) NSString *passWord;
+@property(nonatomic, strong) UIView *passwordBackView;
+@property(nonatomic, strong) QMUILabel *tipLabel;
+@property(nonatomic, strong) XLGesturePassword *passwordView;
+
+
+@property(nonatomic, strong) UIView *photoBackView;
+@property(nonatomic, strong) QMUIButton *addPhotoBtn;
+
+@property(nonatomic, strong) NSString *password;
+@property(nonatomic, strong) NSString *setPassword;
+
+@property (strong, nonatomic) AJPhotoListView *photoListView;
+@property (strong, nonatomic) NSMutableArray *assets;
 
 @end
-
 
 //-----------------------------------------------------------
 @implementation UIPrivacySearchResultViewController
 
 - (void)loadView {
     [super loadView];
-
-    //密码输入
-    self.passWordView = [[XLGesturePassword alloc] init];
-    _passWordView.bounds = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width);
-    _passWordView.center = self.view.center;
-    _passWordView.itemCenterBallColor = [UIColor greenColor];
-    _passWordView.lineNormalColor = [UIColor greenColor];
-    _passWordView.lineErrorColor = [UIColor redColor];
-    __weak typeof(self) weakSelf = self;
-    [_passWordView addPasswordBlock:^(NSString *password) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        strongSelf.passWord = password;
-        [strongSelf.passWordView refresh];
-    }];
     
-    [self.view addSubview:_passWordView];
+    //-----------
+    self.passwordBackView = [[UIView alloc] init];
+    [self.view addSubview:_passwordBackView];
+    
+    self.tipLabel = [[QMUILabel alloc] init];
+    [_tipLabel sizeToFit];
+    _tipLabel.textAlignment = NSTextAlignmentCenter;
+    _tipLabel.font = UIDynamicFontBoldMake(17);
+    _tipLabel.textColor = [UIColor qmui_colorWithHexString:@"#272E46"];
+    self.password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+    _tipLabel.text = self.password.length ? @"请输入密码" : @"请设置密码";
+    [_passwordBackView addSubview:_tipLabel];
+    
+    self.passwordView = [[XLGesturePassword alloc] init];
+    _passwordView.itemCenterBallColor = [UIColor greenColor];
+    _passwordView.lineNormalColor = [UIColor greenColor];
+    _passwordView.lineErrorColor = [UIColor redColor];
+    __weak typeof(self) weakSelf = self;
+    [_passwordView addPasswordBlock:^(NSString *password) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf handlepassword:password];
+    }];
+    [_passwordBackView addSubview:_passwordView];
+    
+    //-------------
+    self.photoBackView = [[UIView alloc] init];
+    _photoBackView.hidden = YES;
+    [self.view addSubview:_photoBackView];
+    
+    self.photoListView = [[AJPhotoListView alloc] init];
+    _photoListView.dataSource = self;
+    _photoListView.delegate = self;
+    _photoListView.backgroundColor = [UIColor clearColor];
+    [self.photoBackView insertSubview:_photoListView atIndex:0];
+    
+    self.addPhotoBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"action_button_normal") title:nil];
+    _addPhotoBtn.frame =CGRectMake(0, 0, _size_W_S_X(155), _size_W_S_X(56));
+    [_addPhotoBtn addTarget:self action:@selector(addPhotoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.photoBackView addSubview:_addPhotoBtn];
+    
+    self.title = @"隐私空间";
 }
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    self.passwordBackView.frame = self.view.bounds;
+    _passwordView.frame = CGRectMake(0, 0, _passwordBackView.qmui_width, _passwordBackView.qmui_width);
+    _passwordView.center = _passwordBackView.center;
+    
+    [_tipLabel sizeToFit];
+    _tipLabel.qmui_width = _passwordBackView.qmui_width;
+    _tipLabel.qmui_left = 0;
+    _tipLabel.qmui_bottom = _passwordView.qmui_top -  _size_H_S_X(20);
+    
+    self.photoBackView.frame = self.view.bounds;
+    _addPhotoBtn.qmui_bottom = _photoBackView.qmui_height - _size_H_S_X(20);
+    _addPhotoBtn.qmui_left = (_photoBackView.qmui_width - _addPhotoBtn.qmui_width) / 2.0;
+    
+    self.photoListView.frame = CGRectMake(0, self.navigationController.navigationBar.qmui_height, self.photoBackView.qmui_width, self.photoBackView.qmui_height - self.navigationController.navigationBar.qmui_height);
+}
+
+
+- (void)handlepassword:(NSString *) password{
+    if(self.password.length) {
+        if([self.password isEqualToString:password]) {
+            [self showPhotoView];
+        }else {
+            _tipLabel.text = @"密码错误，请重新输入";
+            [self.passwordView showError];
+        }
+        
+        return;
+    }
+    
+    if(0 == self.setPassword.length) {
+        self.setPassword = password;
+        [self.passwordView refresh];
+        
+        _tipLabel.text = @"请再次输入密码";
+        return;
+    }
+    
+    if([self.setPassword isEqualToString:password]) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.setPassword forKey:@"password"];
+        [self showPhotoView];
+        
+        return;
+    }
+    
+    _tipLabel.text = @"两次密码不一致，请重新输入";
+    [self.passwordView showError];
+}
+
+- (void)showPhotoView {
+    _passwordBackView.hidden = YES;
+    _photoBackView.hidden = NO;
+    
+    NSNumber* index = [[NSUserDefaults standardUserDefaults] objectForKey:@"photo_index"];
+    for(int i = 0; i < index.unsignedIntValue; i++) {
+        NSString * PATH =[NSString stringWithFormat:@"%@/Documents/photo_%d.png",NSHomeDirectory(), i];
+        UIImage* image = [[UIImage alloc]initWithContentsOfFile:PATH];
+        if(image) {
+            [self.assets addObject:image];
+        }
+    }
+    
+    if(self.assets.count) {
+        [_photoListView reloadData];
+    }
+}
+
+- (void)addPhotoBtnClick:(id)btn {
+    AJPhotoPickerViewController *picker = [[AJPhotoPickerViewController alloc] init];
+    picker.delegate = self;
+    [self.navigationController pushViewController:picker animated:YES];
+}
+
+#pragma QMUICustomNavigationBarTransitionDelegate
+
+- (nullable UIImage *)navigationBarBackgroundImage {
+    return [[UIImage alloc] init];
+}
+
+- (nullable UIImage *)navigationBarShadowImage {
+    return [[UIImage alloc] init];
+}
+
+#pragma mark - uicollectionDelegate
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.assets.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifer = @"cell";
+    AJPhotoListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifer forIndexPath:indexPath];
+    [cell bind:self.assets[indexPath.row] isSelected:NO];
+    return cell;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(5, 5, 5, 5);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat wh = (collectionView.bounds.size.width - 20)/3.0;
+    return CGSizeMake(wh, wh);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 5.0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 5.0;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger index = indexPath.row;
+    //fengchiwei 图片预览
+}
+
+- (NSMutableArray *)assets {
+    if(nil == _assets) {
+        _assets = [NSMutableArray array];
+    }
+    
+    return _assets;
+}
+
+#pragma AJPhotoPickerProtocol
+- (void)photoPicker:(AJPhotoPickerViewController *)picker didSelectAssets:(NSArray *)assets {
+    NSUInteger oldIndex = 0;
+    NSNumber* index = [[NSUserDefaults standardUserDefaults] objectForKey:@"photo_index"];
+    if(index) {
+        oldIndex = [index unsignedIntegerValue];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:@(oldIndex + assets.count) forKey:@"photo_index"];
+    
+    for(UIImage* image in assets) {
+        NSString * path = [NSString stringWithFormat:@"%@/Documents/photo_%lu.png", NSHomeDirectory(), oldIndex++];
+        [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
+    }
+    
+    [self.assets addObjectsFromArray:assets];
+    [self.photoListView reloadData];
+}
+
+
+//- (void)photoBrowser:(AJPhotoBrowserViewController *)vc deleteWithIndex:(NSInteger)index {
+//    //fengchiwei 删除一个图片
+//}
 
 
 @end

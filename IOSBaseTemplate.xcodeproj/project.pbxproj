@@ -34,6 +34,17 @@
 		2B80841625B962300056938B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B80841525B962300056938B /* Assets.xcassets */; };
 		2B80841925B962300056938B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B80841725B962300056938B /* LaunchScreen.storyboard */; };
 		2B80841C25B962300056938B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B80841B25B962300056938B /* main.m */; };
+		2BA189C225F4A54A006E66DD /* AJPhotoGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1899125F4A549006E66DD /* AJPhotoGroupCell.m */; };
+		2BA189C325F4A54A006E66DD /* AJPhotoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1899325F4A549006E66DD /* AJPhotoListCell.m */; };
+		2BA189C425F4A54A006E66DD /* AJPhotoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1899425F4A549006E66DD /* AJPhotoListView.m */; };
+		2BA189C525F4A54A006E66DD /* AJPhotoGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1899525F4A549006E66DD /* AJPhotoGroupView.m */; };
+		2BA189C625F4A54A006E66DD /* AJPhotoListCellTapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1899625F4A549006E66DD /* AJPhotoListCellTapView.m */; };
+		2BA189C725F4A54A006E66DD /* AJPhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1899725F4A549006E66DD /* AJPhotoPickerViewController.m */; };
+		2BA189C925F4A54A006E66DD /* AJGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1899A25F4A549006E66DD /* AJGradientView.m */; };
+		2BA189DB25F4B558006E66DD /* BoAssetsPickerChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189D725F4B558006E66DD /* BoAssetsPickerChecked@2x.png */; };
+		2BA189DC25F4B558006E66DD /* BoAssetsCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189D825F4B558006E66DD /* BoAssetsCamera@2x.png */; };
+		2BA189DD25F4B558006E66DD /* AssetsPickerVideo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */; };
+		2BA189DE25F4B558006E66DD /* BoSelectGroup_tip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */; };
 		2BE7886625DF63CA00E187A3 /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7884F25DF632B00E187A3 /* QMUIKit.framework */; };
 		2BE7886725DF63CA00E187A3 /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7884F25DF632B00E187A3 /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2BE7888625DF686900E187A3 /* UIRootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7888425DF686900E187A3 /* UIRootViewController.mm */; };
@@ -126,6 +137,24 @@
 		2B80841825B962300056938B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B80841A25B962300056938B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B80841B25B962300056938B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2BA1899125F4A549006E66DD /* AJPhotoGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJPhotoGroupCell.m; sourceTree = "<group>"; };
+		2BA1899225F4A549006E66DD /* AJGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJGradientView.h; sourceTree = "<group>"; };
+		2BA1899325F4A549006E66DD /* AJPhotoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJPhotoListCell.m; sourceTree = "<group>"; };
+		2BA1899425F4A549006E66DD /* AJPhotoListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJPhotoListView.m; sourceTree = "<group>"; };
+		2BA1899525F4A549006E66DD /* AJPhotoGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJPhotoGroupView.m; sourceTree = "<group>"; };
+		2BA1899625F4A549006E66DD /* AJPhotoListCellTapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJPhotoListCellTapView.m; sourceTree = "<group>"; };
+		2BA1899725F4A549006E66DD /* AJPhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJPhotoPickerViewController.m; sourceTree = "<group>"; };
+		2BA1899925F4A549006E66DD /* AJPhotoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJPhotoListCell.h; sourceTree = "<group>"; };
+		2BA1899A25F4A549006E66DD /* AJGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJGradientView.m; sourceTree = "<group>"; };
+		2BA1899B25F4A549006E66DD /* AJPhotoGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJPhotoGroupCell.h; sourceTree = "<group>"; };
+		2BA1899C25F4A549006E66DD /* AJPhotoGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJPhotoGroupView.h; sourceTree = "<group>"; };
+		2BA1899D25F4A549006E66DD /* AJPhotoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJPhotoListView.h; sourceTree = "<group>"; };
+		2BA1899E25F4A549006E66DD /* AJPhotoListCellTapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJPhotoListCellTapView.h; sourceTree = "<group>"; };
+		2BA1899F25F4A549006E66DD /* AJPhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJPhotoPickerViewController.h; sourceTree = "<group>"; };
+		2BA189D725F4B558006E66DD /* BoAssetsPickerChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BoAssetsPickerChecked@2x.png"; path = "../../../../Downloads/c9547f7b5c777b9c411ad0dc16bbe676/AJPhotoPicker/BoPhotoPicker.bundle/images/BoAssetsPickerChecked@2x.png"; sourceTree = "<group>"; };
+		2BA189D825F4B558006E66DD /* BoAssetsCamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BoAssetsCamera@2x.png"; sourceTree = "<group>"; };
+		2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AssetsPickerVideo@2x.png"; sourceTree = "<group>"; };
+		2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BoSelectGroup_tip@2x.png"; path = "../../../../Downloads/c9547f7b5c777b9c411ad0dc16bbe676/AJPhotoPicker/BoPhotoPicker.bundle/images/BoSelectGroup_tip@2x.png"; sourceTree = "<group>"; };
 		2BE7884925DF632B00E187A3 /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = QMUI/qmui.xcodeproj; sourceTree = "<group>"; };
 		2BE7888425DF686900E187A3 /* UIRootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIRootViewController.mm; sourceTree = "<group>"; };
 		2BE7888525DF686900E187A3 /* UIRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRootViewController.h; sourceTree = "<group>"; };
@@ -227,6 +256,7 @@
 		2B07ED4225BEB3EE006BFBE7 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				2BA1899025F4A549006E66DD /* AJPhotoPicker */,
 				2B4070FB25F26DB7005C9088 /* XLGesturePassword */,
 				2B07ED4125BEB3E0006BFBE7 /* Macro */,
 				2BE7B58825E0E99700E187A3 /* WWKEasyTableViewController */,
@@ -304,6 +334,27 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2BA1899025F4A549006E66DD /* AJPhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				2BA1899925F4A549006E66DD /* AJPhotoListCell.h */,
+				2BA1899325F4A549006E66DD /* AJPhotoListCell.m */,
+				2BA1899C25F4A549006E66DD /* AJPhotoGroupView.h */,
+				2BA1899525F4A549006E66DD /* AJPhotoGroupView.m */,
+				2BA1899225F4A549006E66DD /* AJGradientView.h */,
+				2BA1899A25F4A549006E66DD /* AJGradientView.m */,
+				2BA1899B25F4A549006E66DD /* AJPhotoGroupCell.h */,
+				2BA1899125F4A549006E66DD /* AJPhotoGroupCell.m */,
+				2BA1899D25F4A549006E66DD /* AJPhotoListView.h */,
+				2BA1899425F4A549006E66DD /* AJPhotoListView.m */,
+				2BA1899E25F4A549006E66DD /* AJPhotoListCellTapView.h */,
+				2BA1899625F4A549006E66DD /* AJPhotoListCellTapView.m */,
+				2BA1899F25F4A549006E66DD /* AJPhotoPickerViewController.h */,
+				2BA1899725F4A549006E66DD /* AJPhotoPickerViewController.m */,
+			);
+			path = AJPhotoPicker;
+			sourceTree = "<group>";
+		};
 		2BE7884A25DF632B00E187A3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +368,10 @@
 			isa = PBXGroup;
 			children = (
 				2B04670025ECE0C600E69F41 /* photo_btn@2x.png */,
+				2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */,
+				2BA189D825F4B558006E66DD /* BoAssetsCamera@2x.png */,
+				2BA189D725F4B558006E66DD /* BoAssetsPickerChecked@2x.png */,
+				2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */,
 				2B0466F325ECE0C500E69F41 /* photo_btn@3x.png */,
 				2B0466DF25ECE0C400E69F41 /* privacy_btn@2x.png */,
 				2B0466FB25ECE0C600E69F41 /* privacy_btn@3x.png */,
@@ -512,13 +567,17 @@
 				2B04670925ECE0C600E69F41 /* privacy_btn@2x.png in Resources */,
 				2B04671325ECE0C600E69F41 /* set@3x.png in Resources */,
 				2B04671D25ECE0C600E69F41 /* photo_btn@3x.png in Resources */,
+				2BA189DD25F4B558006E66DD /* AssetsPickerVideo@2x.png in Resources */,
 				2B80841625B962300056938B /* Assets.xcassets in Resources */,
+				2BA189DE25F4B558006E66DD /* BoSelectGroup_tip@2x.png in Resources */,
+				2BA189DB25F4B558006E66DD /* BoAssetsPickerChecked@2x.png in Resources */,
 				2B04672A25ECE0C600E69F41 /* photo_btn@2x.png in Resources */,
 				2B04671725ECE0C600E69F41 /* set@2x.png in Resources */,
 				2B04672025ECE0C600E69F41 /* back_image@2x.png in Resources */,
 				2B04672825ECE0C600E69F41 /* action_button_normal@2x.png in Resources */,
 				2B04672B25ECE0C600E69F41 /* action_button_normal@3x.png in Resources */,
 				2B04670225ECE0C600E69F41 /* back_image@3x.png in Resources */,
+				2BA189DC25F4B558006E66DD /* BoAssetsCamera@2x.png in Resources */,
 				2B04670E25ECE0C600E69F41 /* calendar_btn@2x.png in Resources */,
 				2B04671925ECE0C600E69F41 /* rectangle@2x.png in Resources */,
 				2B04672525ECE0C600E69F41 /* privacy_btn@3x.png in Resources */,
@@ -578,16 +637,22 @@
 				2BE7B5A425E0E99700E187A3 /* WYComponentTableCategory.mm in Sources */,
 				2BE7894A25DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m in Sources */,
 				2B041A4E25E6838000E69F41 /* PhotoAnalysis.m in Sources */,
+				2BA189C525F4A54A006E66DD /* AJPhotoGroupView.m in Sources */,
 				2B0475CE25EDF66300E69F41 /* UICircularDiagramView.m in Sources */,
 				2B80840B25B9622F0056938B /* AppDelegate.m in Sources */,
+				2BA189C625F4A54A006E66DD /* AJPhotoListCellTapView.m in Sources */,
 				2BE7981425DFE57900E187A3 /* DataManger.m in Sources */,
 				2BE7B5A325E0E99700E187A3 /* KSTemplateListViewController.m in Sources */,
+				2BA189C725F4A54A006E66DD /* AJPhotoPickerViewController.m in Sources */,
 				2BE7893525DF972F00E187A3 /* UIBaseViewController.m in Sources */,
 				2B40710425F26DB7005C9088 /* XLGesturePasswordCell.m in Sources */,
 				2B07ED5025BEB4D2006BFBE7 /* Public.m in Sources */,
 				2B40710625F26DB7005C9088 /* XLGesturePassword.m in Sources */,
 				2BE7B5A125E0E99700E187A3 /* KSTemplateListItem.m in Sources */,
+				2BA189C425F4A54A006E66DD /* AJPhotoListView.m in Sources */,
 				2BE7981725DFE59300E187A3 /* UICalendarSearchResultViewController.m in Sources */,
+				2BA189C325F4A54A006E66DD /* AJPhotoListCell.m in Sources */,
+				2BA189C225F4A54A006E66DD /* AJPhotoGroupCell.m in Sources */,
 				2B04BF2C25E5323000E69F41 /* UIPrivacySearchResultViewController.m in Sources */,
 				2BE7B5A025E0E99700E187A3 /* KSTemplateViewModel.m in Sources */,
 				2B80841C25B962300056938B /* main.m in Sources */,
@@ -600,6 +665,7 @@
 				2BE7888625DF686900E187A3 /* UIRootViewController.mm in Sources */,
 				2BE7B5A525E0E99700E187A3 /* WYComponentTableItem.m in Sources */,
 				2BE7B5A625E0E99700E187A3 /* WYComponentTableViewController.mm in Sources */,
+				2BA189C925F4A54A006E66DD /* AJGradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

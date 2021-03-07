@@ -26,5 +26,7 @@
 //照片数据读取
 - (void)getDiskOf:(void (^)(CGFloat totalsize, CGFloat freesize))completion;
 
+- (NSArray *)getAllPhotosAssetInAblumCollection:(PHAssetCollection *)assetCollection ascending:(BOOL)ascending;
+
 
 @end

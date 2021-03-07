@@ -198,8 +198,6 @@
         }
         
         completion(photoArray);
-        
-        [PhotoAnalysis checkBlurryWihtImage:photoArray.lastObject];
     }];
 }
 
