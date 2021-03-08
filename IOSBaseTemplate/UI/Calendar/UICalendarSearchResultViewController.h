@@ -2,15 +2,20 @@
 //  UICalendarSearchResultViewController.h
 //  IOSBaseTemplate
 //
-//  Created by WYStudio on 21/2/22.
-//  Copyright (c) 2021年 WYStudio. All rights reserved.
+//  Created by WYStudio on 2021/2/19.
 //
 
-#import "UIBaseViewController.h"
 #import <UIKit/UIKit.h>
+#import "UIBaseViewController.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class CalendarTypeModel;
 
 @interface UICalendarSearchResultViewController : UIBaseViewController
 
-@property (strong,nonatomic) NSArray *eventArray;
+@property (nonatomic, strong) NSArray<CalendarTypeModel *> *dataArray;
 
 @end
+
+NS_ASSUME_NONNULL_END

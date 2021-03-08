@@ -43,7 +43,7 @@ QMUISynthesizeIdCopyProperty(qmui_prefersHomeIndicatorAutoHiddenBlock, setQmui_p
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        ExchangeImplementations([UIViewController class], @selector(description), @selector(qmuivc_description));
+        ExchangeImplementations([UIViewController class], @selector(desc), @selector(qmuivc_description));
         
         ExtendImplementationOfVoidMethodWithoutArguments([UIViewController class], @selector(viewDidLoad), ^(UIViewController *selfObject) {
             selfObject.qmui_visibleState = QMUIViewControllerViewDidLoad;

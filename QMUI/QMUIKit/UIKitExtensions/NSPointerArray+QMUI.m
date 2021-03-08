@@ -22,7 +22,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        ExtendImplementationOfNonVoidMethodWithoutArguments([NSPointerArray class], @selector(description), NSString *, ^NSString *(NSPointerArray *selfObject, NSString *originReturnValue) {
+        ExtendImplementationOfNonVoidMethodWithoutArguments([NSPointerArray class], @selector(desc), NSString *, ^NSString *(NSPointerArray *selfObject, NSString *originReturnValue) {
             NSMutableString *result = [[NSMutableString alloc] initWithString:originReturnValue];
             NSPointerArray *array = [selfObject copy];
             for (NSInteger i = 0; i < array.count; i++) {

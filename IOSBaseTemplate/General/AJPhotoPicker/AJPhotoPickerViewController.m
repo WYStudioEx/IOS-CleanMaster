@@ -81,7 +81,7 @@ UICollectionViewDelegateFlowLayout>
     _customTitleView.qmui_height = _titleBtn.qmui_height;
     
     _photoGroupView.qmui_width = self.view.qmui_width;
-    _photoListView.frame = CGRectMake(0, self.navigationController.navigationBar.qmui_height, self.view.qmui_width, self.view.qmui_height - self.navigationController.navigationBar.qmui_height);
+    _photoListView.frame = CGRectMake(0, self.navigationController.navigationBar.qmui_bottom, self.view.qmui_width, self.view.qmui_height - self.navigationController.navigationBar.qmui_bottom);
 }
 
 
@@ -234,7 +234,7 @@ UICollectionViewDelegateFlowLayout>
 
 
 #pragma mark - Action
-- (void)okBtnAction:(UIButton *)sender {
+- (void)rightBtnAction:(UIButton *)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(photoPicker:didSelectAssets:)]) {
         [_delegate photoPicker:self didSelectAssets:self.indexPathsForSelectedItems];
     }
@@ -282,7 +282,7 @@ UICollectionViewDelegateFlowLayout>
 - (void)setupNavigationItems {
     [super setupNavigationItems];
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(okBtnAction:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnAction:)];
     self.navigationItem.titleView = self.customTitleView;
 }
 

@@ -9,6 +9,8 @@
 #import "UICalendarSearchResultViewController.h"
 #import "UIPrivacySearchResultViewController.h"
 #import "UIPhotoSearchResultViewController.h"
+#import "CalendarTypeModel.h"
+#import "CalendarContentModel.h"
 #import "DataManger.h"
 
 @interface UISearchViewController ()
@@ -64,10 +66,46 @@
         return;
     }
     
+    NSMutableArray *dataArray = [NSMutableArray array];
+    CalendarTypeModel *calendarTypeModel = [[CalendarTypeModel alloc] init];
+    calendarTypeModel.isExpand = YES;
+    calendarTypeModel.title = @"诈骗日程";
+    
+    NSMutableArray *dataArrayEx = [NSMutableArray array];
+    CalendarContentModel *childFeedbackModel = [[CalendarContentModel alloc] init];
+    childFeedbackModel.desc = @"银行";
+    childFeedbackModel.isSelect = YES;
+    [dataArrayEx addObject:childFeedbackModel];
+    
+    childFeedbackModel = [[CalendarContentModel alloc] init];
+    childFeedbackModel.desc = @"金融";
+    [dataArrayEx addObject:childFeedbackModel];
+    
+    calendarTypeModel.content = dataArrayEx;
+    [dataArray addObject:calendarTypeModel];
+    
+    //---------------------------------
+    calendarTypeModel = [[CalendarTypeModel alloc] init];
+    calendarTypeModel.isExpand = YES;
+    calendarTypeModel.title = @"过期日程";
+    
+    dataArrayEx = [NSMutableArray array];
+    childFeedbackModel = [[CalendarContentModel alloc] init];
+    childFeedbackModel.desc = @"逛街";
+    [dataArrayEx addObject:childFeedbackModel];
+    
+    childFeedbackModel = [[CalendarContentModel alloc] init];
+    childFeedbackModel.desc = @"出行";
+    childFeedbackModel.isSelect = YES;
+    [dataArrayEx addObject:childFeedbackModel];
+    
+    calendarTypeModel.content = dataArrayEx;
+    [dataArray addObject:calendarTypeModel];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         UICalendarSearchResultViewController *vc = [[UICalendarSearchResultViewController alloc] init];
-         vc.eventArray = eventArray;
-         [self.navigationController pushViewController:vc animated:YES];
+            UICalendarSearchResultViewController *vc = [[UICalendarSearchResultViewController alloc] init];
+            vc.dataArray = dataArray;
+            [self.navigationController pushViewController:vc animated:YES];
     });
 }
 

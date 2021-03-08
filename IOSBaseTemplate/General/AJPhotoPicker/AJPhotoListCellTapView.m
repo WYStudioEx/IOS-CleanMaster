@@ -21,7 +21,7 @@ static UIColor *selectedColor;
 
 #pragma mark - init
 + (void)initialize {
-    checkedIcon = UIImageMake(@"BoAssetsPickerChecked");
+    checkedIcon = UIImageMake(@"feedback_select");
     selectedColor = [UIColor colorWithWhite:1 alpha:0.3];
 }
 

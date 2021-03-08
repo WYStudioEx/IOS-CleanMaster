@@ -105,7 +105,7 @@ UICollectionViewDelegateFlowLayout>
     _addPhotoBtn.qmui_bottom = _photoBackView.qmui_height - _size_H_S_X(20);
     _addPhotoBtn.qmui_left = (_photoBackView.qmui_width - _addPhotoBtn.qmui_width) / 2.0;
     
-    self.photoListView.frame = CGRectMake(0, self.navigationController.navigationBar.qmui_height, self.photoBackView.qmui_width, self.photoBackView.qmui_height - self.navigationController.navigationBar.qmui_height);
+    self.photoListView.frame = CGRectMake(0, self.navigationController.navigationBar.qmui_height, self.photoBackView.qmui_width, self.photoBackView.qmui_height - self.navigationController.navigationBar.qmui_bottom);
 }
 
 

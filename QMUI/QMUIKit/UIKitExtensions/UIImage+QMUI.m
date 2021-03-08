@@ -31,7 +31,7 @@ CGSizeFlatSpecificScale(CGSize size, float scale) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        ExtendImplementationOfNonVoidMethodWithoutArguments([UIImage class], @selector(description), NSString *, ^NSString *(UIImage *selfObject, NSString *originReturnValue) {
+        ExtendImplementationOfNonVoidMethodWithoutArguments([UIImage class], @selector(desc), NSString *, ^NSString *(UIImage *selfObject, NSString *originReturnValue) {
             return ([NSString stringWithFormat:@"%@, scale = %@", originReturnValue, @(selfObject.scale)]);
         });
         
