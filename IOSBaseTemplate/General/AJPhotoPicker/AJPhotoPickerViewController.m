@@ -58,11 +58,16 @@ UICollectionViewDelegateFlowLayout>
     self.view.layer.backgroundColor = [UIColor blackColor].CGColor;
     self.view.backgroundColor = [UIColor blackColor];
     
-    //数据初始化
+    //数据初始花
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self setupData];
+        
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if(nil == strongSelf) {
+            return;
+        }
+        [strongSelf setupData];
     });
-
 }
 
 - (void)viewWillLayoutSubviews {

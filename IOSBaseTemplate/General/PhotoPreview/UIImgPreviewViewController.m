@@ -105,6 +105,10 @@
     [self.view addSubview:_imgPreviewCollectionView];
     [self.view insertSubview:_imgPreviewCollectionView belowSubview:_addToSysBtn];
     [_imgPreviewCollectionView load];
+    
+    if(0 == self.imageModels.count) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)setImageModels:(NSMutableArray *)imageModels {
