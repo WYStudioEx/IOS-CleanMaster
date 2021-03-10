@@ -63,7 +63,7 @@
             return;
         }
         
-        if(e_CalendarSearch_Type == weakSelf.searchType) {
+        if(SearchTypeCalendar == weakSelf.searchType) {
             [[DataManger shareInstance] getScheduleEvent:^(NSArray *eventArray){
                 NSTimeInterval end = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
                 if(end - begin >= 1500) {
@@ -83,32 +83,22 @@
             return;
         }
         
-        if(e_PhoneSearch_Type == weakSelf.searchType) {
+        if(SearchTypePhone == weakSelf.searchType) {
             [[DataManger shareInstance] getPhotoData:^(NSArray *photoArray){
                 NSTimeInterval end = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
-                if(end - begin >= 1500) {
-                    dispatch_async(dispatch_get_main_queue(), ^(void){
-                        __strong typeof(weakSelf) strongSelf = weakSelf;
-                        [strongSelf handelPhotoData:photoArray];
-                    });
-                    return;
-                }
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((1500 - (end - begin)) / 1500  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    __strong typeof(weakSelf) strongSelf = weakSelf;
-                    [strongSelf handelPhotoData:photoArray];
-                });
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                [strongSelf handelPhotoData:photoArray];
             }];
             
             return;
         }
         
-        if(e_aiCleare_Type == weakSelf.searchType) {
+        if(SearchTypeAICleare == weakSelf.searchType) {
         }
     });
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
     [self.circularDiagramView runAnimation:NO];
@@ -191,10 +181,11 @@
     PhotoTypeModel *fuzzyPhotoModel = [[PhotoTypeModel alloc] init];
     fuzzyPhotoModel.isExpand = YES;
     fuzzyPhotoModel.title = @"模糊图片";
+    fuzzyPhotoModel.type = PhotoTypeModelFuzzy;
     fuzzyPhotoModel.content = [NSMutableArray array];
     [dataArray addObject:fuzzyPhotoModel];
-    
-    
+
+
     NSMutableArray<SiglePhotoModel *> *temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
     PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
     NSEnumerator *enumerator = [newPhotoArray reverseObjectEnumerator];
@@ -208,14 +199,15 @@
         photoContentModel.photos = temPhotoArray;
         [fuzzyPhotoModel.content addObject:photoContentModel];
     }
-    
+
     //--------------------
     PhotoTypeModel *similarPhotoModel = [[PhotoTypeModel alloc] init];
     similarPhotoModel.isExpand = YES;
     similarPhotoModel.title = @"相似图片";
+    similarPhotoModel.type = PhotoTypeModelSimilar;
     similarPhotoModel.content = [NSMutableArray array];
     [dataArray addObject:similarPhotoModel];
-    
+
     if(newPhotoArray.count > 1) {
         NSMutableArray<SiglePhotoModel *> *temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
         SiglePhotoModel *first = newPhotoArray[0];
@@ -230,7 +222,7 @@
                 }
                 continue;;
             }
-            
+
             first = second;
             if(temPhotoArray.count) {
                 PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
@@ -242,14 +234,15 @@
     }
     
     //------------
-    UIPhotoSearchResultViewController *vc = [[UIPhotoSearchResultViewController alloc] init];
-    vc.dataArray = dataArray;
-    
-    [self.navigationController qmui_pushViewController:vc animated:YES completion:^(void){
-        NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithArray:self.navigationController.viewControllers];
-        [viewControllers removeObject:self];
-        self.navigationController.viewControllers = viewControllers;
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        UIPhotoSearchResultViewController *vc = [[UIPhotoSearchResultViewController alloc] init];
+        vc.dataArray = dataArray;
+        [self.navigationController qmui_pushViewController:vc animated:YES completion:^(void){
+            NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithArray:self.navigationController.viewControllers];
+            [viewControllers removeObject:self];
+            self.navigationController.viewControllers = viewControllers;
+        }];
+    });
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{

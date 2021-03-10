@@ -247,13 +247,13 @@
 
 - (void)photoBtnClick:(id)btn {
     UISearchViewController *nextVC = [[UISearchViewController alloc] init];
-    nextVC.searchType = e_PhoneSearch_Type;
+    nextVC.searchType = SearchTypePhone;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)calendarBtnClick:(id)btn {
     UISearchViewController *nextVC = [[UISearchViewController alloc] init];
-    nextVC.searchType = e_CalendarSearch_Type;
+    nextVC.searchType = SearchTypeCalendar;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -264,7 +264,7 @@
 
 - (void)aiCleareBtnClick:(id)btn {
     UISearchViewController *nextVC = [[UISearchViewController alloc] init];
-    nextVC.searchType = e_aiCleare_Type;
+    nextVC.searchType = SearchTypeAICleare;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 

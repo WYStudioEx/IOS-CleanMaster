@@ -8,6 +8,7 @@
 
 #import "UIPhotoSearchResultViewController.h"
 #import "PhotoSimilarTableViewCell.h"
+#import "PhotoNomalTableViewCell.h"
 #import "PhotoTypeModel.h"
 #import "DataManger.h"
 
@@ -40,7 +41,8 @@
         _tableView.estimatedSectionHeaderHeight = 0;
     }
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [_tableView registerClass:PhotoSimilarTableViewCell.class forCellReuseIdentifier:@"cell"];
+    [_tableView registerClass:PhotoSimilarTableViewCell.class forCellReuseIdentifier:@"PhotoSimilarTableViewCell"];
+    [_tableView registerClass:PhotoSimilarTableViewCell.class forCellReuseIdentifier:@"PhotoNomalTableViewCell"];
     [self.view addSubview:self.tableView];
     
     self.clearBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"action_button_normal") title:nil];
@@ -132,17 +134,42 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PhotoSimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
-    
-    if(indexPath.section != self.dataArray.count - 1 && indexPath.row == self.dataArray[indexPath.section].content.count - 1){
-        cell.horizontalLine.hidden = NO;
+    if(((PhotoTypeModel *)(self.dataArray[indexPath.section])).type == PhotoTypeModelFuzzy) {
+        PhotoNomalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoNomalTableViewCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
+        
+        if(indexPath.section != self.dataArray.count - 1 && indexPath.row == self.dataArray[indexPath.section].content.count - 1){
+            cell.horizontalLine.hidden = NO;
+        }
+        return cell;
     }
-    return cell;
+    
+    if(((PhotoTypeModel *)(self.dataArray[indexPath.section])).type == PhotoTypeModelSimilar) {
+        PhotoSimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoSimilarTableViewCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
+        
+        if(indexPath.section != self.dataArray.count - 1 && indexPath.row == self.dataArray[indexPath.section].content.count - 1){
+            cell.horizontalLine.hidden = NO;
+        }
+        return cell;
+    }
+    
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(((PhotoTypeModel *)(self.dataArray[indexPath.section])).type == PhotoTypeModelFuzzy) {
+        PhotoTypeModel *typeModel = (PhotoTypeModel *)(self.dataArray[indexPath.section]);
+        return [PhotoNomalTableViewCell calculateHeight:typeModel.content[indexPath.row]];
+    }
+    
+    if(((PhotoTypeModel *)(self.dataArray[indexPath.section])).type == PhotoTypeModelSimilar) {
+        PhotoTypeModel *typeModel = (PhotoTypeModel *)(self.dataArray[indexPath.section]);
+        return [PhotoSimilarTableViewCell calculateHeight:typeModel.content[indexPath.row]];
+    }
+    
     return 50;
 }
 

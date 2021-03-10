@@ -10,7 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, PhotoTypeModelType) {
+    PhotoTypeModelFuzzy,
+    PhotoTypeModelSimilar,
+};
+
+//---------------------------------------
+
 @interface PhotoTypeModel : NSObject
+
+@property (nonatomic, assign) PhotoTypeModelType type;
 
 /** 标题 */
 @property (nonatomic, copy) NSString *title;
