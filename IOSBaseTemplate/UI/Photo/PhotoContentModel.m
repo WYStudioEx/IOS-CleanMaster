@@ -8,7 +8,7 @@
 #import "PhotoContentModel.h"
 
 
-@implementation siglePhotoMode
+@implementation SiglePhotoModel
 
 @end
 

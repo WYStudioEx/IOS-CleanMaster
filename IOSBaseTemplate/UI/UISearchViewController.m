@@ -11,7 +11,9 @@
 #import "UICircularDiagramView.h"
 #import "CalendarTypeModel.h"
 #import "CalendarContentModel.h"
+#import "PhotoTypeModel.h"
 #import "DataManger.h"
+#import "PhotoAnalysis.h"
 
 @interface UISearchViewController ()
 
@@ -56,42 +58,54 @@
     NSTimeInterval begin = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
     
     __weak typeof(self) weakSelf = self;
-    if(e_CalendarSearch_Type == _searchType) {
-        [[DataManger shareInstance] getScheduleEvent:^(NSArray *eventArray){
-            __strong typeof(weakSelf) strongSelf = weakSelf;
-            
-            NSTimeInterval end = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
-            if(end - begin >= 1500) {
-                dispatch_async(dispatch_get_main_queue(), ^(void){
-                    [strongSelf handelCalendarEvent:eventArray];
-                });
-                return;
-            }
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((1500 - (end - begin)) / 1500  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                __strong typeof(weakSelf) strongSelf = weakSelf;
-                if(nil == strongSelf) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if(nil == weakSelf) {
+            return;
+        }
+        
+        if(e_CalendarSearch_Type == weakSelf.searchType) {
+            [[DataManger shareInstance] getScheduleEvent:^(NSArray *eventArray){
+                NSTimeInterval end = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
+                if(end - begin >= 1500) {
+                    dispatch_async(dispatch_get_main_queue(), ^(void){
+                        __strong typeof(weakSelf) strongSelf = weakSelf;
+                        [strongSelf handelCalendarEvent:eventArray];
+                    });
                     return;
                 }
-                [strongSelf handelCalendarEvent:eventArray];
-            });
-        }];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((1500 - (end - begin)) / 1500  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    [strongSelf handelCalendarEvent:eventArray];
+                });
+            }];
+            
+            return;
+        }
         
-        return;
-    }
-    
-    if(e_PhoneSearch_Type == _searchType) {
-        [[DataManger shareInstance] getPhotoData:^(NSArray *photoArray){
-            __strong typeof(weakSelf) strongSelf = weakSelf;
-            [strongSelf handelPhotoData:photoArray];
-        }];
+        if(e_PhoneSearch_Type == weakSelf.searchType) {
+            [[DataManger shareInstance] getPhotoData:^(NSArray *photoArray){
+                NSTimeInterval end = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
+                if(end - begin >= 1500) {
+                    dispatch_async(dispatch_get_main_queue(), ^(void){
+                        __strong typeof(weakSelf) strongSelf = weakSelf;
+                        [strongSelf handelPhotoData:photoArray];
+                    });
+                    return;
+                }
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((1500 - (end - begin)) / 1500  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    [strongSelf handelPhotoData:photoArray];
+                });
+            }];
+            
+            return;
+        }
         
-        return;
-    }
-    
-    if(e_aiCleare_Type == _searchType) {
-        
-    }
+        if(e_aiCleare_Type == weakSelf.searchType) {
+        }
+    });
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -140,6 +154,12 @@
     }
     
     UICalendarSearchResultViewController *vc = [[UICalendarSearchResultViewController alloc] init];
+    NSEnumerator *enumerator = [dataArray reverseObjectEnumerator];
+      for (CalendarTypeModel *model in enumerator) {
+        if(0 == model.content.count) {
+          [dataArray removeObject:model];
+        }
+    }
     vc.dataArray = dataArray;
     
     [self.navigationController qmui_pushViewController:vc animated:YES completion:^(void){
@@ -154,8 +174,77 @@
         return;
     }
     
+    PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
+    imageRequestOptions.synchronous = YES;
+    imageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
+    NSMutableArray<SiglePhotoModel *> *newPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
+    [phoneArray enumerateObjectsUsingBlock:^(PHAsset *ssset, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[PHImageManager defaultManager] requestImageForAsset:ssset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
+            SiglePhotoModel *sigPhotoModel = [[SiglePhotoModel alloc] init];
+            sigPhotoModel.asset = ssset;
+            sigPhotoModel.image = image;
+            [newPhotoArray addObject:sigPhotoModel];
+        }];
+    }];
+    
+    NSMutableArray *dataArray = [NSMutableArray array];
+    PhotoTypeModel *fuzzyPhotoModel = [[PhotoTypeModel alloc] init];
+    fuzzyPhotoModel.isExpand = YES;
+    fuzzyPhotoModel.title = @"模糊图片";
+    fuzzyPhotoModel.content = [NSMutableArray array];
+    [dataArray addObject:fuzzyPhotoModel];
+    
+    
+    NSMutableArray<SiglePhotoModel *> *temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
+    PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
+    NSEnumerator *enumerator = [newPhotoArray reverseObjectEnumerator];
+    for(SiglePhotoModel *siglePhotoModel in enumerator) {
+        if([PhotoAnalysis checkBlurryWihtImage:siglePhotoModel.image]) {
+            [temPhotoArray addObject:siglePhotoModel];
+            [newPhotoArray removeObject:siglePhotoModel];
+        }
+    }
+    if(temPhotoArray.count) {
+        photoContentModel.photos = temPhotoArray;
+        [fuzzyPhotoModel.content addObject:photoContentModel];
+    }
+    
+    //--------------------
+    PhotoTypeModel *similarPhotoModel = [[PhotoTypeModel alloc] init];
+    similarPhotoModel.isExpand = YES;
+    similarPhotoModel.title = @"相似图片";
+    similarPhotoModel.content = [NSMutableArray array];
+    [dataArray addObject:similarPhotoModel];
+    
+    if(newPhotoArray.count > 1) {
+        NSMutableArray<SiglePhotoModel *> *temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
+        SiglePhotoModel *first = newPhotoArray[0];
+        for(int index = 1; index < newPhotoArray.count; index++) {
+            SiglePhotoModel *second = newPhotoArray[index];
+            if(temPhotoArray.count < 5 && [PhotoAnalysis checkSimilarityImage:first.image secondImage:second.image]) {
+                if(temPhotoArray.count) {
+                    [temPhotoArray addObject:second];
+                }else {
+                    [temPhotoArray addObject:first];
+                    [temPhotoArray addObject:second];
+                }
+                continue;;
+            }
+            
+            first = second;
+            if(temPhotoArray.count) {
+                PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
+                photoContentModel.photos = temPhotoArray;
+                temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
+                [similarPhotoModel.content addObject:photoContentModel];
+            }
+        }
+    }
+    
+    //------------
     UIPhotoSearchResultViewController *vc = [[UIPhotoSearchResultViewController alloc] init];
-    vc.dataArray = phoneArray;
+    vc.dataArray = dataArray;
+    
     [self.navigationController qmui_pushViewController:vc animated:YES completion:^(void){
         NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithArray:self.navigationController.viewControllers];
         [viewControllers removeObject:self];

@@ -9,7 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface siglePhotoMode : NSObject
+@interface SiglePhotoModel : NSObject
+
+@property (nonatomic, strong) PHAsset *asset;
 
 @property (nonatomic, strong) UIImage *image;
 
@@ -20,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 //----------------------------------------------------
 @interface PhotoContentModel : NSObject
 
-@property (nonatomic, strong) NSArray<siglePhotoMode *> *photos;
+@property (nonatomic, strong) NSArray<SiglePhotoModel *> *photos;
 
 @end
 

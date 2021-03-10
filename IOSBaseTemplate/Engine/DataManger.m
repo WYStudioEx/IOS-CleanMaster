@@ -73,7 +73,7 @@
 - (NSDate*)getPriousorLaterDateFromDate:(NSDate*)date withMonth:(int)month{
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     [comps setMonth:month];
-    NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];// NSGregorianCalendar
+    NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDate *mDate = [calender dateByAddingComponents:comps toDate:date options:0];
     return mDate;
 
@@ -90,42 +90,6 @@
     }
     
     return bDelete;
-}
-
-#pragma 通讯录
-
-- (void)getContactData:(void (^)(NSArray *contactList))completion {
-    if(nil == self.contactStore) {
-        self.contactStore = [CNContactStore new];
-    }
-    
-    __weak typeof(self) weakSelf = self;
-    [_contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        
-        if(nil == strongSelf || NO == granted) {
-            completion(nil);
-            return;
-        }
-        
-        //获取通讯录中所有的联系人
-        NSMutableArray *contactList = [NSMutableArray array];
-        CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:@[CNContactFamilyNameKey, CNContactGivenNameKey, CNContactPhoneNumbersKey]];
-        [strongSelf.contactStore enumerateContactsWithFetchRequest:request error:nil usingBlock:^(CNContact * _Nonnull contact, BOOL * _Nonnull stop) {
-            // 获取姓名
-            NSString *name = [NSString stringWithFormat:@"%@%@", contact.familyName, contact.givenName];
-            // 获取电话号码
-            NSMutableArray *phoneArray = [NSMutableArray array];
-            for (CNLabeledValue *labeledValue in contact.phoneNumbers){
-                 CNPhoneNumber *phoneValue = labeledValue.value;
-                [phoneArray addObject:phoneValue.stringValue];
-            }
-            
-            [contactList addObject:@{@"name":name, @"phoneArray":phoneArray}];
-        }];
-        
-        completion(contactList);
-    }];
 }
 
 - (void)getPhotoData:(void (^)(NSArray *photoList))completion {
@@ -149,14 +113,35 @@
                 continue;
             }
             
-            [photoArray addObjectsFromArray:[self getAllPhotosAssetInAblumCollection:(PHAssetCollection *)collection ascending:YES]];
+            [photoArray addObjectsFromArray:[self getAllPhotosAssetInAblumCollectionEx:(PHAssetCollection *)collection ascending:YES]];
         }
         
         completion(photoArray);
     }];
 }
 
-- (NSArray *)getAllPhotosAssetInAblumCollection:(PHAssetCollection *)assetCollection ascending:(BOOL)ascending {
+- (NSArray<PHAsset *> *)getAllPhotosAssetInAblumCollectionEx:(PHAssetCollection *)assetCollection ascending:(BOOL)ascending {
+    PHFetchOptions *fetchOption = [[PHFetchOptions alloc] init];
+    fetchOption.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:ascending]];
+    fetchOption.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
+    PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:assetCollection options:fetchOption];
+    if(result.count <= 0) {
+        return nil;
+    }
+    
+    NSMutableArray<PHAsset *> *assetArray = [[NSMutableArray alloc] initWithCapacity:result.count];
+    PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
+    imageRequestOptions.synchronous = YES;
+    imageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
+    [result enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+        [assetArray addObject:asset];
+    }];
+    
+    return assetArray;
+}
+
+
+- (NSArray<UIImage *> *)getAllPhotosAssetInAblumCollection:(PHAssetCollection *)assetCollection ascending:(BOOL)ascending {
     PHFetchOptions *fetchOption = [[PHFetchOptions alloc] init];
     fetchOption.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:ascending]];
     fetchOption.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
