@@ -6,12 +6,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <EventKit/EKEvent.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CalendarContentModel : NSObject
 
-@property (nonatomic, copy) NSString *desc;
+@property (nonatomic, strong) EKEvent *event;
 
 @property (nonatomic, assign) BOOL isSelect;
 

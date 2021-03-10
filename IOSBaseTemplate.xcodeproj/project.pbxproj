@@ -35,7 +35,7 @@
 		2B43AF9D25F65B0E0016A39F /* UICalendarSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B43AF9925F65B0E0016A39F /* UICalendarSearchResultViewController.m */; };
 		2B43AFA525F65B190016A39F /* CalendarTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B43AFA225F65B190016A39F /* CalendarTypeModel.m */; };
 		2B43AFA625F65B190016A39F /* CalendarContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B43AFA325F65B190016A39F /* CalendarContentModel.m */; };
-		2B43AFA925F65B210016A39F /* AddFeedbackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B43AFA825F65B210016A39F /* AddFeedbackTableViewCell.m */; };
+		2B43AFA925F65B210016A39F /* CalendarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B43AFA825F65B210016A39F /* CalendarTableViewCell.m */; };
 		2B43BE7325F66DDD0016A39F /* fb_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B43BE7225F66DDD0016A39F /* fb_top@2x.png */; };
 		2B43BE7525F66DE40016A39F /* fb_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B43BE7425F66DE40016A39F /* fb_bottom@2x.png */; };
 		2B43BE7725F66E080016A39F /* feedback_noSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B43BE7625F66E080016A39F /* feedback_noSelect@2x.png */; };
@@ -54,6 +54,9 @@
 		2BA189DC25F4B558006E66DD /* BoAssetsCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189D825F4B558006E66DD /* BoAssetsCamera@2x.png */; };
 		2BA189DD25F4B558006E66DD /* AssetsPickerVideo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */; };
 		2BA189DE25F4B558006E66DD /* BoSelectGroup_tip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */; };
+		2BDAEF0E25F8B8C700A5D53C /* PhotoTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0825F8B8C700A5D53C /* PhotoTypeModel.m */; };
+		2BDAEF0F25F8B8C700A5D53C /* PhotoContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0A25F8B8C700A5D53C /* PhotoContentModel.m */; };
+		2BDAEF1025F8B8C700A5D53C /* PhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0C25F8B8C700A5D53C /* PhotoTableViewCell.m */; };
 		2BE7886625DF63CA00E187A3 /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7884F25DF632B00E187A3 /* QMUIKit.framework */; };
 		2BE7886725DF63CA00E187A3 /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7884F25DF632B00E187A3 /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2BE7888625DF686900E187A3 /* UIRootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7888425DF686900E187A3 /* UIRootViewController.mm */; };
@@ -140,8 +143,8 @@
 		2B43AFA025F65B190016A39F /* CalendarTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarTypeModel.h; sourceTree = "<group>"; };
 		2B43AFA225F65B190016A39F /* CalendarTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTypeModel.m; sourceTree = "<group>"; };
 		2B43AFA325F65B190016A39F /* CalendarContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarContentModel.m; sourceTree = "<group>"; };
-		2B43AFA725F65B210016A39F /* AddFeedbackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFeedbackTableViewCell.h; sourceTree = "<group>"; };
-		2B43AFA825F65B210016A39F /* AddFeedbackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFeedbackTableViewCell.m; sourceTree = "<group>"; };
+		2B43AFA725F65B210016A39F /* CalendarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarTableViewCell.h; sourceTree = "<group>"; };
+		2B43AFA825F65B210016A39F /* CalendarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTableViewCell.m; sourceTree = "<group>"; };
 		2B43BE7225F66DDD0016A39F /* fb_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb_top@2x.png"; sourceTree = "<group>"; };
 		2B43BE7425F66DE40016A39F /* fb_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb_bottom@2x.png"; sourceTree = "<group>"; };
 		2B43BE7625F66E080016A39F /* feedback_noSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_noSelect@2x.png"; sourceTree = "<group>"; };
@@ -170,6 +173,12 @@
 		2BA189D825F4B558006E66DD /* BoAssetsCamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BoAssetsCamera@2x.png"; sourceTree = "<group>"; };
 		2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AssetsPickerVideo@2x.png"; sourceTree = "<group>"; };
 		2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BoSelectGroup_tip@2x.png"; path = "../../../../Downloads/c9547f7b5c777b9c411ad0dc16bbe676/AJPhotoPicker/BoPhotoPicker.bundle/images/BoSelectGroup_tip@2x.png"; sourceTree = "<group>"; };
+		2BDAEF0825F8B8C700A5D53C /* PhotoTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTypeModel.m; sourceTree = "<group>"; };
+		2BDAEF0925F8B8C700A5D53C /* PhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTableViewCell.h; sourceTree = "<group>"; };
+		2BDAEF0A25F8B8C700A5D53C /* PhotoContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoContentModel.m; sourceTree = "<group>"; };
+		2BDAEF0B25F8B8C700A5D53C /* PhotoContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoContentModel.h; sourceTree = "<group>"; };
+		2BDAEF0C25F8B8C700A5D53C /* PhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTableViewCell.m; sourceTree = "<group>"; };
+		2BDAEF0D25F8B8C700A5D53C /* PhotoTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTypeModel.h; sourceTree = "<group>"; };
 		2BE7884925DF632B00E187A3 /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = QMUI/qmui.xcodeproj; sourceTree = "<group>"; };
 		2BE7888425DF686900E187A3 /* UIRootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIRootViewController.mm; sourceTree = "<group>"; };
 		2BE7888525DF686900E187A3 /* UIRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRootViewController.h; sourceTree = "<group>"; };
@@ -225,6 +234,12 @@
 			children = (
 				2B04BF2E25E535CC00E69F41 /* UIPhotoSearchResultViewController.h */,
 				2B04BF2F25E535CC00E69F41 /* UIPhotoSearchResultViewController.m */,
+				2BDAEF0B25F8B8C700A5D53C /* PhotoContentModel.h */,
+				2BDAEF0A25F8B8C700A5D53C /* PhotoContentModel.m */,
+				2BDAEF0925F8B8C700A5D53C /* PhotoTableViewCell.h */,
+				2BDAEF0C25F8B8C700A5D53C /* PhotoTableViewCell.m */,
+				2BDAEF0D25F8B8C700A5D53C /* PhotoTypeModel.h */,
+				2BDAEF0825F8B8C700A5D53C /* PhotoTypeModel.m */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -407,8 +422,8 @@
 			children = (
 				2B43AF9C25F65B0E0016A39F /* UICalendarSearchResultViewController.h */,
 				2B43AF9925F65B0E0016A39F /* UICalendarSearchResultViewController.m */,
-				2B43AFA725F65B210016A39F /* AddFeedbackTableViewCell.h */,
-				2B43AFA825F65B210016A39F /* AddFeedbackTableViewCell.m */,
+				2B43AFA725F65B210016A39F /* CalendarTableViewCell.h */,
+				2B43AFA825F65B210016A39F /* CalendarTableViewCell.m */,
 				2B43AFA025F65B190016A39F /* CalendarTypeModel.h */,
 				2B43AFA225F65B190016A39F /* CalendarTypeModel.m */,
 				2B43AF9F25F65B190016A39F /* CalendarContentModel.h */,
@@ -599,11 +614,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B43AFA925F65B210016A39F /* AddFeedbackTableViewCell.m in Sources */,
+				2B43AFA925F65B210016A39F /* CalendarTableViewCell.m in Sources */,
 				2BE7894A25DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m in Sources */,
+				2BDAEF0F25F8B8C700A5D53C /* PhotoContentModel.m in Sources */,
 				2B041A4E25E6838000E69F41 /* PhotoAnalysis.m in Sources */,
 				2BA189C525F4A54A006E66DD /* AJPhotoGroupView.m in Sources */,
 				2B0475CE25EDF66300E69F41 /* UICircularDiagramView.m in Sources */,
+				2BDAEF0E25F8B8C700A5D53C /* PhotoTypeModel.m in Sources */,
 				2B80840B25B9622F0056938B /* AppDelegate.m in Sources */,
 				2BA189C625F4A54A006E66DD /* AJPhotoListCellTapView.m in Sources */,
 				2BE7981425DFE57900E187A3 /* DataManger.m in Sources */,
@@ -612,6 +629,7 @@
 				2B40710425F26DB7005C9088 /* XLGesturePasswordCell.m in Sources */,
 				2B07ED5025BEB4D2006BFBE7 /* Public.m in Sources */,
 				2B40710625F26DB7005C9088 /* XLGesturePassword.m in Sources */,
+				2BDAEF1025F8B8C700A5D53C /* PhotoTableViewCell.m in Sources */,
 				2B43AFA525F65B190016A39F /* CalendarTypeModel.m in Sources */,
 				2B43743525F518220016A39F /* UIImgPreviewViewController.m in Sources */,
 				2BA189C425F4A54A006E66DD /* AJPhotoListView.m in Sources */,

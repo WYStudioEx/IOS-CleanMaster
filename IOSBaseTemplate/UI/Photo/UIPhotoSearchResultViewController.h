@@ -9,8 +9,10 @@
 #import "UIBaseViewController.h"
 #import <UIKit/UIKit.h>
 
+@class PhotoTypeModel;
+
 @interface UIPhotoSearchResultViewController : UIBaseViewController
 
-@property (strong,nonatomic) NSArray *photoArray;
+@property (strong,nonatomic) NSArray<PhotoTypeModel *> *dataArray;
 
 @end

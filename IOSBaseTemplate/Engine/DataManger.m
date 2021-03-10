@@ -79,12 +79,17 @@
 
 }
 
-- (BOOL)deleteEvent:(EKEvent *)event {
-    [event setCalendar:[self.scheduleStore defaultCalendarForNewEvents]];
+- (BOOL)deleteEvent:(NSArray *)events {
+    BOOL bDelete = NO;
+    for(EKEvent *event in events) {
+        [event setCalendar:[self.scheduleStore defaultCalendarForNewEvents]];
+        
+        NSError *err;
+        [self.scheduleStore removeEvent:event span:EKSpanThisEvent commit:YES error:&err];
+        bDelete = (err == nil);
+    }
     
-    NSError *err;
-    [self.scheduleStore removeEvent:event span:EKSpanThisEvent commit:YES error:&err];
-    return err == nil;
+    return bDelete;
 }
 
 #pragma 通讯录
@@ -122,55 +127,6 @@
         completion(contactList);
     }];
 }
-
-//- (void)kk {
-//    CNSaveRequest * saveRequest = [[CNSaveRequest alloc]init];
-//        CNContactStore * store = [[CNContactStore alloc]init];
-//
-//        NSArray*  arrFetchedcontact = nil;
-//        @try {
-//
-//            NSError * err = nil;
-//            NSArray * keytoFetch = @[CNContactGivenNameKey,CNContactFamilyNameKey,CNContactPhoneNumbersKey];
-//            NSPredicate * predicate = [CNContact predicateForContactsMatchingName:@""];
-//            arrFetchedcontact = [store unifiedContactsMatchingPredicate:predicate keysToFetch:keytoFetch error:&err];
-//        }
-//        @catch (NSException *exception) {
-//            NSLog(@"description = %@",[exception description]);
-//        }
-//
-//        if([arrFetchedcontact count] > 0)
-//        {
-//
-//            NSLog(@"ArrFetchedContact %@",arrFetchedcontact);
-//
-//
-//            CNMutableContact * contactToUpdate = [[arrFetchedcontact objectAtIndex:0] mutableCopy];
-//            NSMutableArray * arrNumbers = [[contactToUpdate phoneNumbers] mutableCopy];
-//            [arrNumbers removeObjectAtIndex:0];
-//
-//            CNLabeledValue * homePhone = [CNLabeledValue labeledValueWithLabel:CNLabelPhoneNumberMobile value:[CNPhoneNumber phoneNumberWithStringValue:FieldNumbers]];
-//
-//            NSLog(@"Print Homephone %@",homePhone);
-//
-//
-//            [arrNumbers addObject:homePhone];
-//            [contactToUpdate setPhoneNumbers:arrNumbers];
-//
-//            [saveRequest updateContact:contactToUpdate];
-//
-//            @try {
-//
-//                NSLog(@"Success %d",[store executeSaveRequest:saveRequest error:nil]);
-//
-//
-//            }
-//            @catch (NSException *exception) {
-//                NSLog(@"description = %@",[exception description]);
-//            }
-//        }
-//}
-
 
 - (void)getPhotoData:(void (^)(NSArray *photoList))completion {
     NSMutableArray *photoArray = [NSMutableArray array];
@@ -247,6 +203,14 @@
              NSLog(@"Error Obtaining System Memory Info: Domain = %@, Code = %ld", [error domain], (long)[error code]);
          }
     });
+}
+
+- (long long)getDateTimeTOMilliSeconds:(NSDate *)datetime {
+    NSTimeInterval interval = [datetime timeIntervalSince1970];
+    NSLog(@"转换的时间戳=%f",interval);
+    long long totalMilliseconds = interval*1000 ;
+    NSLog(@"totalMilliseconds=%llu",totalMilliseconds);
+    return totalMilliseconds;
 }
 
 @end

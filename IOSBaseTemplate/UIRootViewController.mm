@@ -9,8 +9,9 @@
 #import "UIRootViewController.h"
 #import "UISearchViewController.h"
 #import "UICircularDiagramView.h"
-#import "UIPrivacySearchResultViewController.h"
 #import "DataManger.h"
+#import "UIPrivacySearchResultViewController.h"
+
 
 @interface UIRootViewController ()
 
@@ -39,8 +40,8 @@
 //------------------------------------------------------------------
 @implementation UIRootViewController
 
-- (void)viewDidLoad{
-    [super viewDidLoad];
+- (void)loadView{
+    [super loadView];
     
     QMUILabel *titleLabel = [[QMUILabel alloc] init];
     titleLabel.text = @"清理管家";
@@ -139,10 +140,16 @@
     [_actionBackView addSubview:_privacyLabel];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.circularDiagramView runAnimation:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    NSTimeInterval begin = [self getDateTimeTOMilliSeconds:[NSDate date]];
+    NSTimeInterval begin = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
     
     __weak typeof(self) weakSelf = self;
     [[DataManger shareInstance] getDiskOf:^(CGFloat totalsize, CGFloat freesize){
@@ -151,59 +158,42 @@
             return;
         }
         
-        NSTimeInterval end = [self getDateTimeTOMilliSeconds:[NSDate date]];
-        if(end - begin >= 2000) {
+        NSTimeInterval end = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
+        if(end - begin >= 1500) {
             dispatch_async(dispatch_get_main_queue(), ^(void){
-                strongSelf.diskLabel.text = [NSString stringWithFormat:@"%.1f/%.1fG", totalsize - freesize, totalsize];
-                strongSelf.proportionLabel.text = [NSString stringWithFormat:@"%d",(int)((totalsize - freesize) / totalsize * 100)];
-                strongSelf.circularDiagramView.progressValue = (totalsize - freesize) / totalsize;
-                strongSelf.percentLabel.text = @"%";
-                strongSelf.checkingLabel.hidden = YES;
-                [self.view setNeedsLayout];
-                [self.view layoutIfNeeded];
+                [strongSelf updateCircularDiagramProgress:totalsize freesize:freesize];
             });
             return;
         }
         
-        __weak typeof(self) weakSelfEx = strongSelf;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((2000 - (end - begin)) / 1000  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            __strong typeof(weakSelf) strongSelfEx = weakSelfEx;
-            if(nil == strongSelfEx) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((1500 - (end - begin)) / 1500  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if(nil == strongSelf) {
                 return;
             }
             
-            strongSelfEx.checkingLabel.hidden = YES;
-            strongSelfEx.diskLabel.text = [NSString stringWithFormat:@"%.1f/%.1fG", totalsize - freesize, totalsize];
-            strongSelfEx.proportionLabel.text = [NSString stringWithFormat:@"%d",(int)((totalsize - freesize) / totalsize * 100)];
-            strongSelfEx.circularDiagramView.progressValue = (totalsize - freesize) / totalsize;
-            strongSelfEx.percentLabel.text = @"%";
-            [self.view setNeedsLayout];
-            [self.view layoutIfNeeded];
+            [strongSelf updateCircularDiagramProgress:totalsize freesize:freesize];
         });
     }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     
-//    NSTimer * timer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
-//    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    [self.circularDiagramView runAnimation:NO];
 }
 
--(long long)getDateTimeTOMilliSeconds:(NSDate *)datetime {
-    NSTimeInterval interval = [datetime timeIntervalSince1970];
-    NSLog(@"转换的时间戳=%f",interval);
-    long long totalMilliseconds = interval*1000 ;
-    NSLog(@"totalMilliseconds=%llu",totalMilliseconds);
-    return totalMilliseconds;
+- (void)updateCircularDiagramProgress:(CGFloat) totalsize freesize:(CGFloat) freesize {
+    [self.circularDiagramView runAnimation:NO];
+    
+    self.diskLabel.text = [NSString stringWithFormat:@"%.1f/%.1fG", totalsize - freesize, totalsize];
+    self.proportionLabel.text = [NSString stringWithFormat:@"%d",(int)((totalsize - freesize) / totalsize * 100)];
+    [self.circularDiagramView setProgressValue:(totalsize - freesize) / totalsize start:0];
+    self.percentLabel.text = @"%";
+    self.checkingLabel.hidden = YES;
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
 }
-#pragma mark - 定时器
-
-//- (void)timerAction:(NSTimer *)sender{
-//    static CGFloat kkk = 0;
-//    kkk += 0.01;
-//    if(kkk > 1.0) {
-//        kkk = 0;
-//    }
-//    
-//    self.circularDiagramView.progressValue = kkk;
-//}
 
 - (void)setupNavigationItems {
     [super setupNavigationItems];

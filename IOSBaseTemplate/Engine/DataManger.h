@@ -13,9 +13,9 @@
 
 + (instancetype)shareInstance;
 
-//数据读取
+//日历相关
 - (void)getScheduleEvent:(void (^)(NSArray *eventArray))completion;
-- (BOOL)deleteEvent:(EKEvent *)event;
+- (BOOL)deleteEvent:(NSArray *)events;
 
 //通讯录数据读取
 - (void)getContactData:(void (^)(NSArray *contactList))completion;
@@ -28,5 +28,6 @@
 
 - (NSArray *)getAllPhotosAssetInAblumCollection:(PHAssetCollection *)assetCollection ascending:(BOOL)ascending;
 
+- (long long)getDateTimeTOMilliSeconds:(NSDate *)datetime;
 
 @end

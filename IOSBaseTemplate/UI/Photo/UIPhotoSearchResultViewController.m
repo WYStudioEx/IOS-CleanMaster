@@ -7,11 +7,16 @@
 //
 
 #import "UIPhotoSearchResultViewController.h"
+#import "PhotoTableViewCell.h"
+#import "PhotoTypeModel.h"
 #import "DataManger.h"
 
 #import <EventKit/EventKit.h>
 
-@interface UIPhotoSearchResultViewController ()
+@interface UIPhotoSearchResultViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) QMUIButton *clearBtn;
 
 @end
 
@@ -19,22 +24,126 @@
 //-----------------------------------------------------------
 @implementation UIPhotoSearchResultViewController
 
+- (void)loadView {
+    [super loadView];
+    
+    self.title = @"相册清理";
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.showsVerticalScrollIndicator = YES;
+    if (@available(iOS 11.0, *)) {
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+    }
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [_tableView registerClass:PhotoTableViewCell.class forCellReuseIdentifier:@"cell"];
+    [self.view addSubview:self.tableView];
+    
+    self.clearBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"action_button_normal") title:nil];
+    _clearBtn.frame =CGRectMake(0, 0, _size_W_S_X(155), _size_W_S_X(56));
+    [_clearBtn addTarget:self action:@selector(cleareBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_clearBtn];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"photoVC";
+    self.title = @"日历清理";
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithArray:self.navigationController.viewControllers];
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
     
-    for(id tempVC in viewControllers) {
-        if([tempVC isKindOfClass:NSClassFromString(@"UISearchViewController")]) {
-            [viewControllers removeObject:tempVC];
-            break;
-        }
+    _clearBtn.qmui_left = (self.view.qmui_width - _clearBtn.qmui_width) / 2.0;
+    _clearBtn.qmui_bottom = self.view.qmui_height - _size_H_S_X(40);
+    
+    _tableView.frame = CGRectMake(0, self.navigationController.navigationBar.qmui_bottom, self.view.qmui_width, _clearBtn.qmui_top - self.navigationController.navigationBar.qmui_bottom - _size_H_S_X(20));
+}
+
+#pragma mark - Action
+- (void)cleareBtnClick:(id) btn{
+//    NSMutableArray *totalArray = [NSMutableArray array];;
+//    for (NSInteger i = 0; i< self.dataArray.count; i++) {
+//        [self.dataArray[i].content enumerateObjectsUsingBlock:^(PhotoContentModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            if (obj.isSelect) {
+//                [totalArray addObject:obj.event];
+//            }
+//        }];
+//    }
+//
+//    [[DataManger shareInstance] deleteEvent:totalArray];
+}
+
+#pragma mark - tableview
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.dataArray.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.dataArray[section].isExpand) {
+        return [self.dataArray[section].content count];
     }
-    self.navigationController.viewControllers = viewControllers;
+    
+    return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 50.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.qmui_width, 50)];
+    headView.backgroundColor = [UIColor clearColor];
+    
+    UIControl *backView = [[UIControl alloc] initWithFrame:CGRectMake(15, 0, tableView.qmui_width - 30, headView.qmui_height)];
+    backView.tag = 1000 + section;
+    backView.backgroundColor = [UIColor clearColor];
+    [backView addTarget:self action:@selector(didClickedSection:) forControlEvents:(UIControlEventTouchUpInside)];
+    [headView addSubview:backView];
+    
+    UIImageView *turnImageView = [[UIImageView alloc] initWithFrame:CGRectMake(tableView.qmui_width - 50, 21, 12, 7)];
+    turnImageView.image = [[UIImage imageNamed:@"fb_bottom"] imageWithRenderingMode:1];
+    [backView addSubview:turnImageView];
+    
+    UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.qmui_width - 60, 50)];
+    [backView addSubview:titlelabel];
+    titlelabel.textColor = [UIColor blackColor];
+    titlelabel.text = [NSString stringWithFormat:@"%ld、%@",section + 1, self.dataArray[section].title];
+    titlelabel.numberOfLines = 0;
+    turnImageView.image = UIImageMake(self.dataArray[section].isExpand ? @"fb_top" : @"fb_bottom");
+    
+    return headView;
+}
+
+- (void)didClickedSection:(UIControl *)view{
+    NSInteger i = view.tag - 1000;
+    self.dataArray[i].isExpand = !self.dataArray[i].isExpand;
+    NSIndexSet *index = [NSIndexSet indexSetWithIndex:i];
+    [_tableView reloadSections:index withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    PhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
+    
+    if(indexPath.section != self.dataArray.count - 1 && indexPath.row == self.dataArray[indexPath.section].content.count - 1){
+        cell.horizontalLine.hidden = NO;
+    }
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
 }
 
 #pragma QMUICustomNavigationBarTransitionDelegate

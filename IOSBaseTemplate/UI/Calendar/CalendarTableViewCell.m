@@ -1,13 +1,14 @@
 //
-//  AddFeedbackTableViewCell.m
+//  CalendarTableViewCell.m
 //  IOSBaseTemplate
 //
 //  Created by WYStudio on 2021/2/19.
 //
 
-#import "AddFeedbackTableViewCell.h"
+#import "CalendarTableViewCell.h"
+#import "CalendarContentModel.h"
 
-@interface AddFeedbackTableViewCell ()
+@interface CalendarTableViewCell ()
 
 @property (strong, nonatomic) UIImageView *selectImageView;
 @property (strong, nonatomic) QMUILabel *titleLabel;
@@ -15,8 +16,8 @@
 @end
 
 
-
-@implementation AddFeedbackTableViewCell
+//---------------------------------------------------
+@implementation CalendarTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 {
@@ -67,7 +68,7 @@
     _childModel = childModel;
     
     _selectImageView.image = UIImageMake(_childModel.isSelect ? @"feedback_select" : @"feedback_noSelect");
-    self.titleLabel.text = _childModel.desc;
+    self.titleLabel.text = _childModel.event.title;
     
     [self setNeedsLayout];
 }

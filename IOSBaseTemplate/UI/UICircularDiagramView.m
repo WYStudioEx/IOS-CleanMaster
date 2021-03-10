@@ -8,7 +8,7 @@
 
 #import "UICircularDiagramView.h"
 
-#define toRad(angle) (angle * M_PI / 180)
+#define toRad(angle) ((angle) * M_PI / 180)
 
 @interface UICircularDiagramView ()
 
@@ -20,9 +20,12 @@
 
 @property (nonatomic, assign) CGFloat pieRadius;
 @property (nonatomic, assign) CGFloat pieRadius2;
-@property (nonatomic, assign) CGFloat endAngle;
+
+@property (nonatomic, assign) CGFloat startValue;
+@property (nonatomic, assign) CGFloat progressValue;
 
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
+@property(nonatomic, strong) CADisplayLink *displayLink;
 
 @end
 
@@ -46,6 +49,35 @@
     }
     
     return self;
+}
+
+- (void)updateAnimation{
+    static CGFloat start = 0;
+    start += 0.02;
+    if(start > 1.0) {
+        start = 0;
+    }
+    
+    _progressValue = 0.1;
+    _startValue = start;
+    [self drawProgress];
+}
+
+- (void)runAnimation:(BOOL) bRun{
+    if(bRun) {
+        if(_displayLink) {
+            return;
+        }
+        
+        self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateAnimation)];
+        _displayLink.paused = NO;
+        [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+        return;
+    }
+    
+    self.displayLink.paused = YES;
+    [self.displayLink invalidate];
+    self.displayLink = nil;
 }
 
 - (void)drawDefaultPie {
@@ -97,7 +129,7 @@
     }
     
     self.progressLayer = [CAShapeLayer new];
-    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:self.centerPoint radius:self.pieRadius2 startAngle:toRad(90) endAngle:toRad(90) + self.endAngle  clockwise:YES];
+    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:self.centerPoint radius:self.pieRadius2 startAngle:toRad(-90 + _startValue * 360) endAngle:toRad(-90 + (_startValue + _progressValue) * 360)  clockwise:YES];
     _progressLayer.path = [path CGPath];
     _progressLayer.lineWidth = self.lineWidth2;
     _progressLayer.strokeColor = [UIColor qmui_colorWithHexString:@"#00A784"].CGColor;
@@ -106,10 +138,9 @@
     [self.layer addSublayer:_progressLayer];
 }
 
-- (void)setProgressValue:(CGFloat)progressValue {
-    _progressValue = progressValue;
-    self.endAngle = progressValue * 2 * M_PI;
-    
+- (void)setProgressValue:(CGFloat) value start:(CGFloat) startValue {
+    _progressValue = value;
+    _startValue = startValue;
     [self drawProgress];
 }
 

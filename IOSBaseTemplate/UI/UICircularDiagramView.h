@@ -10,8 +10,10 @@
 
 @interface UICircularDiagramView : UIView
 
-@property (nonatomic, assign) CGFloat progressValue;
+- (void)setProgressValue:(CGFloat) value start:(CGFloat) startValue;
 
 - (void)reDraw;
+
+- (void)runAnimation:(BOOL) bRun;
 
 @end

@@ -8,16 +8,15 @@
 #import "UICalendarSearchResultViewController.h"
 #import "CalendarTypeModel.h"
 #import "CalendarContentModel.h"
-#import "AddFeedbackTableViewCell.h"
+#import "CalendarTableViewCell.h"
+#import "UICircularDiagramView.h"
+#import "DataManger.h"
 
 @interface UICalendarSearchResultViewController ()<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *totalArray;
 @property (nonatomic, strong) UITableView *tableView;
-
-@property (nonatomic, strong) NSIndexPath *indexPath;
-
 @property (nonatomic, strong) QMUIButton *clearBtn;
+
 @end
 
 //----------------------------------------------------------------
@@ -37,7 +36,7 @@
         _tableView.estimatedSectionHeaderHeight = 0;
     }
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [_tableView registerClass:AddFeedbackTableViewCell.class forCellReuseIdentifier:@"cell"];
+    [_tableView registerClass:CalendarTableViewCell.class forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
     
     self.clearBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"action_button_normal") title:nil];
@@ -45,22 +44,11 @@
     [_clearBtn addTarget:self action:@selector(cleareBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_clearBtn];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"日历清理";
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithArray:self.navigationController.viewControllers];
-    
-    for(id tempVC in viewControllers) {
-        if([tempVC isKindOfClass:NSClassFromString(@"UISearchViewController")]) {
-            [viewControllers removeObject:tempVC];
-            break;
-        }
-    }
-    self.navigationController.viewControllers = viewControllers;
 }
 
 - (void)viewWillLayoutSubviews {
@@ -84,24 +72,17 @@
 }
 
 - (void)cleareBtnClick:(id) btn{
-    [self.totalArray removeAllObjects];
+    NSMutableArray *totalArray = [NSMutableArray array];;
     for (NSInteger i = 0; i< self.dataArray.count; i++) {
         [self.dataArray[i].content enumerateObjectsUsingBlock:^(CalendarContentModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (obj.isSelect) {
-                [self.totalArray addObject:obj.desc];
+                [totalArray addObject:obj.event];
             }
         }];
     }
+    
+    [[DataManger shareInstance] deleteEvent:totalArray];
 }
-
-#pragma mark - get/set
-- (NSMutableArray *)totalArray{
-    if (!_totalArray) {
-        _totalArray = [NSMutableArray array];
-    }
-    return _totalArray;
-}
-
 
 #pragma mark - tableview
 
@@ -157,7 +138,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AddFeedbackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    CalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
     
@@ -171,7 +152,7 @@
     BOOL bSel = self.dataArray[indexPath.section].content[indexPath.row].isSelect;
     self.dataArray[indexPath.section].content[indexPath.row].isSelect = !bSel;
     
-    AddFeedbackTableViewCell *cell = (AddFeedbackTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    CalendarTableViewCell *cell = (CalendarTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
 }
 
