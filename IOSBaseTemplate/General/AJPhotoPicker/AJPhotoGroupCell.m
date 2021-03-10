@@ -42,7 +42,24 @@
     fetchOption.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
     fetchOption.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
     PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:assetsGroup options:fetchOption];
-    self.groupTextLabel.text = [NSString stringWithFormat:@"%@(%ld)",assetsGroup.localizedTitle, result.count];
+    
+    NSString *title = assetsGroup.localizedTitle;
+    if([assetsGroup.localizedTitle isEqualToString:@"Recents"]) {
+        title = @"最近项目";
+    }
+    
+    if([assetsGroup.localizedTitle isEqualToString:@"Recently Deleted"]) {
+        title = @"最近项目";
+    }
+    
+    if([assetsGroup.localizedTitle isEqualToString:@"Recents"]) {
+        title = @"最近项目";
+    }
+    
+    if([assetsGroup.localizedTitle isEqualToString:@"Recents"]) {
+        title = @"最近项目";
+    }
+    self.groupTextLabel.text = [NSString stringWithFormat:@"%@(%ld)",title, result.count];
     
     PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
     imageRequestOptions.synchronous = YES;

@@ -264,6 +264,7 @@
 
 - (void)aiCleareBtnClick:(id)btn {
     UISearchViewController *nextVC = [[UISearchViewController alloc] init];
+    nextVC.searchType = e_aiCleare_Type;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 

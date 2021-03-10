@@ -10,6 +10,7 @@
 
 typedef enum : NSUInteger {
     e_Normal_Type= 0,
+    e_aiCleare_Type,
     e_CalendarSearch_Type,
     e_PhoneSearch_Type,
 } SearchType;

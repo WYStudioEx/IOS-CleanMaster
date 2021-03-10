@@ -7,7 +7,7 @@
 //
 
 #import "UIPhotoSearchResultViewController.h"
-#import "PhotoTableViewCell.h"
+#import "PhotoSimilarTableViewCell.h"
 #import "PhotoTypeModel.h"
 #import "DataManger.h"
 
@@ -40,7 +40,7 @@
         _tableView.estimatedSectionHeaderHeight = 0;
     }
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [_tableView registerClass:PhotoTableViewCell.class forCellReuseIdentifier:@"cell"];
+    [_tableView registerClass:PhotoSimilarTableViewCell.class forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
     
     self.clearBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"action_button_normal") title:nil];
@@ -132,7 +132,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    PhotoSimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
     

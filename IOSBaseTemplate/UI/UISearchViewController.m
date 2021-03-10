@@ -88,6 +88,10 @@
         
         return;
     }
+    
+    if(e_aiCleare_Type == _searchType) {
+        
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

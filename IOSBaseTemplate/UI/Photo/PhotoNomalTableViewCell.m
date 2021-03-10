@@ -1,14 +1,14 @@
 //
-//  PhotoTableViewCell.m
+//  PhotoNomalTableViewCell.m
 //  IOSBaseTemplate
 //
 //  Created by WYStudio on 2021/2/19.
 //
 
-#import "PhotoTableViewCell.h"
+#import "PhotoNomalTableViewCell.h"
 #import "PhotoContentModel.h"
 
-@interface PhotoTableViewCell ()
+@interface PhotoNomalTableViewCell ()
 
 @property (strong, nonatomic) UIImageView *photoImageView1;
 @property (strong, nonatomic) UIImageView *photoImageView2;
@@ -18,9 +18,8 @@
 
 @end
 
-
 //---------------------------------------------------
-@implementation PhotoTableViewCell
+@implementation PhotoNomalTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 {
@@ -182,5 +181,10 @@
 
     [self setNeedsLayout];
 }
+
++ (CGFloat) calculateHeight:(PhotoContentModel *) childModel {
+    return 100;
+}
+
 
 @end

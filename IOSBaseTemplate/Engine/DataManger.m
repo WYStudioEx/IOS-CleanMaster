@@ -149,7 +149,6 @@
                 continue;
             }
             
-            
             [photoArray addObjectsFromArray:[self getAllPhotosAssetInAblumCollection:(PHAssetCollection *)collection ascending:YES]];
         }
         
