@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *horizontalLine;
 @property (nonatomic, strong) PhotoContentModel *childModel;
 
-+ (CGFloat) calculateHeight:(PhotoContentModel *) childModel;
++ (CGFloat)calculateHeight:(PhotoContentModel *) childModel;
 
 @end
 

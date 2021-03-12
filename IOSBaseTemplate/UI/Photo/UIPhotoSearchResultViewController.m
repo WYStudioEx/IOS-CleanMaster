@@ -42,7 +42,7 @@
     }
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerClass:PhotoSimilarTableViewCell.class forCellReuseIdentifier:@"PhotoSimilarTableViewCell"];
-    [_tableView registerClass:PhotoSimilarTableViewCell.class forCellReuseIdentifier:@"PhotoNomalTableViewCell"];
+    [_tableView registerClass:PhotoNomalTableViewCell.class forCellReuseIdentifier:@"PhotoNomalTableViewCell"];
     [self.view addSubview:self.tableView];
     
     self.clearBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"action_button_normal") title:nil];
@@ -68,16 +68,26 @@
 
 #pragma mark - Action
 - (void)cleareBtnClick:(id) btn{
-//    NSMutableArray *totalArray = [NSMutableArray array];;
-//    for (NSInteger i = 0; i< self.dataArray.count; i++) {
-//        [self.dataArray[i].content enumerateObjectsUsingBlock:^(PhotoContentModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            if (obj.isSelect) {
-//                [totalArray addObject:obj.event];
-//            }
-//        }];
-//    }
-//
-//    [[DataManger shareInstance] deleteEvent:totalArray];
+    NSMutableArray<PHAsset *> *assetArray = [NSMutableArray<PHAsset *> array];
+    for(PhotoTypeModel *typeModel in self.dataArray) {
+        for(PhotoContentModel *contentModel in typeModel.content) {
+            for(SiglePhotoModel *photos in contentModel.photos) {
+                if(photos.isSelect) {
+                    [assetArray addObject:photos.asset];
+                }
+            }
+        }
+    }
+    
+    if(assetArray.count) {
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            [PHAssetChangeRequest deleteAssets:assetArray];
+        } completionHandler:^(BOOL success, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - tableview
@@ -134,7 +144,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(((PhotoTypeModel *)(self.dataArray[indexPath.section])).type == PhotoTypeModelFuzzy) {
+    PhotoTypeModel *typeModel = (PhotoTypeModel *)(self.dataArray[indexPath.section]);
+    if(PhotoTypeModelFuzzy == typeModel.type) {
         PhotoNomalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoNomalTableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
@@ -145,7 +156,7 @@
         return cell;
     }
     
-    if(((PhotoTypeModel *)(self.dataArray[indexPath.section])).type == PhotoTypeModelSimilar) {
+    if(PhotoTypeModelSimilar == typeModel.type) {
         PhotoSimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoSimilarTableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
@@ -160,13 +171,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(((PhotoTypeModel *)(self.dataArray[indexPath.section])).type == PhotoTypeModelFuzzy) {
-        PhotoTypeModel *typeModel = (PhotoTypeModel *)(self.dataArray[indexPath.section]);
+    PhotoTypeModel *typeModel = (PhotoTypeModel *)(self.dataArray[indexPath.section]);
+    if(PhotoTypeModelFuzzy == typeModel.type) {
         return [PhotoNomalTableViewCell calculateHeight:typeModel.content[indexPath.row]];
-    }
-    
-    if(((PhotoTypeModel *)(self.dataArray[indexPath.section])).type == PhotoTypeModelSimilar) {
-        PhotoTypeModel *typeModel = (PhotoTypeModel *)(self.dataArray[indexPath.section]);
+    } else if(PhotoTypeModelSimilar == typeModel.type) {
         return [PhotoSimilarTableViewCell calculateHeight:typeModel.content[indexPath.row]];
     }
     

@@ -34,6 +34,7 @@
 @property(nonatomic, strong) UILabel *percentLabel;
 
 @property(nonatomic, strong) UILabel *checkingLabel;
+@property(nonatomic, assign) BOOL bFirst;
 
 @end
 
@@ -43,6 +44,7 @@
 - (void)loadView{
     [super loadView];
     
+    _bFirst = YES;
     QMUILabel *titleLabel = [[QMUILabel alloc] init];
     titleLabel.text = @"清理管家";
     [titleLabel sizeToFit];
@@ -140,15 +142,9 @@
     [_actionBackView addSubview:_privacyLabel];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-    [self.circularDiagramView runAnimation:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
     NSTimeInterval begin = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
     
     __weak typeof(self) weakSelf = self;
@@ -175,6 +171,15 @@
             [strongSelf updateCircularDiagramProgress:totalsize freesize:freesize];
         });
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if(_bFirst) {
+        _bFirst = NO;
+        [self.circularDiagramView runAnimation:YES];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

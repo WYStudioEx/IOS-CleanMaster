@@ -82,6 +82,7 @@
     }
     
     [[DataManger shareInstance] deleteEvent:totalArray];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - tableview

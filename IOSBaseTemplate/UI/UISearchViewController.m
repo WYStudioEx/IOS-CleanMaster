@@ -15,6 +15,8 @@
 #import "DataManger.h"
 #import "PhotoAnalysis.h"
 
+#define animationMinTime 1500
+
 @interface UISearchViewController ()
 
 @property(nonatomic, strong) UICircularDiagramView *circularDiagramView;
@@ -66,7 +68,7 @@
         if(SearchTypeCalendar == weakSelf.searchType) {
             [[DataManger shareInstance] getScheduleEvent:^(NSArray *eventArray){
                 NSTimeInterval end = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
-                if(end - begin >= 1500) {
+                if(end - begin >= animationMinTime) {
                     dispatch_async(dispatch_get_main_queue(), ^(void){
                         __strong typeof(weakSelf) strongSelf = weakSelf;
                         [strongSelf handelCalendarEvent:eventArray];
@@ -74,7 +76,7 @@
                     return;
                 }
                 
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((1500 - (end - begin)) / 1500  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((animationMinTime - (end - begin)) / animationMinTime  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     __strong typeof(weakSelf) strongSelf = weakSelf;
                     [strongSelf handelCalendarEvent:eventArray];
                 });
@@ -85,7 +87,6 @@
         
         if(SearchTypePhone == weakSelf.searchType) {
             [[DataManger shareInstance] getPhotoData:^(NSArray *photoArray){
-                NSTimeInterval end = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
                 __strong typeof(weakSelf) strongSelf = weakSelf;
                 [strongSelf handelPhotoData:photoArray];
             }];
@@ -185,12 +186,12 @@
     fuzzyPhotoModel.content = [NSMutableArray array];
     [dataArray addObject:fuzzyPhotoModel];
 
-
     NSMutableArray<SiglePhotoModel *> *temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
     PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
     NSEnumerator *enumerator = [newPhotoArray reverseObjectEnumerator];
     for(SiglePhotoModel *siglePhotoModel in enumerator) {
         if([PhotoAnalysis checkBlurryWihtImage:siglePhotoModel.image]) {
+            siglePhotoModel.isSelect = YES;
             [temPhotoArray addObject:siglePhotoModel];
             [newPhotoArray removeObject:siglePhotoModel];
         }
@@ -220,6 +221,7 @@
                     [temPhotoArray addObject:first];
                     [temPhotoArray addObject:second];
                 }
+                second.isSelect = YES;
                 continue;;
             }
 
@@ -230,6 +232,14 @@
                 temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
                 [similarPhotoModel.content addObject:photoContentModel];
             }
+        }
+    }
+    
+    //清理空cell
+    enumerator = [dataArray reverseObjectEnumerator];
+    for(PhotoTypeModel *typeModel in enumerator) {
+        if(0 == typeModel.content.count) {
+            [dataArray removeObject:typeModel];
         }
     }
     

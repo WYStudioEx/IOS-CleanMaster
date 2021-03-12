@@ -31,7 +31,7 @@
         self.imageView = imageView;
         
         [self.imageView setContentMode:UIViewContentModeScaleAspectFill];
-        self.imageView.layer.cornerRadius = 3;
+        self.imageView.layer.cornerRadius = 6;
         self.imageView.clipsToBounds = YES;
         self.backgroundColor = [UIColor clearColor];
     }
