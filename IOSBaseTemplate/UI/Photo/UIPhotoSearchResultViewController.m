@@ -51,12 +51,6 @@
     [self.view addSubview:_clearBtn];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.title = @"日历清理";
-}
-
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     

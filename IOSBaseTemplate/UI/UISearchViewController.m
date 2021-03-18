@@ -231,7 +231,15 @@
                 photoContentModel.photos = temPhotoArray;
                 temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
                 [similarPhotoModel.content addObject:photoContentModel];
+                [temPhotoArray removeAllObjects];
             }
+        }
+        
+        if(temPhotoArray.count) {
+            PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
+            photoContentModel.photos = temPhotoArray;
+            temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
+            [similarPhotoModel.content addObject:photoContentModel];
         }
     }
     

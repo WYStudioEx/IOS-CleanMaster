@@ -54,6 +54,7 @@
 		2BA189DC25F4B558006E66DD /* BoAssetsCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189D825F4B558006E66DD /* BoAssetsCamera@2x.png */; };
 		2BA189DD25F4B558006E66DD /* AssetsPickerVideo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */; };
 		2BA189DE25F4B558006E66DD /* BoSelectGroup_tip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */; };
+		2BA65C5D2603A71100932FC2 /* GetSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BA65C5C2603A71100932FC2 /* GetSimilarity.mm */; };
 		2BDAEF0E25F8B8C700A5D53C /* PhotoTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0825F8B8C700A5D53C /* PhotoTypeModel.m */; };
 		2BDAEF0F25F8B8C700A5D53C /* PhotoContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0A25F8B8C700A5D53C /* PhotoContentModel.m */; };
 		2BDAEF1025F8B8C700A5D53C /* PhotoSimilarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0C25F8B8C700A5D53C /* PhotoSimilarTableViewCell.m */; };
@@ -174,6 +175,8 @@
 		2BA189D825F4B558006E66DD /* BoAssetsCamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BoAssetsCamera@2x.png"; sourceTree = "<group>"; };
 		2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AssetsPickerVideo@2x.png"; sourceTree = "<group>"; };
 		2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BoSelectGroup_tip@2x.png"; path = "../../../../Downloads/c9547f7b5c777b9c411ad0dc16bbe676/AJPhotoPicker/BoPhotoPicker.bundle/images/BoSelectGroup_tip@2x.png"; sourceTree = "<group>"; };
+		2BA65C5B2603A71100932FC2 /* GetSimilarity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetSimilarity.h; sourceTree = "<group>"; };
+		2BA65C5C2603A71100932FC2 /* GetSimilarity.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GetSimilarity.mm; sourceTree = "<group>"; };
 		2BDAEF0825F8B8C700A5D53C /* PhotoTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTypeModel.m; sourceTree = "<group>"; };
 		2BDAEF0925F8B8C700A5D53C /* PhotoSimilarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSimilarTableViewCell.h; sourceTree = "<group>"; };
 		2BDAEF0A25F8B8C700A5D53C /* PhotoContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoContentModel.m; sourceTree = "<group>"; };
@@ -444,6 +447,8 @@
 				2BE7981325DFE57900E187A3 /* DataManger.m */,
 				2B041A4D25E6838000E69F41 /* PhotoAnalysis.h */,
 				2B041A4C25E6837F00E69F41 /* PhotoAnalysis.m */,
+				2BA65C5B2603A71100932FC2 /* GetSimilarity.h */,
+				2BA65C5C2603A71100932FC2 /* GetSimilarity.mm */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -642,6 +647,7 @@
 				2BA189C325F4A54A006E66DD /* AJPhotoListCell.m in Sources */,
 				2BA189C225F4A54A006E66DD /* AJPhotoGroupCell.m in Sources */,
 				2B04BF2C25E5323000E69F41 /* UIPrivacySearchResultViewController.m in Sources */,
+				2BA65C5D2603A71100932FC2 /* GetSimilarity.mm in Sources */,
 				2B80841C25B962300056938B /* main.m in Sources */,
 				2B04BF3025E535CC00E69F41 /* UIPhotoSearchResultViewController.m in Sources */,
 				2BE788E125DF748A00E187A3 /* UISearchViewController.m in Sources */,
@@ -720,7 +726,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -773,7 +779,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
