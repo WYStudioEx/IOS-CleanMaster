@@ -169,7 +169,7 @@ UICollectionViewDelegateFlowLayout>
 
 #pragma mark - BoPhotoGroupViewProtocol
 - (void)didSelectGroup:(PHAssetCollection *)assetsGroup {
-    self.titleLabel.text = assetsGroup.localizedTitle;
+    self.titleLabel.text = [AJPhotoGroupCell getGroupChName:assetsGroup.localizedTitle];
     self.customTitleView.hidden = NO;
     
     [self loadAssets:assetsGroup];
@@ -178,12 +178,25 @@ UICollectionViewDelegateFlowLayout>
 
 //加载图片
 - (void)loadAssets:(PHCollection *)assetsGroup {
-    [self.indexPathsForSelectedItems removeAllObjects];
-    [self.assets removeAllObjects];
-    
-    [self.assets addObjectsFromArray:[[DataManger shareInstance] getAllPhotosAssetInAblumCollection:(PHAssetCollection *)assetsGroup ascending:YES]];
-    [self.photoListView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-    [self.photoListView reloadData];
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if(nil == weakSelf) {
+            return;
+        }
+        
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.indexPathsForSelectedItems removeAllObjects];
+        [strongSelf.assets removeAllObjects];
+        
+        [strongSelf.assets addObjectsFromArray:[[DataManger shareInstance] getAllPhotosAssetInAblumCollection:(PHAssetCollection *)assetsGroup ascending:YES]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf.photoListView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+            [strongSelf.photoListView reloadData];
+        });
+
+    });
 }
 
 #pragma mark - uicollectionDelegate
@@ -194,6 +207,10 @@ UICollectionViewDelegateFlowLayout>
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifer = @"cell";
     AJPhotoListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifer forIndexPath:indexPath];
+    
+    if(indexPath.row >= self.assets.count) {
+        return cell;
+    }
     
     BOOL isSelected = [self.indexPathsForSelectedItems containsObject:self.assets[indexPath.row]];
     [cell bind:self.assets[indexPath.row] isSelected:isSelected];

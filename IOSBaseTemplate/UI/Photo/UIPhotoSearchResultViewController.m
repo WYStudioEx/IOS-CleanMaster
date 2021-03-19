@@ -139,21 +139,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PhotoTypeModel *typeModel = (PhotoTypeModel *)(self.dataArray[indexPath.section]);
-    if(PhotoTypeModelFuzzy == typeModel.type) {
-        PhotoNomalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoNomalTableViewCell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
-        
-        if(indexPath.section != self.dataArray.count - 1 && indexPath.row == self.dataArray[indexPath.section].content.count - 1){
-            cell.horizontalLine.hidden = NO;
-        }
-        return cell;
-    }
     
     if(PhotoTypeModelSimilar == typeModel.type) {
         PhotoSimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoSimilarTableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
+        cell.horizontalLine.hidden = YES;
         
         if(indexPath.section != self.dataArray.count - 1 && indexPath.row == self.dataArray[indexPath.section].content.count - 1){
             cell.horizontalLine.hidden = NO;
@@ -161,18 +152,24 @@
         return cell;
     }
     
-    return nil;
+    PhotoNomalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoNomalTableViewCell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
+    cell.horizontalLine.hidden = YES;
+    
+    if(indexPath.section != self.dataArray.count - 1 && indexPath.row == self.dataArray[indexPath.section].content.count - 1){
+        cell.horizontalLine.hidden = NO;
+    }
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     PhotoTypeModel *typeModel = (PhotoTypeModel *)(self.dataArray[indexPath.section]);
-    if(PhotoTypeModelFuzzy == typeModel.type) {
-        return [PhotoNomalTableViewCell calculateHeight:typeModel.content[indexPath.row]];
-    } else if(PhotoTypeModelSimilar == typeModel.type) {
+    if(PhotoTypeModelSimilar == typeModel.type) {
         return [PhotoSimilarTableViewCell calculateHeight:typeModel.content[indexPath.row]];
     }
     
-    return 50;
+    return [PhotoNomalTableViewCell calculateHeight:typeModel.content[indexPath.row]];
 }
 
 #pragma QMUICustomNavigationBarTransitionDelegate

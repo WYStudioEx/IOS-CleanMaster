@@ -67,6 +67,7 @@
     _checkingLabel.backgroundColor = [UIColor clearColor];
     _checkingLabel.textAlignment = NSTextAlignmentCenter;
     _checkingLabel.font = UIDynamicFontBoldMake(16);
+    _checkingLabel.textColor = [UIColor blackColor];
     _checkingLabel.text = @"检测中...";
     [self.view addSubview:_checkingLabel];
     
@@ -74,18 +75,21 @@
     _diskLabel.backgroundColor = [UIColor clearColor];
     _diskLabel.textAlignment = NSTextAlignmentCenter;
     _diskLabel.font = UIDynamicFontBoldMake(16);
+    _diskLabel.textColor = [UIColor blackColor];
     [self.view addSubview:_diskLabel];
     
     self.proportionLabel = [[UILabel alloc] init];
     _proportionLabel.backgroundColor = [UIColor clearColor];
     _proportionLabel.textAlignment = NSTextAlignmentCenter;
     _proportionLabel.font = UIDynamicFontBoldMake(72);
+    _proportionLabel.textColor = [UIColor blackColor];
     [self.view addSubview:_proportionLabel];
     
     self.percentLabel = [[UILabel alloc] init];
     _percentLabel.backgroundColor = [UIColor clearColor];
     _percentLabel.textAlignment = NSTextAlignmentCenter;
     _percentLabel.font = UIDynamicFontBoldMake(36);
+    _percentLabel.textColor = [UIColor blackColor];
     [self.view addSubview:_percentLabel];
     
     //----------------------------------------------------------

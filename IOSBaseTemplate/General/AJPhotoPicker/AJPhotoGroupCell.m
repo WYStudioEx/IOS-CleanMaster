@@ -34,6 +34,7 @@
         UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, self.bounds.size.height/2-10, [UIScreen mainScreen].bounds.size.width-70, 20)];
         textLabel.font = [UIFont systemFontOfSize:15];
         textLabel.backgroundColor = [UIColor clearColor];
+        textLabel.textColor = [UIColor blackColor];
         [self.contentView addSubview:textLabel];
         self.groupTextLabel = textLabel;
     }
@@ -43,30 +44,43 @@
     fetchOption.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
     PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:assetsGroup options:fetchOption];
     
-    NSString *title = assetsGroup.localizedTitle;
-    if([assetsGroup.localizedTitle isEqualToString:@"Recents"]) {
-        title = @"最近项目";
-    }
-    
-    if([assetsGroup.localizedTitle isEqualToString:@"Recently Deleted"]) {
-        title = @"最近项目";
-    }
-    
-    if([assetsGroup.localizedTitle isEqualToString:@"Recents"]) {
-        title = @"最近项目";
-    }
-    
-    if([assetsGroup.localizedTitle isEqualToString:@"Recents"]) {
-        title = @"最近项目";
-    }
-    self.groupTextLabel.text = [NSString stringWithFormat:@"%@(%ld)",title, result.count];
+    self.groupTextLabel.text = [NSString stringWithFormat:@"%@(%ld)",[AJPhotoGroupCell getGroupChName:assetsGroup.localizedTitle], result.count];
     
     PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
     imageRequestOptions.synchronous = YES;
     imageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
-    [[PHImageManager defaultManager] requestImageForAsset:result.lastObject targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
+    [[PHImageManager defaultManager] requestImageForAsset:result.lastObject targetSize:CGSizeMake(300, 300) contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
         self.groupImageView.image = image;
     }];
+}
+
++ (NSString *)getGroupChName:(NSString *) EnName {
+    NSString *title = EnName;
+    if([EnName isEqualToString:@"Recents"]) {
+        title = @"最近项目";
+    }
+    
+    if([EnName isEqualToString:@"Recently Deleted"]) {
+        title = @"最近删除";
+    }
+    
+    if([EnName isEqualToString:@"Recently Added"]) {
+        title = @"最近添加";
+    }
+    
+    if([EnName isEqualToString:@"Selfies"]) {
+        title = @"自拍";
+    }
+    
+    if([EnName isEqualToString:@"Screenshots"]) {
+        title = @"截屏";
+    }
+    
+    if([EnName isEqualToString:@"Live Photos"]) {
+        title = @"实况";
+    }
+    
+    return title;
 }
 
 @end

@@ -37,7 +37,7 @@
 }
 
 #pragma 日程
-- (void)getScheduleEvent:(void (^)(NSArray *eventArray))completion {
+- (void)getScheduleEvent:(void (^)(NSArray *eventArray, NSArray *eventArray2))completion {
     if(nil == self.scheduleStore) {
         self.scheduleStore = [[EKEventStore alloc] init];
     }
@@ -47,26 +47,36 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
         if(nil == strongSelf || NO == granted) {
-            completion(nil);
+            completion(nil, nil);
             return;
         }
     
-        NSArray *events = [NSArray array];
+        NSMutableArray *events = [NSMutableArray array];
         NSArray *calendarsArray = [strongSelf.scheduleStore calendarsForEntityType:EKEntityTypeEvent];
-        for (int i = 0; i < calendarsArray.count; i++) {
-            EKCalendar *temp = calendarsArray[i];
-            if (NO == [temp.title isEqual:@"Calendar"] && NO == [temp.title isEqual:@"日历"]) {
+        for(EKCalendar *temp in calendarsArray) {
+            if (NO == temp.allowsContentModifications) {
                 continue;
             }
             
             NSDate *endTime = [[NSDate alloc] init];
             NSDate *startTime = [strongSelf getPriousorLaterDateFromDate:endTime withMonth:-(12 * 4)];
             NSPredicate *predicate = [strongSelf.scheduleStore predicateForEventsWithStartDate:startTime endDate:endTime calendars:[NSArray arrayWithObject:temp]];
-            events = [strongSelf.scheduleStore eventsMatchingPredicate:predicate];
-            break;
+            [events addObjectsFromArray:[strongSelf.scheduleStore eventsMatchingPredicate:predicate]];
         }
         
-        completion(events);
+        NSMutableArray *events2 = [NSMutableArray array];
+        for(EKCalendar *temp in calendarsArray) {
+            if (NO == temp.allowsContentModifications) {
+                continue;
+            }
+            
+            NSDate *startTime = [[NSDate alloc] init];
+            NSDate *endTime = [strongSelf getPriousorLaterDateFromDate:startTime withMonth:(12 * 4)];
+            NSPredicate *predicate = [strongSelf.scheduleStore predicateForEventsWithStartDate:startTime endDate:endTime calendars:[NSArray arrayWithObject:temp]];
+            [events2 addObjectsFromArray:[strongSelf.scheduleStore eventsMatchingPredicate:predicate]];
+        }
+        
+        completion(events, events2);
     }];
 }
 
@@ -76,7 +86,6 @@
     NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDate *mDate = [calender dateByAddingComponents:comps toDate:date options:0];
     return mDate;
-
 }
 
 - (BOOL)deleteEvent:(NSArray *)events {
@@ -92,9 +101,7 @@
     return bDelete;
 }
 
-- (void)getPhotoData:(void (^)(NSArray *photoList))completion {
-    NSMutableArray *photoArray = [NSMutableArray array];
-    
+- (void)getPhotoData:(void (^)(NSArray *recentsArray, NSArray *selfiesArray, NSArray *screenshotsArray, NSArray *liveArray))completion {
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (@available(iOS 14.0, *)) {
             if(status != PHAuthorizationStatusAuthorized &&  status != PHAuthorizationStatusLimited) {
@@ -108,15 +115,57 @@
         
         PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
         
+        NSMutableArray *recentsArray = [NSMutableArray array];
+        NSMutableArray *selfiesArray = [NSMutableArray array];
+        NSMutableArray *screenshotsArray = [NSMutableArray array];
+        NSMutableArray *liveArray = [NSMutableArray array];
+        NSMutableDictionary *photoDic = [NSMutableDictionary dictionary];
+        
         for(PHCollection *collection in smartAlbums) {
-            if (NO == [collection isKindOfClass:[PHAssetCollection class]] || NO == [collection.localizedTitle isEqualToString:@"Recents"]) {
+            if (NO == [collection isKindOfClass:[PHAssetCollection class]] ||
+                [collection.localizedTitle isEqualToString:@"Recently Deleted"] ||
+                [collection.localizedTitle isEqualToString:@"Recently Added"]) {
                 continue;
             }
             
-            [photoArray addObjectsFromArray:[self getAllPhotosAssetInAblumCollectionEx:(PHAssetCollection *)collection ascending:YES]];
+            if([collection.localizedTitle isEqualToString:@"Recents"]) {
+                [recentsArray addObjectsFromArray:[self getAllPhotosAssetInAblumCollectionEx:(PHAssetCollection *)collection ascending:YES]];
+                continue;
+            }
+            
+            if([collection.localizedTitle isEqualToString:@"Selfies"]) {
+                [selfiesArray addObjectsFromArray:[self getAllPhotosAssetInAblumCollectionEx:(PHAssetCollection *)collection ascending:YES]];
+                for(id item in selfiesArray) {
+                    photoDic[item] = @(YES);
+                }
+                continue;
+            }
+            
+            if([collection.localizedTitle isEqualToString:@"Screenshots"]) {
+                [screenshotsArray addObjectsFromArray:[self getAllPhotosAssetInAblumCollectionEx:(PHAssetCollection *)collection ascending:YES]];
+                for(id item in screenshotsArray) {
+                    photoDic[item] = @(YES);
+                }
+                continue;
+            }
+            
+            if([collection.localizedTitle isEqualToString:@"Live Photos"]) {
+                [liveArray addObjectsFromArray:[self getAllPhotosAssetInAblumCollectionEx:(PHAssetCollection *)collection ascending:YES]];
+                for(id item in liveArray) {
+                    photoDic[item] = @(YES);
+                }
+                continue;
+            }
         }
         
-        completion(photoArray);
+        NSEnumerator *enumerator = [recentsArray reverseObjectEnumerator];
+        for (id item in enumerator) {
+            if([photoDic objectForKey:item]) {
+                [recentsArray removeObject:item];
+            }
+        }
+        
+        completion(recentsArray, selfiesArray, screenshotsArray, liveArray);
     }];
 }
 
@@ -140,7 +189,6 @@
     return assetArray;
 }
 
-
 - (NSArray<UIImage *> *)getAllPhotosAssetInAblumCollection:(PHAssetCollection *)assetCollection ascending:(BOOL)ascending {
     PHFetchOptions *fetchOption = [[PHFetchOptions alloc] init];
     fetchOption.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:ascending]];
@@ -154,8 +202,10 @@
     PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
     imageRequestOptions.synchronous = YES;
     imageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
-    [[PHImageManager defaultManager] requestImageForAsset:result.lastObject targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
-        [imageArray addObject:image];
+    [result enumerateObjectsUsingBlock:^(PHAsset *ssset, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[PHImageManager defaultManager] requestImageForAsset:ssset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
+            [imageArray addObject:image];
+        }];
     }];
     
     return imageArray;

@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, PhotoTypeModelType) {
     PhotoTypeModelFuzzy,
     PhotoTypeModelSimilar,
+    PhotoTypeModelSelfies,
+    PhotoTypeModelScreenshotsArray,
+    PhotoTypeModelLiveArray,
 };
 
 //---------------------------------------

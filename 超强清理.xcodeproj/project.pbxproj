@@ -53,7 +53,6 @@
 		2BA189C925F4A54A006E66DD /* AJGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1899A25F4A549006E66DD /* AJGradientView.m */; };
 		2BA189DC25F4B558006E66DD /* BoAssetsCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189D825F4B558006E66DD /* BoAssetsCamera@2x.png */; };
 		2BA189DD25F4B558006E66DD /* AssetsPickerVideo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */; };
-		2BA189DE25F4B558006E66DD /* BoSelectGroup_tip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */; };
 		2BA65C5D2603A71100932FC2 /* GetSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BA65C5C2603A71100932FC2 /* GetSimilarity.mm */; };
 		2BA66BA62604806B00932FC2 /* broom_easyicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA42604806A00932FC2 /* broom_easyicon@2x.png */; };
 		2BA66BA72604806B00932FC2 /* broom_easyicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA52604806B00932FC2 /* broom_easyicon@3x.png */; };
@@ -71,7 +70,7 @@
 		2BE7894A25DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7894925DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m */; };
 		2BE7981425DFE57900E187A3 /* DataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7981325DFE57900E187A3 /* DataManger.m */; };
 		2BE7D3A925E3A23700E187A3 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE7D3A825E3A23700E187A3 /* ContactsUI.framework */; };
-		3FF478ED5A0FDF50CDB02108 /* libPods-IOSBaseTemplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74DB79F1379E8A206D3B70EB /* libPods-IOSBaseTemplate.a */; };
+		82C16DCA21D418654D80817E /* libPods-超强清理.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D79B4C14EAF758CA0CA60940 /* libPods-超强清理.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +105,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		135E5580AB8C2A9F35945754 /* Pods-超强清理.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-超强清理.release.xcconfig"; path = "Target Support Files/Pods-超强清理/Pods-超强清理.release.xcconfig"; sourceTree = "<group>"; };
 		2B041A4C25E6837F00E69F41 /* PhotoAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAnalysis.m; sourceTree = "<group>"; };
 		2B041A4D25E6838000E69F41 /* PhotoAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAnalysis.h; sourceTree = "<group>"; };
 		2B0466D625ECE0C400E69F41 /* back_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_image@3x.png"; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		2B43BE7425F66DE40016A39F /* fb_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb_bottom@2x.png"; sourceTree = "<group>"; };
 		2B43BE7625F66E080016A39F /* feedback_noSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_noSelect@2x.png"; sourceTree = "<group>"; };
 		2B43BE7825F66E0F0016A39F /* feedback_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_select@2x.png"; sourceTree = "<group>"; };
-		2B80840625B9622F0056938B /* IOSBaseTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSBaseTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B80840625B9622F0056938B /* 超强清理.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "超强清理.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B80840925B9622F0056938B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B80840A25B9622F0056938B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2B80841525B962300056938B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,7 +178,6 @@
 		2BA1899F25F4A549006E66DD /* AJPhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJPhotoPickerViewController.h; sourceTree = "<group>"; };
 		2BA189D825F4B558006E66DD /* BoAssetsCamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BoAssetsCamera@2x.png"; sourceTree = "<group>"; };
 		2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AssetsPickerVideo@2x.png"; sourceTree = "<group>"; };
-		2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BoSelectGroup_tip@2x.png"; path = "../../../../Downloads/c9547f7b5c777b9c411ad0dc16bbe676/AJPhotoPicker/BoPhotoPicker.bundle/images/BoSelectGroup_tip@2x.png"; sourceTree = "<group>"; };
 		2BA65C5B2603A71100932FC2 /* GetSimilarity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetSimilarity.h; sourceTree = "<group>"; };
 		2BA65C5C2603A71100932FC2 /* GetSimilarity.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GetSimilarity.mm; sourceTree = "<group>"; };
 		2BA66BA42604806A00932FC2 /* broom_easyicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "broom_easyicon@2x.png"; sourceTree = "<group>"; };
@@ -207,7 +206,8 @@
 		2BE7D3A425E3A1B600E187A3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		2BE7D3A825E3A23700E187A3 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		34C8DBEE0E30BC288B3EF482 /* Pods-IOSBaseTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSBaseTemplate.release.xcconfig"; path = "Target Support Files/Pods-IOSBaseTemplate/Pods-IOSBaseTemplate.release.xcconfig"; sourceTree = "<group>"; };
-		74DB79F1379E8A206D3B70EB /* libPods-IOSBaseTemplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IOSBaseTemplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ECECC83E5B8757E0BEE85C1 /* Pods-超强清理.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-超强清理.debug.xcconfig"; path = "Target Support Files/Pods-超强清理/Pods-超强清理.debug.xcconfig"; sourceTree = "<group>"; };
+		D79B4C14EAF758CA0CA60940 /* libPods-超强清理.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-超强清理.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC60344916A49D1629F613B6 /* Pods-IOSBaseTemplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSBaseTemplate.debug.xcconfig"; path = "Target Support Files/Pods-IOSBaseTemplate/Pods-IOSBaseTemplate.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,7 +218,7 @@
 			files = (
 				2BE7D3A925E3A23700E187A3 /* ContactsUI.framework in Frameworks */,
 				2BE7886625DF63CA00E187A3 /* QMUIKit.framework in Frameworks */,
-				3FF478ED5A0FDF50CDB02108 /* libPods-IOSBaseTemplate.a in Frameworks */,
+				82C16DCA21D418654D80817E /* libPods-超强清理.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +230,8 @@
 			children = (
 				DC60344916A49D1629F613B6 /* Pods-IOSBaseTemplate.debug.xcconfig */,
 				34C8DBEE0E30BC288B3EF482 /* Pods-IOSBaseTemplate.release.xcconfig */,
+				5ECECC83E5B8757E0BEE85C1 /* Pods-超强清理.debug.xcconfig */,
+				135E5580AB8C2A9F35945754 /* Pods-超强清理.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -265,7 +267,7 @@
 			children = (
 				2BE7D3A825E3A23700E187A3 /* ContactsUI.framework */,
 				2BE7D3A425E3A1B600E187A3 /* AddressBook.framework */,
-				74DB79F1379E8A206D3B70EB /* libPods-IOSBaseTemplate.a */,
+				D79B4C14EAF758CA0CA60940 /* libPods-超强清理.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -339,7 +341,7 @@
 		2B80840725B9622F0056938B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2B80840625B9622F0056938B /* IOSBaseTemplate.app */,
+				2B80840625B9622F0056938B /* 超强清理.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -413,7 +415,6 @@
 				2B04670025ECE0C600E69F41 /* photo_btn@2x.png */,
 				2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */,
 				2BA189D825F4B558006E66DD /* BoAssetsCamera@2x.png */,
-				2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */,
 				2B0466F325ECE0C500E69F41 /* photo_btn@3x.png */,
 				2B0466DF25ECE0C400E69F41 /* privacy_btn@2x.png */,
 				2B0466FB25ECE0C600E69F41 /* privacy_btn@3x.png */,
@@ -482,24 +483,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2B80840525B9622F0056938B /* IOSBaseTemplate */ = {
+		2B80840525B9622F0056938B /* 超强清理 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B80843525B962310056938B /* Build configuration list for PBXNativeTarget "IOSBaseTemplate" */;
+			buildConfigurationList = 2B80843525B962310056938B /* Build configuration list for PBXNativeTarget "超强清理" */;
 			buildPhases = (
 				4177B1900010E21533E74BD5 /* [CP] Check Pods Manifest.lock */,
 				2B80840225B9622F0056938B /* Sources */,
 				2B80840325B9622F0056938B /* Frameworks */,
 				2B80840425B9622F0056938B /* Resources */,
-				3E215BA418922416166F2DB7 /* [CP] Embed Pods Frameworks */,
 				2BE7886825DF63CB00E187A3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = IOSBaseTemplate;
+			name = "超强清理";
 			productName = IOSBaseTemplate;
-			productReference = 2B80840625B9622F0056938B /* IOSBaseTemplate.app */;
+			productReference = 2B80840625B9622F0056938B /* 超强清理.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -515,7 +515,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2B80840125B9622F0056938B /* Build configuration list for PBXProject "超强清理卫士" */;
+			buildConfigurationList = 2B80840125B9622F0056938B /* Build configuration list for PBXProject "超强清理" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -534,7 +534,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				2B80840525B9622F0056938B /* IOSBaseTemplate */,
+				2B80840525B9622F0056938B /* 超强清理 */,
 			);
 		};
 /* End PBXProject section */
@@ -569,7 +569,6 @@
 				2B04671D25ECE0C600E69F41 /* photo_btn@3x.png in Resources */,
 				2BA189DD25F4B558006E66DD /* AssetsPickerVideo@2x.png in Resources */,
 				2B80841625B962300056938B /* Assets.xcassets in Resources */,
-				2BA189DE25F4B558006E66DD /* BoSelectGroup_tip@2x.png in Resources */,
 				2B43BE7525F66DE40016A39F /* fb_bottom@2x.png in Resources */,
 				2B04672A25ECE0C600E69F41 /* photo_btn@2x.png in Resources */,
 				2B04671725ECE0C600E69F41 /* set@2x.png in Resources */,
@@ -594,23 +593,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3E215BA418922416166F2DB7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IOSBaseTemplate/Pods-IOSBaseTemplate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IOSBaseTemplate/Pods-IOSBaseTemplate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOSBaseTemplate/Pods-IOSBaseTemplate-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4177B1900010E21533E74BD5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -626,7 +608,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IOSBaseTemplate-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-超强清理-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -805,7 +787,7 @@
 		};
 		2B80843625B962310056938B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC60344916A49D1629F613B6 /* Pods-IOSBaseTemplate.debug.xcconfig */;
+			baseConfigurationReference = 5ECECC83E5B8757E0BEE85C1 /* Pods-超强清理.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -831,7 +813,7 @@
 		};
 		2B80843725B962310056938B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34C8DBEE0E30BC288B3EF482 /* Pods-IOSBaseTemplate.release.xcconfig */;
+			baseConfigurationReference = 135E5580AB8C2A9F35945754 /* Pods-超强清理.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -858,7 +840,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2B80840125B9622F0056938B /* Build configuration list for PBXProject "超强清理卫士" */ = {
+		2B80840125B9622F0056938B /* Build configuration list for PBXProject "超强清理" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B80843325B962310056938B /* Debug */,
@@ -867,7 +849,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B80843525B962310056938B /* Build configuration list for PBXNativeTarget "IOSBaseTemplate" */ = {
+		2B80843525B962310056938B /* Build configuration list for PBXNativeTarget "超强清理" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B80843625B962310056938B /* Debug */,

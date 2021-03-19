@@ -41,6 +41,7 @@
         if(nil == _customTileLabel) {
             self.customTileLabel = [[QMUILabel alloc] init];
             _customTileLabel.backgroundColor = [UIColor clearColor];
+            _customTileLabel.textColor = [UIColor blackColor];
             [self.contentView addSubview:_customTileLabel];
         }
         

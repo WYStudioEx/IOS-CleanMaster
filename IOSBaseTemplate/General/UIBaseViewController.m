@@ -31,6 +31,10 @@
     }
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return QMUIStatusBarStyleDarkContent;
+}
+
 #pragma --UIGestureRecognizerDelegate
 
 //控制是否支持左滑返回

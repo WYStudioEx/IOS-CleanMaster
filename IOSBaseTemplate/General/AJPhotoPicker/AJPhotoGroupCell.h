@@ -20,4 +20,6 @@
  */
 - (void)bind:(PHAssetCollection *)assetsGroup;
 
++ (NSString *)getGroupChName:(NSString *) EnName;
+
 @end

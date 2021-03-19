@@ -12,6 +12,7 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UIBaseViewController.h"
+#import "AJPhotoGroupCell.h"
 
 @class AJPhotoPickerViewController;
 

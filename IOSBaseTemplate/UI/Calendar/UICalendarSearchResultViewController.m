@@ -142,6 +142,7 @@
     CalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.childModel = self.dataArray[indexPath.section].content[indexPath.row];
+    cell.horizontalLine.hidden = YES;
     
     if(indexPath.section != self.dataArray.count - 1 && indexPath.row == self.dataArray[indexPath.section].content.count - 1){
         cell.horizontalLine.hidden = NO;

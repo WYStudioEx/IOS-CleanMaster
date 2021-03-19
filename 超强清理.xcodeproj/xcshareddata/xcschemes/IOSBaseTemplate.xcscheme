@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2B80840525B9622F0056938B"
-               BuildableName = "IOSBaseTemplate.app"
-               BlueprintName = "IOSBaseTemplate"
-               ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
+               BuildableName = "&#x8d85;&#x5f3a;&#x6e05;&#x7406;.app"
+               BlueprintName = "&#x8d85;&#x5f3a;&#x6e05;&#x7406;"
+               ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "2B80842025B962310056938B"
                BuildableName = "IOSBaseTemplateTests.xctest"
                BlueprintName = "IOSBaseTemplateTests"
-               ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
+               ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "2B80842B25B962310056938B"
                BuildableName = "IOSBaseTemplateUITests.xctest"
                BlueprintName = "IOSBaseTemplateUITests"
-               ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
+               ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B80840525B9622F0056938B"
-            BuildableName = "IOSBaseTemplate.app"
-            BlueprintName = "IOSBaseTemplate"
-            ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
+            BuildableName = "&#x8d85;&#x5f3a;&#x6e05;&#x7406;.app"
+            BlueprintName = "&#x8d85;&#x5f3a;&#x6e05;&#x7406;"
+            ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B80840525B9622F0056938B"
-            BuildableName = "IOSBaseTemplate.app"
-            BlueprintName = "IOSBaseTemplate"
-            ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
+            BuildableName = "&#x8d85;&#x5f3a;&#x6e05;&#x7406;.app"
+            BlueprintName = "&#x8d85;&#x5f3a;&#x6e05;&#x7406;"
+            ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

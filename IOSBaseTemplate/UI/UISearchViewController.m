@@ -28,8 +28,6 @@
 
 @end
 
-
-
 //------------------------------------------------
 @implementation UISearchViewController
 
@@ -127,26 +125,38 @@
         if(nil == weakSelf) {
             return;
         }
-        [[DataManger shareInstance] getScheduleEvent:^(NSArray *eventArray){
+        [[DataManger shareInstance] getScheduleEvent:^(NSArray *eventArray, NSArray *eventArray2){
+            if(0 == eventArray.count + eventArray2.count) {
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    strongSelf.bigLabel.text = @"没有日程";
+                    [strongSelf.circularDiagramView runAnimation:NO];
+                    [strongSelf.circularDiagramView setProgressValue:0 start:0];
+                    [strongSelf.view setNeedsLayout];
+                    [strongSelf.view layoutIfNeeded];
+                });
+                return;
+            }
+            
             NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
             if(end - begin >= animationMinTime) {
                 dispatch_async(dispatch_get_main_queue(), ^(void){
                     __strong typeof(weakSelf) strongSelf = weakSelf;
-                    [strongSelf handelCalendarEvent:eventArray];
+                    [strongSelf handelCalendarEvent:eventArray eventArray2:eventArray2];
                 });
                 return;
             }
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((animationMinTime - (end - begin)) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 __strong typeof(weakSelf) strongSelf = weakSelf;
-                [strongSelf handelCalendarEvent:eventArray];
+                [strongSelf handelCalendarEvent:eventArray eventArray2:eventArray2];
             });
         }];
     });
 }
 
-- (void)handelCalendarEvent:(NSArray *)eventArray {
-    if(0 == eventArray.count) {
+- (void)handelCalendarEvent:(NSArray *)eventArray eventArray2:(NSArray *)eventArray2 {
+    if(0 == eventArray.count && 0 == eventArray2.count) {
         return;
     }
     
@@ -156,21 +166,25 @@
     overdueCalendarModel.title = @"过期日程";
     overdueCalendarModel.content = [NSMutableArray array];
     [dataArray addObject:overdueCalendarModel];
-    
-    CalendarTypeModel *fraudCalendarModel = [[CalendarTypeModel alloc] init];
-    fraudCalendarModel.isExpand = YES;
-    fraudCalendarModel.title = @"诈骗日程";
-    fraudCalendarModel.content = [NSMutableArray array];
-    [dataArray addObject:fraudCalendarModel];
+
+    CalendarTypeModel *futureCalendarModel = [[CalendarTypeModel alloc] init];
+    futureCalendarModel.isExpand = YES;
+    futureCalendarModel.title = @"未来日程";
+    futureCalendarModel.content = [NSMutableArray array];
+    [dataArray addObject:futureCalendarModel];
     
     for(EKEvent* item in eventArray) {
-        if(NSOrderedAscending != [[NSDate date] compare:item.endDate]) {
-            CalendarContentModel *cententModel = [[CalendarContentModel alloc] init];
-            cententModel.event = item;
-            cententModel.isSelect = YES;
-            [overdueCalendarModel.content addObject:cententModel];
-            continue;
-        }
+        CalendarContentModel *cententModel = [[CalendarContentModel alloc] init];
+        cententModel.event = item;
+        cententModel.isSelect = YES;
+        [overdueCalendarModel.content addObject:cententModel];
+    }
+    
+    for(EKEvent* item in eventArray2) {
+        CalendarContentModel *cententModel = [[CalendarContentModel alloc] init];
+        cententModel.event = item;
+        cententModel.isSelect = YES;
+        [futureCalendarModel.content addObject:cententModel];
     }
     
     UICalendarSearchResultViewController *vc = [[UICalendarSearchResultViewController alloc] init];
@@ -190,7 +204,6 @@
 }
 
 - (void)requestPhoto {
-    
     NSTimeInterval begin = [[NSDate date] timeIntervalSince1970];
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -198,19 +211,31 @@
             return;
         }
         
-        [[DataManger shareInstance] getPhotoData:^(NSArray *photoArray){
+        [[DataManger shareInstance] getPhotoData:^(NSArray *recentsArray, NSArray *selfiesArray, NSArray *screenshotsArray, NSArray *liveArray){
+            if(0 == recentsArray.count) {
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    strongSelf.bigLabel.text = @"真棒，没有需要清理的图片";
+                    [strongSelf.circularDiagramView runAnimation:NO];
+                    [strongSelf.circularDiagramView setProgressValue:0 start:0];
+                    [strongSelf.view setNeedsLayout];
+                    [strongSelf.view layoutIfNeeded];
+                });
+                return;
+            }
+            
             NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
             if(end - begin >= animationMinTime) {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
                     __strong typeof(weakSelf) strongSelf = weakSelf;
-                    [strongSelf handelPhotoData:photoArray];
+                    [strongSelf handelPhotoData:recentsArray selfiesArray:selfiesArray screenshotsArray:screenshotsArray liveArray:liveArray];
                 });
                 return;
             }
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((animationMinTime - (end - begin)) * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 __strong typeof(weakSelf) strongSelf = weakSelf;
-                [strongSelf handelPhotoData:photoArray];
+                [strongSelf handelPhotoData:recentsArray selfiesArray:selfiesArray screenshotsArray:screenshotsArray liveArray:liveArray];
             });
         }];
         
@@ -255,25 +280,26 @@
 
 }
 
-- (void)handelPhotoData:(NSArray *)phoneArray {
-    if(0 == phoneArray.count) {
+- (void)handelPhotoData:(NSArray *)recentsArray selfiesArray:(NSArray *)selfiesArray screenshotsArray:(NSArray *)screenshotsArray liveArray:(NSArray *)liveArray{
+    if(0 == recentsArray.count) {
         return;
     }
     
     PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
-    imageRequestOptions.synchronous = YES;
     imageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
+    imageRequestOptions.synchronous = YES;
     NSMutableArray<SiglePhotoModel *> *newPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
-    [phoneArray enumerateObjectsUsingBlock:^(PHAsset *ssset, NSUInteger idx, BOOL * _Nonnull stop) {
-        [[PHImageManager defaultManager] requestImageForAsset:ssset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
+    [recentsArray enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(300, 300) contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
             SiglePhotoModel *sigPhotoModel = [[SiglePhotoModel alloc] init];
-            sigPhotoModel.asset = ssset;
+            sigPhotoModel.asset = asset;
             sigPhotoModel.image = image;
             [newPhotoArray addObject:sigPhotoModel];
         }];
     }];
     
     NSMutableArray *dataArray = [NSMutableArray array];
+    //--------------------
     PhotoTypeModel *fuzzyPhotoModel = [[PhotoTypeModel alloc] init];
     fuzzyPhotoModel.isExpand = YES;
     fuzzyPhotoModel.title = @"模糊图片";
@@ -282,7 +308,6 @@
     [dataArray addObject:fuzzyPhotoModel];
 
     NSMutableArray<SiglePhotoModel *> *temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
-    PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
     NSEnumerator *enumerator = [newPhotoArray reverseObjectEnumerator];
     for(SiglePhotoModel *siglePhotoModel in enumerator) {
         if([PhotoAnalysis checkBlurryWihtImage:siglePhotoModel.image]) {
@@ -291,7 +316,9 @@
             [newPhotoArray removeObject:siglePhotoModel];
         }
     }
+    
     if(temPhotoArray.count) {
+        PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
         photoContentModel.photos = temPhotoArray;
         [fuzzyPhotoModel.content addObject:photoContentModel];
     }
@@ -323,7 +350,7 @@
             first = second;
             if(temPhotoArray.count) {
                 PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
-                photoContentModel.photos = temPhotoArray;
+                photoContentModel.photos = [[NSArray alloc] initWithArray:temPhotoArray];
                 temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
                 [similarPhotoModel.content addObject:photoContentModel];
                 [temPhotoArray removeAllObjects];
@@ -332,12 +359,90 @@
         
         if(temPhotoArray.count) {
             PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
-            photoContentModel.photos = temPhotoArray;
+            photoContentModel.photos = [[NSArray alloc] initWithArray:temPhotoArray];;
             temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
             [similarPhotoModel.content addObject:photoContentModel];
         }
     }
     
+    //--------------------
+    if(selfiesArray.count) {
+        NSMutableArray<SiglePhotoModel *> *temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
+        PhotoTypeModel *selfiesPhotoModel = [[PhotoTypeModel alloc] init];
+        selfiesPhotoModel.isExpand = YES;
+        selfiesPhotoModel.title = @"自拍";
+        selfiesPhotoModel.type = PhotoTypeModelSelfies;
+        selfiesPhotoModel.content = [NSMutableArray array];
+        [dataArray addObject:selfiesPhotoModel];
+
+        [selfiesArray enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+            [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(300, 300) contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
+                SiglePhotoModel *sigPhotoModel = [[SiglePhotoModel alloc] init];
+                sigPhotoModel.asset = asset;
+                sigPhotoModel.image = image;
+                [temPhotoArray addObject:sigPhotoModel];
+            }];
+        }];
+        
+        if(temPhotoArray.count) {
+            PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
+            photoContentModel.photos = temPhotoArray;
+            [selfiesPhotoModel.content addObject:photoContentModel];
+        }
+    }
+    
+    //--------------------
+    if(screenshotsArray.count) {
+        NSMutableArray<SiglePhotoModel *> *temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
+        PhotoTypeModel *screenshotsPhotoModel = [[PhotoTypeModel alloc] init];
+        screenshotsPhotoModel.isExpand = YES;
+        screenshotsPhotoModel.title = @"截屏";
+        screenshotsPhotoModel.type = PhotoTypeModelScreenshotsArray;
+        screenshotsPhotoModel.content = [NSMutableArray array];
+        [dataArray addObject:screenshotsPhotoModel];
+
+        [screenshotsArray enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+            [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(300, 300) contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
+                SiglePhotoModel *sigPhotoModel = [[SiglePhotoModel alloc] init];
+                sigPhotoModel.asset = asset;
+                sigPhotoModel.image = image;
+                [temPhotoArray addObject:sigPhotoModel];
+            }];
+        }];
+        
+        if(temPhotoArray.count) {
+            PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
+            photoContentModel.photos = temPhotoArray;
+            [screenshotsPhotoModel.content addObject:photoContentModel];
+        }
+    }
+    
+    //--------------------
+    if(liveArray.count) {
+        NSMutableArray<SiglePhotoModel *> *temPhotoArray = [NSMutableArray<SiglePhotoModel *> array];
+        PhotoTypeModel *liveModel = [[PhotoTypeModel alloc] init];
+        liveModel.isExpand = YES;
+        liveModel.title = @"实况";
+        liveModel.type = PhotoTypeModelLiveArray;
+        liveModel.content = [NSMutableArray array];
+        [dataArray addObject:liveModel];
+
+        [liveArray enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+            [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(300, 300) contentMode:PHImageContentModeDefault options:imageRequestOptions resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
+                SiglePhotoModel *sigPhotoModel = [[SiglePhotoModel alloc] init];
+                sigPhotoModel.asset = asset;
+                sigPhotoModel.image = image;
+                [temPhotoArray addObject:sigPhotoModel];
+            }];
+        }];
+        
+        if(temPhotoArray.count) {
+            PhotoContentModel *photoContentModel = [[PhotoContentModel alloc] init];
+            photoContentModel.photos = temPhotoArray;
+            [liveModel.content addObject:photoContentModel];
+        }
+    }
+
     //清理空cell
     enumerator = [dataArray reverseObjectEnumerator];
     for(PhotoTypeModel *typeModel in enumerator) {
