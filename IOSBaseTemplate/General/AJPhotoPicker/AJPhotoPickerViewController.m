@@ -107,7 +107,7 @@ UICollectionViewDelegateFlowLayout>
     
     //selectTipImageView
     self.selectTip = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _selectTip.image = UIImageMake(@"BoSelectGroup_tip");
+    _selectTip.image = UIImageMake(@"feedback_select");
     [_selectTip sizeToFit];
     [_customTitleView addSubview:_selectTip];
 

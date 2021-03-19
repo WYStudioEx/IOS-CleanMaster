@@ -57,6 +57,7 @@
     self.aiClearBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"action_button_normal") title:nil];
     _aiClearBtn.frame =CGRectMake(0, 0, _size_W_S_X(155), _size_W_S_X(56));
     [_aiClearBtn addTarget:self action:@selector(aiCleareBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    _aiClearBtn.hidden = YES;
     [self.view addSubview:_aiClearBtn];
     
     self.circularDiagramView = [[UICircularDiagramView alloc] initWithFrame:CGRectMake(0, 0, _size_W_S_X(252), _size_W_S_X(252))];

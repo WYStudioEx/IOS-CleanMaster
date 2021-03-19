@@ -79,95 +79,18 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSTimeInterval begin = [[NSDate date] timeIntervalSince1970];
+    if(SearchTypeCalendar == self.searchType) {
+        [self requestCalendar];
+        return;
+    }
     
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if(nil == weakSelf) {
-            return;
-        }
-        
-        if(SearchTypeCalendar == weakSelf.searchType) {
-            [[DataManger shareInstance] getScheduleEvent:^(NSArray *eventArray){
-                NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
-                if(end - begin >= animationMinTime) {
-                    dispatch_async(dispatch_get_main_queue(), ^(void){
-                        __strong typeof(weakSelf) strongSelf = weakSelf;
-                        [strongSelf handelCalendarEvent:eventArray];
-                    });
-                    return;
-                }
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((animationMinTime - (end - begin)) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    __strong typeof(weakSelf) strongSelf = weakSelf;
-                    [strongSelf handelCalendarEvent:eventArray];
-                });
-            }];
-            
-            return;
-        }
-        
-        if(SearchTypePhone == weakSelf.searchType) {
-            [[DataManger shareInstance] getPhotoData:^(NSArray *photoArray){
-                NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
-                if(end - begin >= animationMinTime) {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-                        __strong typeof(weakSelf) strongSelf = weakSelf;
-                        [strongSelf handelPhotoData:photoArray];
-                    });
-                    return;
-                }
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((animationMinTime - (end - begin)) * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    __strong typeof(weakSelf) strongSelf = weakSelf;
-                    [strongSelf handelPhotoData:photoArray];
-                });
-            }];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                __block int i = 1;
-                self.bigLabel.text = [NSString stringWithFormat:@"步骤：%d/5", 1];
-                self.smallLabel.text = @"正在寻找相似照片...";
-                [self.view setNeedsLayout];
-                [self.view layoutIfNeeded];
-                [NSTimer scheduledTimerWithTimeInterval:1
-                                                    repeats:YES
-                                                      block:^(NSTimer * _Nonnull timer) {
-                    __strong typeof(weakSelf) strongSelf = weakSelf;
-                    strongSelf.bigLabel.text = [NSString stringWithFormat:@"步骤：%d/5", ++i];
-                    switch (i) {
-                        case 1:
-                            strongSelf.smallLabel.text = @"正在寻找相似照片...";
-                            break;
-                        case 2:
-                            strongSelf.smallLabel.text = @"正在寻找模糊照片...";
-                            break;
-                        case 3:
-                            strongSelf.smallLabel.text = @"正在寻找实况图片...";
-                            break;
-                        case 4:
-                            strongSelf.smallLabel.text = @"正在寻找屏幕截图...";
-                            break;
-                        case 5:
-                            strongSelf.smallLabel.text = @"正在寻找连拍自拍照片...";
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                    
-                    if(i == 5) {
-                        [timer invalidate];
-                    }
-                }];
-            });
-            
-            return;
-        }
-        
-        if(SearchTypeAICleare == weakSelf.searchType) {
-        }
-    });
+    if(SearchTypePhone == self.searchType) {
+        [self requestPhoto];
+        return;
+    }
+    
+    if(SearchTypeAICleare == self.searchType) {
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -195,6 +118,31 @@
     [_stopBtn sizeToFit];
     _stopBtn.qmui_bottom = self.view.qmui_height - _size_H_S_X(69);
     _stopBtn.qmui_left = (self.view.qmui_width - _stopBtn.qmui_width) / 2.0;
+}
+
+- (void)requestCalendar {
+    NSTimeInterval begin = [[NSDate date] timeIntervalSince1970];
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if(nil == weakSelf) {
+            return;
+        }
+        [[DataManger shareInstance] getScheduleEvent:^(NSArray *eventArray){
+            NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
+            if(end - begin >= animationMinTime) {
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    [strongSelf handelCalendarEvent:eventArray];
+                });
+                return;
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((animationMinTime - (end - begin)) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                [strongSelf handelCalendarEvent:eventArray];
+            });
+        }];
+    });
 }
 
 - (void)handelCalendarEvent:(NSArray *)eventArray {
@@ -239,6 +187,72 @@
         [viewControllers removeObject:self];
         self.navigationController.viewControllers = viewControllers;
     }];
+}
+
+- (void)requestPhoto {
+    
+    NSTimeInterval begin = [[NSDate date] timeIntervalSince1970];
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if(nil == weakSelf) {
+            return;
+        }
+        
+        [[DataManger shareInstance] getPhotoData:^(NSArray *photoArray){
+            NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
+            if(end - begin >= animationMinTime) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    [strongSelf handelPhotoData:photoArray];
+                });
+                return;
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((animationMinTime - (end - begin)) * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                [strongSelf handelPhotoData:photoArray];
+            });
+        }];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __block int i = 1;
+            self.bigLabel.text = [NSString stringWithFormat:@"步骤：%d/5", 1];
+            self.smallLabel.text = @"正在寻找相似照片...";
+            [self.view setNeedsLayout];
+            [self.view layoutIfNeeded];
+            [NSTimer scheduledTimerWithTimeInterval:1
+                                                repeats:YES
+                                                  block:^(NSTimer * _Nonnull timer) {
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                strongSelf.bigLabel.text = [NSString stringWithFormat:@"步骤：%d/5", ++i];
+                switch (i) {
+                    case 1:
+                        strongSelf.smallLabel.text = @"正在寻找相似照片...";
+                        break;
+                    case 2:
+                        strongSelf.smallLabel.text = @"正在寻找模糊照片...";
+                        break;
+                    case 3:
+                        strongSelf.smallLabel.text = @"正在寻找实况图片...";
+                        break;
+                    case 4:
+                        strongSelf.smallLabel.text = @"正在寻找屏幕截图...";
+                        break;
+                    case 5:
+                        strongSelf.smallLabel.text = @"正在寻找连拍自拍照片...";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+                if(i == 5) {
+                    [timer invalidate];
+                }
+            }];
+        });
+    });
+
 }
 
 - (void)handelPhotoData:(NSArray *)phoneArray {
