@@ -21,13 +21,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
-	<string>打开日历，需要你的允许</string>
+	<string>为了帮您筛选诈骗日历、过期日历，卫士需要访问您的“日历”，请允许</string>
 	<key>NSContactsUsageDescription</key>
 	<string>打开通讯录，需要你的允许</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>打开相册，需要你的允许</string>
+	<string>为了帮您检测手机的相似照片、屏幕截图等，卫士需要访问您的“照片”，请允许</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>打开相册，需要你的允许</string>
+	<string>为了帮您检测手机的相似照片、屏幕截图等，卫士需要访问您的“照片”，请允许</string>
 	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

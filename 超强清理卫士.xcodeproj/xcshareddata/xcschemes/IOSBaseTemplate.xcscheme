@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2B07ED6725BEB857006BFBE7"
-               BuildableName = "IOSBaseTemplate_Development.app"
-               BlueprintName = "IOSBaseTemplate_Development"
-               ReferencedContainer = "container:IOSBaseTemplate.xcodeproj">
+               BlueprintIdentifier = "2B80840525B9622F0056938B"
+               BuildableName = "IOSBaseTemplate.app"
+               BlueprintName = "IOSBaseTemplate"
+               ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2B80842025B962310056938B"
+               BuildableName = "IOSBaseTemplateTests.xctest"
+               BlueprintName = "IOSBaseTemplateTests"
+               ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2B80842B25B962310056938B"
+               BuildableName = "IOSBaseTemplateUITests.xctest"
+               BlueprintName = "IOSBaseTemplateUITests"
+               ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -44,10 +64,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2B07ED6725BEB857006BFBE7"
-            BuildableName = "IOSBaseTemplate_Development.app"
-            BlueprintName = "IOSBaseTemplate_Development"
-            ReferencedContainer = "container:IOSBaseTemplate.xcodeproj">
+            BlueprintIdentifier = "2B80840525B9622F0056938B"
+            BuildableName = "IOSBaseTemplate.app"
+            BlueprintName = "IOSBaseTemplate"
+            ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,10 +81,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2B07ED6725BEB857006BFBE7"
-            BuildableName = "IOSBaseTemplate_Development.app"
-            BlueprintName = "IOSBaseTemplate_Development"
-            ReferencedContainer = "container:IOSBaseTemplate.xcodeproj">
+            BlueprintIdentifier = "2B80840525B9622F0056938B"
+            BuildableName = "IOSBaseTemplate.app"
+            BlueprintName = "IOSBaseTemplate"
+            ReferencedContainer = "container:&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

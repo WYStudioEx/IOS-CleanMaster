@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:IOSBaseTemplate.xcodeproj">
+      location = "group:/Users/fengchiwei/Desktop/IOS&#x5de5;&#x7a0b;&#x57fa;&#x7840;&#x6a21;&#x677f;&#x811a;&#x624b;&#x67b6;/&#x8d85;&#x5f3a;&#x6e05;&#x7406;&#x536b;&#x58eb;.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

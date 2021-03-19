@@ -55,6 +55,10 @@
 		2BA189DD25F4B558006E66DD /* AssetsPickerVideo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189D925F4B558006E66DD /* AssetsPickerVideo@2x.png */; };
 		2BA189DE25F4B558006E66DD /* BoSelectGroup_tip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */; };
 		2BA65C5D2603A71100932FC2 /* GetSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BA65C5C2603A71100932FC2 /* GetSimilarity.mm */; };
+		2BA66BA62604806B00932FC2 /* broom_easyicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA42604806A00932FC2 /* broom_easyicon@2x.png */; };
+		2BA66BA72604806B00932FC2 /* broom_easyicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA52604806B00932FC2 /* broom_easyicon@3x.png */; };
+		2BA66BAA2604809400932FC2 /* Common_Button_Normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA82604809300932FC2 /* Common_Button_Normal@3x.png */; };
+		2BA66BAB2604809400932FC2 /* Common_Button_Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA92604809400932FC2 /* Common_Button_Normal@2x.png */; };
 		2BDAEF0E25F8B8C700A5D53C /* PhotoTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0825F8B8C700A5D53C /* PhotoTypeModel.m */; };
 		2BDAEF0F25F8B8C700A5D53C /* PhotoContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0A25F8B8C700A5D53C /* PhotoContentModel.m */; };
 		2BDAEF1025F8B8C700A5D53C /* PhotoSimilarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0C25F8B8C700A5D53C /* PhotoSimilarTableViewCell.m */; };
@@ -177,6 +181,10 @@
 		2BA189DA25F4B558006E66DD /* BoSelectGroup_tip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BoSelectGroup_tip@2x.png"; path = "../../../../Downloads/c9547f7b5c777b9c411ad0dc16bbe676/AJPhotoPicker/BoPhotoPicker.bundle/images/BoSelectGroup_tip@2x.png"; sourceTree = "<group>"; };
 		2BA65C5B2603A71100932FC2 /* GetSimilarity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetSimilarity.h; sourceTree = "<group>"; };
 		2BA65C5C2603A71100932FC2 /* GetSimilarity.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GetSimilarity.mm; sourceTree = "<group>"; };
+		2BA66BA42604806A00932FC2 /* broom_easyicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "broom_easyicon@2x.png"; sourceTree = "<group>"; };
+		2BA66BA52604806B00932FC2 /* broom_easyicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "broom_easyicon@3x.png"; sourceTree = "<group>"; };
+		2BA66BA82604809300932FC2 /* Common_Button_Normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Common_Button_Normal@3x.png"; sourceTree = "<group>"; };
+		2BA66BA92604809400932FC2 /* Common_Button_Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Common_Button_Normal@2x.png"; sourceTree = "<group>"; };
 		2BDAEF0825F8B8C700A5D53C /* PhotoTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTypeModel.m; sourceTree = "<group>"; };
 		2BDAEF0925F8B8C700A5D53C /* PhotoSimilarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSimilarTableViewCell.h; sourceTree = "<group>"; };
 		2BDAEF0A25F8B8C700A5D53C /* PhotoContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoContentModel.m; sourceTree = "<group>"; };
@@ -419,6 +427,10 @@
 				2B0466E925ECE0C500E69F41 /* set@3x.png */,
 				2B0466EF25ECE0C500E69F41 /* rectangle@2x.png */,
 				2B0466F025ECE0C500E69F41 /* rectangle@3x.png */,
+				2BA66BA42604806A00932FC2 /* broom_easyicon@2x.png */,
+				2BA66BA52604806B00932FC2 /* broom_easyicon@3x.png */,
+				2BA66BA92604809400932FC2 /* Common_Button_Normal@2x.png */,
+				2BA66BA82604809300932FC2 /* Common_Button_Normal@3x.png */,
 				2BE7894625DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.h */,
 				2BE7894925DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m */,
 			);
@@ -503,7 +515,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2B80840125B9622F0056938B /* Build configuration list for PBXProject "IOSBaseTemplate" */;
+			buildConfigurationList = 2B80840125B9622F0056938B /* Build configuration list for PBXProject "超强清理卫士" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -551,6 +563,7 @@
 			files = (
 				2B04672925ECE0C600E69F41 /* calendar_btn@3x.png in Resources */,
 				2B80841925B962300056938B /* LaunchScreen.storyboard in Resources */,
+				2BA66BA72604806B00932FC2 /* broom_easyicon@3x.png in Resources */,
 				2B04670925ECE0C600E69F41 /* privacy_btn@2x.png in Resources */,
 				2B04671325ECE0C600E69F41 /* set@3x.png in Resources */,
 				2B04671D25ECE0C600E69F41 /* photo_btn@3x.png in Resources */,
@@ -565,13 +578,16 @@
 				2B04672825ECE0C600E69F41 /* action_button_normal@2x.png in Resources */,
 				2B43BE7925F66E0F0016A39F /* feedback_select@2x.png in Resources */,
 				2B04672B25ECE0C600E69F41 /* action_button_normal@3x.png in Resources */,
+				2BA66BAB2604809400932FC2 /* Common_Button_Normal@2x.png in Resources */,
 				2B04670225ECE0C600E69F41 /* back_image@3x.png in Resources */,
 				2B43BE7325F66DDD0016A39F /* fb_top@2x.png in Resources */,
 				2BA189DC25F4B558006E66DD /* BoAssetsCamera@2x.png in Resources */,
+				2BA66BA62604806B00932FC2 /* broom_easyicon@2x.png in Resources */,
 				2B04670E25ECE0C600E69F41 /* calendar_btn@2x.png in Resources */,
 				2B04671925ECE0C600E69F41 /* rectangle@2x.png in Resources */,
 				2B04672525ECE0C600E69F41 /* privacy_btn@3x.png in Resources */,
 				2B04671A25ECE0C600E69F41 /* rectangle@3x.png in Resources */,
+				2BA66BAA2604809400932FC2 /* Common_Button_Normal@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,7 +858,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2B80840125B9622F0056938B /* Build configuration list for PBXProject "IOSBaseTemplate" */ = {
+		2B80840125B9622F0056938B /* Build configuration list for PBXProject "超强清理卫士" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B80843325B962310056938B /* Debug */,

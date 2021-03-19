@@ -38,4 +38,8 @@
     return NO;
 }
 
+- (nullable NSString *)backBarButtonItemTitleWithPreviousViewController:(nullable UIViewController *)viewController {
+    return @"返回";
+}
+
 @end

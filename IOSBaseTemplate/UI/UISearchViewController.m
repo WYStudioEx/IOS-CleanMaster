@@ -15,14 +15,20 @@
 #import "DataManger.h"
 #import "PhotoAnalysis.h"
 
-#define animationMinTime 1500
+#define animationMinTime 5
 
 @interface UISearchViewController ()
 
 @property(nonatomic, strong) UICircularDiagramView *circularDiagramView;
-@property(nonatomic, strong) UILabel *checkingLabel;
+@property(nonatomic, strong) UIImageView *centerImageView;
+@property(nonatomic, strong) QMUIButton *stopBtn;
+
+@property(nonatomic, strong) UILabel *bigLabel;
+@property(nonatomic, strong) UILabel *smallLabel;
 
 @end
+
+
 
 //------------------------------------------------
 @implementation UISearchViewController
@@ -33,12 +39,28 @@
     self.circularDiagramView = [[UICircularDiagramView alloc] initWithFrame:CGRectMake(0, 0, _size_W_S_X(252), _size_W_S_X(252))];
     [self.view addSubview:_circularDiagramView];
     
-    self.checkingLabel = [[UILabel alloc] init];
-    _checkingLabel.backgroundColor = [UIColor clearColor];
-    _checkingLabel.textAlignment = NSTextAlignmentCenter;
-    _checkingLabel.font = UIDynamicFontBoldMake(16);
-    _checkingLabel.text = @"检测中...";
-    [self.view addSubview:_checkingLabel];
+    self.stopBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"Common_Button_Normal") title:nil];
+    _stopBtn.frame =CGRectMake(0, 0, _size_W_S_X(155), _size_W_S_X(56));
+    [_stopBtn addTarget:self action:@selector(stopBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_stopBtn];
+    
+    self.centerImageView = [[UIImageView alloc] init];
+    _centerImageView.image = UIImageMake(@"broom_easyicon");
+    [self.view addSubview:_centerImageView];
+    
+    self.bigLabel = [[UILabel alloc] init];
+    _bigLabel.backgroundColor = [UIColor clearColor];
+    _bigLabel.textAlignment = NSTextAlignmentCenter;
+    _bigLabel.textColor = [UIColor blackColor];
+    _bigLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
+    [self.view addSubview:_bigLabel];
+    
+    self.smallLabel = [[UILabel alloc] init];
+    _smallLabel.backgroundColor = [UIColor clearColor];
+    _smallLabel.textAlignment = NSTextAlignmentCenter;
+    _smallLabel.font = UIDynamicFontBoldMake(14);
+    _smallLabel.textColor = [UIColor qmui_colorWithHexString:@"#9AA5B0"];
+    [self.view addSubview:_smallLabel];
 }
 
 - (void)viewDidLoad {
@@ -57,7 +79,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSTimeInterval begin = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
+    NSTimeInterval begin = [[NSDate date] timeIntervalSince1970];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -67,7 +89,7 @@
         
         if(SearchTypeCalendar == weakSelf.searchType) {
             [[DataManger shareInstance] getScheduleEvent:^(NSArray *eventArray){
-                NSTimeInterval end = [[DataManger shareInstance] getDateTimeTOMilliSeconds:[NSDate date]];
+                NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
                 if(end - begin >= animationMinTime) {
                     dispatch_async(dispatch_get_main_queue(), ^(void){
                         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -76,7 +98,7 @@
                     return;
                 }
                 
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((animationMinTime - (end - begin)) / animationMinTime  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((animationMinTime - (end - begin)) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     __strong typeof(weakSelf) strongSelf = weakSelf;
                     [strongSelf handelCalendarEvent:eventArray];
                 });
@@ -87,9 +109,58 @@
         
         if(SearchTypePhone == weakSelf.searchType) {
             [[DataManger shareInstance] getPhotoData:^(NSArray *photoArray){
-                __strong typeof(weakSelf) strongSelf = weakSelf;
-                [strongSelf handelPhotoData:photoArray];
+                NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
+                if(end - begin >= animationMinTime) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                        __strong typeof(weakSelf) strongSelf = weakSelf;
+                        [strongSelf handelPhotoData:photoArray];
+                    });
+                    return;
+                }
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((animationMinTime - (end - begin)) * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    [strongSelf handelPhotoData:photoArray];
+                });
             }];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __block int i = 1;
+                self.bigLabel.text = [NSString stringWithFormat:@"步骤：%d/5", 1];
+                self.smallLabel.text = @"正在寻找相似照片...";
+                [self.view setNeedsLayout];
+                [self.view layoutIfNeeded];
+                [NSTimer scheduledTimerWithTimeInterval:1
+                                                    repeats:YES
+                                                      block:^(NSTimer * _Nonnull timer) {
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    strongSelf.bigLabel.text = [NSString stringWithFormat:@"步骤：%d/5", ++i];
+                    switch (i) {
+                        case 1:
+                            strongSelf.smallLabel.text = @"正在寻找相似照片...";
+                            break;
+                        case 2:
+                            strongSelf.smallLabel.text = @"正在寻找模糊照片...";
+                            break;
+                        case 3:
+                            strongSelf.smallLabel.text = @"正在寻找实况图片...";
+                            break;
+                        case 4:
+                            strongSelf.smallLabel.text = @"正在寻找屏幕截图...";
+                            break;
+                        case 5:
+                            strongSelf.smallLabel.text = @"正在寻找连拍自拍照片...";
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                    
+                    if(i == 5) {
+                        [timer invalidate];
+                    }
+                }];
+            });
             
             return;
         }
@@ -112,8 +183,18 @@
     _circularDiagramView.qmui_top = _size_H_S_X(100);
     [_circularDiagramView reDraw];
     
-    [_checkingLabel sizeToFit];
-    _checkingLabel.center = _circularDiagramView.center;
+    [_centerImageView sizeToFit];
+    _centerImageView.center = _circularDiagramView.center;
+    
+    [_bigLabel sizeToFit];
+    _bigLabel.frame = CGRectMake(0, _circularDiagramView.qmui_bottom + _size_H_S_X(49), self.view.qmui_width, _bigLabel.qmui_height);
+    
+    [_smallLabel sizeToFit];
+    _smallLabel.frame = CGRectMake(0, _bigLabel.qmui_bottom + _size_H_S_X(12), self.view.qmui_width, _smallLabel.qmui_height);
+    
+    [_stopBtn sizeToFit];
+    _stopBtn.qmui_bottom = self.view.qmui_height - _size_H_S_X(69);
+    _stopBtn.qmui_left = (self.view.qmui_width - _stopBtn.qmui_width) / 2.0;
 }
 
 - (void)handelCalendarEvent:(NSArray *)eventArray {
@@ -265,6 +346,10 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     return NO;
+}
+
+- (void)stopBtnClick:(id)btn {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma QMUICustomNavigationBarTransitionDelegate

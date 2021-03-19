@@ -13,10 +13,10 @@
 #pragma mark - <QMUIConfigurationTemplateProtocol>
 
 - (void)applyConfigurationTemplate {
-    QMUICMI.needsBackBarButtonItemTitle = NO;
     QMUICMI.navBarTitleFont = UIFontBoldMake(20);
     QMUICMI.navBarTitleColor = [UIColor blackColor];
     QMUICMI.navBarTintColor = [UIColor blackColor];
+    QMUICMI.navBarButtonFont = UIFontBoldMake(17);
 }
 
 - (BOOL)shouldApplyTemplateAutomatically {
