@@ -56,8 +56,11 @@
 		2BA65C5D2603A71100932FC2 /* GetSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BA65C5C2603A71100932FC2 /* GetSimilarity.mm */; };
 		2BA66BA62604806B00932FC2 /* broom_easyicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA42604806A00932FC2 /* broom_easyicon@2x.png */; };
 		2BA66BA72604806B00932FC2 /* broom_easyicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA52604806B00932FC2 /* broom_easyicon@3x.png */; };
-		2BA66BAA2604809400932FC2 /* Common_Button_Normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA82604809300932FC2 /* Common_Button_Normal@3x.png */; };
-		2BA66BAB2604809400932FC2 /* Common_Button_Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA92604809400932FC2 /* Common_Button_Normal@2x.png */; };
+		2BA66BAA2604809400932FC2 /* cancel_check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA82604809300932FC2 /* cancel_check@3x.png */; };
+		2BA66BAB2604809400932FC2 /* cancel_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA66BA92604809400932FC2 /* cancel_check@2x.png */; };
+		2BC774B52606EE1100FE23AC /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC774B22606EE1100FE23AC /* LaunchScreen.png */; };
+		2BC774BF2606F84900FE23AC /* add_photo_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC774BB2606F84900FE23AC /* add_photo_btn@2x.png */; };
+		2BC774C02606F84900FE23AC /* add_photo_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC774BE2606F84900FE23AC /* add_photo_btn@3x.png */; };
 		2BDAEF0E25F8B8C700A5D53C /* PhotoTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0825F8B8C700A5D53C /* PhotoTypeModel.m */; };
 		2BDAEF0F25F8B8C700A5D53C /* PhotoContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0A25F8B8C700A5D53C /* PhotoContentModel.m */; };
 		2BDAEF1025F8B8C700A5D53C /* PhotoSimilarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAEF0C25F8B8C700A5D53C /* PhotoSimilarTableViewCell.m */; };
@@ -182,8 +185,11 @@
 		2BA65C5C2603A71100932FC2 /* GetSimilarity.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GetSimilarity.mm; sourceTree = "<group>"; };
 		2BA66BA42604806A00932FC2 /* broom_easyicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "broom_easyicon@2x.png"; sourceTree = "<group>"; };
 		2BA66BA52604806B00932FC2 /* broom_easyicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "broom_easyicon@3x.png"; sourceTree = "<group>"; };
-		2BA66BA82604809300932FC2 /* Common_Button_Normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Common_Button_Normal@3x.png"; sourceTree = "<group>"; };
-		2BA66BA92604809400932FC2 /* Common_Button_Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Common_Button_Normal@2x.png"; sourceTree = "<group>"; };
+		2BA66BA82604809300932FC2 /* cancel_check@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_check@3x.png"; sourceTree = "<group>"; };
+		2BA66BA92604809400932FC2 /* cancel_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_check@2x.png"; sourceTree = "<group>"; };
+		2BC774B22606EE1100FE23AC /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
+		2BC774BB2606F84900FE23AC /* add_photo_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_photo_btn@2x.png"; sourceTree = "<group>"; };
+		2BC774BE2606F84900FE23AC /* add_photo_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_photo_btn@3x.png"; sourceTree = "<group>"; };
 		2BDAEF0825F8B8C700A5D53C /* PhotoTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTypeModel.m; sourceTree = "<group>"; };
 		2BDAEF0925F8B8C700A5D53C /* PhotoSimilarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSimilarTableViewCell.h; sourceTree = "<group>"; };
 		2BDAEF0A25F8B8C700A5D53C /* PhotoContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoContentModel.m; sourceTree = "<group>"; };
@@ -430,8 +436,11 @@
 				2B0466F025ECE0C500E69F41 /* rectangle@3x.png */,
 				2BA66BA42604806A00932FC2 /* broom_easyicon@2x.png */,
 				2BA66BA52604806B00932FC2 /* broom_easyicon@3x.png */,
-				2BA66BA92604809400932FC2 /* Common_Button_Normal@2x.png */,
-				2BA66BA82604809300932FC2 /* Common_Button_Normal@3x.png */,
+				2BA66BA92604809400932FC2 /* cancel_check@2x.png */,
+				2BA66BA82604809300932FC2 /* cancel_check@3x.png */,
+				2BC774BB2606F84900FE23AC /* add_photo_btn@2x.png */,
+				2BC774BE2606F84900FE23AC /* add_photo_btn@3x.png */,
+				2BC774B22606EE1100FE23AC /* LaunchScreen.png */,
 				2BE7894625DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.h */,
 				2BE7894925DFAFAD00E187A3 /* QMUIConfigurationTemplateGrass.m */,
 			);
@@ -492,6 +501,7 @@
 				2B80840325B9622F0056938B /* Frameworks */,
 				2B80840425B9622F0056938B /* Resources */,
 				2BE7886825DF63CB00E187A3 /* Embed Frameworks */,
+				DF134796505EC75E12EE86A1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -568,17 +578,20 @@
 				2B04671325ECE0C600E69F41 /* set@3x.png in Resources */,
 				2B04671D25ECE0C600E69F41 /* photo_btn@3x.png in Resources */,
 				2BA189DD25F4B558006E66DD /* AssetsPickerVideo@2x.png in Resources */,
+				2BC774C02606F84900FE23AC /* add_photo_btn@3x.png in Resources */,
 				2B80841625B962300056938B /* Assets.xcassets in Resources */,
 				2B43BE7525F66DE40016A39F /* fb_bottom@2x.png in Resources */,
 				2B04672A25ECE0C600E69F41 /* photo_btn@2x.png in Resources */,
+				2BC774BF2606F84900FE23AC /* add_photo_btn@2x.png in Resources */,
 				2B04671725ECE0C600E69F41 /* set@2x.png in Resources */,
 				2B43BE7725F66E080016A39F /* feedback_noSelect@2x.png in Resources */,
 				2B04672025ECE0C600E69F41 /* back_image@2x.png in Resources */,
 				2B04672825ECE0C600E69F41 /* action_button_normal@2x.png in Resources */,
 				2B43BE7925F66E0F0016A39F /* feedback_select@2x.png in Resources */,
 				2B04672B25ECE0C600E69F41 /* action_button_normal@3x.png in Resources */,
-				2BA66BAB2604809400932FC2 /* Common_Button_Normal@2x.png in Resources */,
+				2BA66BAB2604809400932FC2 /* cancel_check@2x.png in Resources */,
 				2B04670225ECE0C600E69F41 /* back_image@3x.png in Resources */,
+				2BC774B52606EE1100FE23AC /* LaunchScreen.png in Resources */,
 				2B43BE7325F66DDD0016A39F /* fb_top@2x.png in Resources */,
 				2BA189DC25F4B558006E66DD /* BoAssetsCamera@2x.png in Resources */,
 				2BA66BA62604806B00932FC2 /* broom_easyicon@2x.png in Resources */,
@@ -586,7 +599,7 @@
 				2B04671925ECE0C600E69F41 /* rectangle@2x.png in Resources */,
 				2B04672525ECE0C600E69F41 /* privacy_btn@3x.png in Resources */,
 				2B04671A25ECE0C600E69F41 /* rectangle@3x.png in Resources */,
-				2BA66BAA2604809400932FC2 /* Common_Button_Normal@3x.png in Resources */,
+				2BA66BAA2604809400932FC2 /* cancel_check@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +626,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF134796505EC75E12EE86A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-超强清理/Pods-超强清理-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-超强清理/Pods-超强清理-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-超强清理/Pods-超强清理-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -793,7 +823,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WG256MA2SR;
+				DEVELOPMENT_TEAM = 7Q96SJWY52;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))";
 				GCC_PREFIX_HEADER = "./IOSBaseTemplate/Supporting Files/PrefixHeader.pch";
@@ -804,7 +834,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fengchiwei;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jason.superclean;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -819,7 +849,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WG256MA2SR;
+				DEVELOPMENT_TEAM = 7Q96SJWY52;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))";
 				GCC_PREFIX_HEADER = "./IOSBaseTemplate/Supporting Files/PrefixHeader.pch";
@@ -830,7 +860,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fengchiwei;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jason.superclean;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

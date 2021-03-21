@@ -61,7 +61,7 @@ UICollectionViewDelegateFlowLayout>
     
     self.passwordView = [[XLGesturePassword alloc] init];
     _passwordView.itemCenterBallColor = [UIColor greenColor];
-    _passwordView.lineNormalColor = [UIColor greenColor];
+    _passwordView.lineNormalColor = [UIColor qmui_colorWithHexString:@"#00A784"];
     _passwordView.lineErrorColor = [UIColor redColor];
     __weak typeof(self) weakSelf = self;
     [_passwordView addPasswordBlock:^(NSString *password) {
@@ -81,8 +81,7 @@ UICollectionViewDelegateFlowLayout>
     _photoListView.backgroundColor = [UIColor clearColor];
     [self.photoBackView insertSubview:_photoListView atIndex:0];
     
-    self.addPhotoBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"action_button_normal") title:nil];
-    _addPhotoBtn.frame =CGRectMake(0, 0, _size_W_S_X(155), _size_W_S_X(56));
+    self.addPhotoBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"add_photo_btn") title:nil];
     [_addPhotoBtn addTarget:self action:@selector(addPhotoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.photoBackView addSubview:_addPhotoBtn];
     
@@ -102,12 +101,19 @@ UICollectionViewDelegateFlowLayout>
     _tipLabel.qmui_bottom = _passwordView.qmui_top -  _size_H_S_X(20);
     
     self.photoBackView.frame = self.view.bounds;
-    _addPhotoBtn.qmui_bottom = _photoBackView.qmui_height - _size_H_S_X(20);
+    [_addPhotoBtn sizeToFit];
+    _addPhotoBtn.qmui_bottom = _photoBackView.qmui_height - _size_H_S_X(69);
     _addPhotoBtn.qmui_left = (_photoBackView.qmui_width - _addPhotoBtn.qmui_width) / 2.0;
     
     self.photoListView.frame = CGRectMake(0, self.navigationController.navigationBar.qmui_height, self.photoBackView.qmui_width, self.photoBackView.qmui_height - self.navigationController.navigationBar.qmui_bottom);
 }
 
+- (void)setupNavigationItems {
+    [super setupNavigationItems];
+
+    UIImage *img = [[UIImage imageNamed: @"set"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:img style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonClick:)];
+}
 
 - (void)handlepassword:(NSString *) password{
     if(self.password.length) {
@@ -163,6 +169,12 @@ UICollectionViewDelegateFlowLayout>
     AJPhotoPickerViewController *picker = [[AJPhotoPickerViewController alloc] init];
     picker.delegate = self;
     [self.navigationController pushViewController:picker animated:YES];
+}
+
+- (void)rightBarButtonClick:(id)btn {
+//    AJPhotoPickerViewController *picker = [[AJPhotoPickerViewController alloc] init];
+//    picker.delegate = self;
+//    [self.navigationController pushViewController:picker animated:YES];
 }
 
 #pragma QMUICustomNavigationBarTransitionDelegate

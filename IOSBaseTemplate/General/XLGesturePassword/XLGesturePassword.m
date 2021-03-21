@@ -56,7 +56,6 @@
     //创建中间连线
     _layer = [CAShapeLayer layer];
     _layer.fillColor = [UIColor clearColor].CGColor;
-    _layer.lineWidth = 3;
     _layer.lineCap = kCALineCapRound;
     _layer.lineJoin = kCALineJoinRound;
     [self.layer addSublayer:_layer];
@@ -77,6 +76,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     _collectionView.frame = self.bounds;
+    _layer.lineWidth = self.itemWidth * 0.1;
 }
 
 
@@ -107,8 +107,8 @@
     static NSString* cellId = @"XLGesturePasswordCell";
     XLGesturePasswordCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
     cell.gestureSelected = [_passwordIndexPathArr containsObject:indexPath];
-    cell.itemBackGoundColor = self.itemBackGoundColor;
-    cell.itemCenterBallColor = self.itemCenterBallColor;
+    cell.itemBackGoundColor = [UIColor qmui_colorWithHexString:@"#DADFE8"];
+    cell.itemCenterBallColor = [UIColor qmui_colorWithHexString:@"#00A784"];
     return cell;
 }
 

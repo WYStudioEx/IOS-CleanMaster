@@ -37,7 +37,7 @@
     self.circularDiagramView = [[UICircularDiagramView alloc] initWithFrame:CGRectMake(0, 0, _size_W_S_X(252), _size_W_S_X(252))];
     [self.view addSubview:_circularDiagramView];
     
-    self.stopBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"Common_Button_Normal") title:nil];
+    self.stopBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"cancel_check") title:nil];
     _stopBtn.frame =CGRectMake(0, 0, _size_W_S_X(155), _size_W_S_X(56));
     [_stopBtn addTarget:self action:@selector(stopBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_stopBtn];

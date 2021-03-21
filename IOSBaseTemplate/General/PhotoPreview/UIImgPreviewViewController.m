@@ -31,12 +31,12 @@
     [self.view addSubview:_imgPreviewCollectionView];
     
     self.addToSysBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"action_button_normal") title:nil];
-    _addToSysBtn.frame =CGRectMake(0, 0, _size_W_S_X(155), _size_W_S_X(56));
+    _addToSysBtn.frame =CGRectMake(0, 0, _size_W_S_X(168), _size_H_S_X(52));
     [_addToSysBtn addTarget:self action:@selector(addToSysBtnBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addToSysBtn];
     
     self.delBtn = [[QMUIButton alloc] qmui_initWithImage:UIImageMake(@"action_button_normal") title:nil];
-    _delBtn.frame =CGRectMake(0, 0, _size_W_S_X(155), _size_W_S_X(56));
+    _delBtn.frame =CGRectMake(0, 0, _size_W_S_X(168), _size_H_S_X(52));
     [_delBtn addTarget:self action:@selector(delBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_delBtn];
     
@@ -58,11 +58,11 @@
     
     _imgPreviewCollectionView.frame = self.view.bounds;
     
-    CGFloat left = self.view.qmui_width - (_size_W_S_X(155) * 2 + _size_W_S_X(20));
+    CGFloat left = (self.view.qmui_width - (_size_W_S_X(168) * 2 + _size_W_S_X(7))) / 2.0;
     _addToSysBtn.qmui_left = left;
-    _addToSysBtn.qmui_bottom = self.view.qmui_height - _size_H_S_X(40);
-    _delBtn.qmui_left = _addToSysBtn.qmui_right + _size_W_S_X(20);
-    _delBtn.qmui_bottom = self.view.qmui_height - _size_H_S_X(40);
+    _addToSysBtn.qmui_bottom = self.view.qmui_height - _size_H_S_X(32);
+    _delBtn.qmui_left = _addToSysBtn.qmui_right + _size_W_S_X(7);
+    _delBtn.qmui_bottom = _addToSysBtn.qmui_bottom;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
